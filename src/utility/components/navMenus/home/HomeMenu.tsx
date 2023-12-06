@@ -5,12 +5,14 @@ export default function HomeMenu() {
     <div className="flex flex-row gap-4 items-center">
       <div>
         <Link to="#" className=" no-underline text-white font-semibold">
-          <p className=" ">Login</p>
+          <p className="max-sm:text-sm ">Login</p>
         </Link>
       </div>
       <div>
         <Link to="#" className=" no-underline text-white font-semibold ">
-          <p className="bg-orange-600 py-1 px-2 rounded-md">Post proposal</p>
+          <p className="bg-orange-600 py-1 px-2 rounded-md max-sm:text-sm">
+            Post proposal
+          </p>
         </Link>
       </div>
     </div>
