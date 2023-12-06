@@ -1,10 +1,9 @@
-import MainLayout from "../utility/components/mainLayout/MainLayout";
-import HomeMenu from "../utility/components/navMenus/home/HomeMenu";
+import { MainLayout, HomeMenu } from "../utility/components";
 import { useSearchParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
 import dayjs from "dayjs";
-import ProposerLogin from "./proposer/ProposerLogin";
+import { ProposerLogin } from "./proposer";
 
 export default function Home() {
   const [_, setCookie] = useCookies(["ref"]);

@@ -2,12 +2,12 @@ import { CopyrightOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
-interface MainLayoutProps {
+type MainLayoutProps = {
   children: ReactNode;
   navMenu?: ReactNode;
   showFooter?: boolean;
   showMarketing?: boolean;
-}
+};
 
 export default function MainLayout(props: MainLayoutProps) {
   return (

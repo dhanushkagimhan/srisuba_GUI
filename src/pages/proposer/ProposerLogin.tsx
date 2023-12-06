@@ -1,10 +1,10 @@
 import { Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 
-interface FieldType {
+type FieldType = {
   email?: string;
   password?: string;
-}
+};
 
 export default function ProposerLogin() {
   const onFinish = (values: unknown) => {
