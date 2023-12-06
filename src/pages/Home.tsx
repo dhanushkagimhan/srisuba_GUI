@@ -1,6 +1,7 @@
 import { Button, Form, Input } from "antd";
 import MainLayout from "../utility/components/mainLayout/MainLayout";
 import HomeMenu from "../utility/components/navMenus/home/HomeMenu";
+import { Link } from "react-router-dom";
 
 interface FieldType {
   email?: string;
@@ -17,7 +18,7 @@ export default function Home() {
   };
 
   return (
-    <MainLayout navMenu={<HomeMenu />} showMarketing={true}>
+    <MainLayout navMenu={<HomeMenu />} showFooter={true} showMarketing={true}>
       <div className="flex flex-row max-md:flex-col md:justify-between h-[70vh]">
         <div className="w-full md:pt-20 lg:pl-20">
           <h1 className="text-6xl text-neutral-900">Srisuba</h1>
@@ -61,6 +62,16 @@ export default function Home() {
               </Button>
             </Form.Item>
           </Form>
+          <div className="-mt-5">
+            <Link to="#" className="no-underline text-sky-500">
+              <p>Forgotten password?</p>
+            </Link>
+          </div>
+          <div className="-mt-2">
+            <Link to="#" className="no-underline text-sky-500">
+              <p>Still not posted my proposal, Post my proposal</p>
+            </Link>
+          </div>
         </div>
       </div>
     </MainLayout>
