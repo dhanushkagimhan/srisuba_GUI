@@ -1,21 +1,22 @@
-import { Button, Form, Input } from "antd";
 import MainLayout from "../utility/components/mainLayout/MainLayout";
 import HomeMenu from "../utility/components/navMenus/home/HomeMenu";
-import { Link } from "react-router-dom";
-
-interface FieldType {
-  email?: string;
-  password?: string;
-}
+import { useSearchParams } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { useEffect } from "react";
+import dayjs from "dayjs";
+import ProposerLogin from "./proposer/ProposerLogin";
 
 export default function Home() {
-  const onFinish = (values: unknown) => {
-    console.log("Success:", values);
-  };
+  const [_, setCookie] = useCookies(["ref"]);
+  const [searchParams] = useSearchParams();
 
-  const onFinishFailed = (errorInfo: unknown) => {
-    console.log("Failed:", errorInfo);
-  };
+  useEffect(() => {
+    if (searchParams.get("r") != null) {
+      setCookie("ref", searchParams.get("r"), {
+        expires: dayjs().add(20, "day").toDate(),
+      });
+    }
+  }, []);
 
   return (
     <MainLayout navMenu={<HomeMenu />} showFooter={true} showMarketing={true}>
@@ -27,51 +28,7 @@ export default function Home() {
           </p>
         </div>
         <div className="w-full pt-20 xl:pl-40">
-          <div className="text-2xl font-semibold mb-5">Login</div>
-          <Form
-            name="loginForm"
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-            className="xl:w-3/5 w-full flex flex-col gap-2"
-          >
-            <Form.Item<FieldType>
-              name="email"
-              rules={[{ required: true, message: "Please input your email" }]}
-            >
-              <Input type="email" placeholder="Email" className="py-2" />
-            </Form.Item>
-
-            <Form.Item<FieldType>
-              name="password"
-              rules={[
-                { required: true, message: "Please input your password!" },
-              ]}
-            >
-              <Input.Password placeholder="Password" className="py-2 w-full" />
-            </Form.Item>
-
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="w-full pb-10 text-2xl font-medium"
-              >
-                Login
-              </Button>
-            </Form.Item>
-          </Form>
-          <div className="-mt-5">
-            <Link to="#" className="no-underline text-sky-500">
-              <p>Forgotten password?</p>
-            </Link>
-          </div>
-          <div className="-mt-2">
-            <Link to="#" className="no-underline text-sky-500">
-              <p>Still not posted my proposal, Post my proposal</p>
-            </Link>
-          </div>
+          <ProposerLogin />
         </div>
       </div>
     </MainLayout>
