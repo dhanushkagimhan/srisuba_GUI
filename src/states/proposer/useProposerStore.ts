@@ -25,7 +25,7 @@ const useProposerStore = create<ProposerState>()(
         setData: (values) => set(() => ({ data: values })),
       }),
       {
-        name: "bear-storage",
+        name: "proposer-storage",
       },
     ),
   ),

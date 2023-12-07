@@ -1,15 +1,36 @@
 import { CopyrightOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import useMainLayOutStore from "../../../states/mainLayout/mainLayout";
+import { MainLayoutNavEnum } from "../../types";
 
 type MainLayoutProps = {
   children: ReactNode;
-  navMenu?: ReactNode;
-  showFooter?: boolean;
-  showMarketing?: boolean;
 };
 
 export default function MainLayout(props: MainLayoutProps) {
+  const state = useMainLayOutStore();
+
+  const getNavMenu = () => {
+    switch (state.data.navMenu) {
+      case MainLayoutNavEnum.postProposer: {
+        return (
+          <div className="flex flex-row items-center">
+            <div>
+              <Link to="#" className=" no-underline text-white font-semibold ">
+                <p className="bg-orange-600 py-1 px-2 rounded-md">
+                  Post proposal
+                </p>
+              </Link>
+            </div>
+          </div>
+        );
+      }
+      default:
+        return <></>;
+    }
+  };
+
   return (
     <div>
       <div className="w-full h-14 bg-teal-700 flex items-center fixed">
@@ -18,11 +39,7 @@ export default function MainLayout(props: MainLayoutProps) {
             <div>
               <h1 className=" text-white">Srisuba</h1>
             </div>
-            {props.navMenu ? (
-              <div className="flex items-center">{props.navMenu}</div>
-            ) : (
-              <></>
-            )}
+            {getNavMenu()}
           </div>
         </div>
       </div>
@@ -31,7 +48,7 @@ export default function MainLayout(props: MainLayoutProps) {
         <div className="mx-2 mt-14">{props.children}</div>
       </div>
 
-      {props.showFooter ? (
+      {state.data.showFooter ? (
         <div className="w-full h-fit bg-teal-950">
           <div className="container mx-auto">
             <div className="mx-2">
@@ -50,7 +67,7 @@ export default function MainLayout(props: MainLayoutProps) {
                     <WhatsAppOutlined /> +94 71 7 99 35 99
                   </p>
                 </div>
-                {props.showMarketing ? (
+                {state.data.showMarketing ? (
                   <div>
                     <Link
                       to="#"

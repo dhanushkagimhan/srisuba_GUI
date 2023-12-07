@@ -10,4 +10,10 @@ enum ProposerStatusEnum {
   BannedResolved = "BannedResolved",
 }
 
+enum MainLayoutNavEnum {
+  postProposer,
+}
+
 export type { ProposerStatusEnum };
+
+export { MainLayoutNavEnum };
