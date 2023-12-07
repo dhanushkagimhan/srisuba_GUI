@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { ProposerStatusEnum } from "../../utility/types";
 
-type ProposerData = {
+export type ProposerData = {
   id: number;
   email: string;
   firstName: string;

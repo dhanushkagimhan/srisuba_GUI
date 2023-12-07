@@ -1,28 +1,54 @@
-import { Button, Form, Input } from "antd";
+import { Alert, Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import { ProposerLoginType } from "../../utility/types";
 import { SyncOutlined } from "@ant-design/icons";
 import { useProposerLogin } from "../../services/proposer";
+import useProposerStore, {
+  ProposerData,
+} from "../../states/proposer/useProposerStore";
+import { useCookies } from "react-cookie";
+import dayjs from "dayjs";
 
 export default function ProposerLogin() {
   const proposerLoginMutation = useProposerLogin();
+  const proposerState = useProposerStore();
+  const [_, setCookie] = useCookies(["proposerJwt"]);
 
   const onFinish = (values: ProposerLoginType) => {
-    console.log("Success:", values);
-    proposerLoginMutation.mutate(values);
+    proposerLoginMutation.mutate(values, {
+      onSuccess: (data) => {
+        if (data.data.success) {
+          const proposerData: ProposerData = data.data.data;
+          proposerState.setData(proposerData);
+          setCookie("proposerJwt", proposerData.accessToken, {
+            expires: dayjs().add(1, "h").toDate(),
+          });
+        }
+      },
+    });
   };
 
-  const onFinishFailed = (errorInfo: unknown) => {
-    console.log("Failed:", errorInfo);
-  };
   return (
     <div>
       <div className="text-2xl font-semibold mb-5">Login</div>
+      <div>
+        {proposerLoginMutation.isError ? (
+          <div className="xl:w-3/5 w-full mb-4">
+            <Alert
+              message={
+                proposerLoginMutation.error.response.data.message ?? "Error"
+              }
+              type="error"
+            />
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
       <Form
         name="loginForm"
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
         className="xl:w-3/5 w-full flex flex-col gap-2"
       >
@@ -35,7 +61,10 @@ export default function ProposerLogin() {
 
         <Form.Item<ProposerLoginType>
           name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
+          rules={[
+            { required: true, message: "Please input your password!" },
+            { min: 8, message: "password need to have more than 8 characters" },
+          ]}
         >
           <Input.Password placeholder="Password" className="py-2 w-full" />
         </Form.Item>
