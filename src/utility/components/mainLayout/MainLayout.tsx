@@ -1,7 +1,7 @@
 import { CopyrightOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import useMainLayOutStore from "../../../states/mainLayout/mainLayout";
+import { useMainLayOutStore } from "../../../states";
 import { MainLayoutNavEnum } from "../../types";
 
 type MainLayoutProps = {

@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 import { useEffect } from "react";
 import dayjs from "dayjs";
 import { ProposerLogin } from "./proposer";
-import useMainLayOutStore from "../states/mainLayout/mainLayout";
+import { useMainLayOutStore } from "../states";
 import { MainLayoutNavEnum } from "../utility/types";
 
 export default function Home() {
