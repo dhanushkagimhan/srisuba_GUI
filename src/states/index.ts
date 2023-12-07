@@ -1,3 +1,3 @@
-import useMainLayOutStore from "./mainLayout/mainLayoutStore";
+import useMainLayoutStore from "./mainLayout/useMainLayoutStore";
 
-export { useMainLayOutStore };
+export { useMainLayoutStore };

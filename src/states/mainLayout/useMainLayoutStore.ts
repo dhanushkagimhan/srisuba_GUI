@@ -13,7 +13,7 @@ type MainLayoutState = {
   setData: (values: MainLayoutData) => void;
 };
 
-const useMainLayOutStore = create<MainLayoutState>()(
+const useMainLayoutStore = create<MainLayoutState>()(
   devtools(
     persist(
       (set) => ({
@@ -31,4 +31,4 @@ const useMainLayOutStore = create<MainLayoutState>()(
   ),
 );
 
-export default useMainLayOutStore;
+export default useMainLayoutStore;

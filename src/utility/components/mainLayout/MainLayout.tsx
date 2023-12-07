@@ -1,7 +1,7 @@
 import { CopyrightOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { useMainLayOutStore } from "../../../states";
+import { useMainLayoutStore } from "../../../states";
 import { MainLayoutNavEnum } from "../../types";
 
 type MainLayoutProps = {
@@ -9,7 +9,7 @@ type MainLayoutProps = {
 };
 
 export default function MainLayout(props: MainLayoutProps) {
-  const state = useMainLayOutStore();
+  const state = useMainLayoutStore();
 
   const getNavMenu = () => {
     switch (state.data.navMenu) {

@@ -1,19 +1,6 @@
-enum ProposerStatusEnum {
-  PendingEmailVerification = "PendingEmailVerification",
-  EmailVerified = "EmailVerified",
-  PendingPayment = "PendingPayment",
-  PaymentApproved = "PaymentApproved",
-  Active = "Active",
-  Rejected = "Rejected",
-  RejectionResolved = "RejectionResolved",
-  Banned = "Banned",
-  BannedResolved = "BannedResolved",
-}
+import { MainLayoutNavEnum } from "./components/mainLayout/mainLayout";
+import { ProposerStatusEnum, ProposerLoginType } from "./proposer/proposer";
 
-enum MainLayoutNavEnum {
-  postProposer,
-}
-
-export type { ProposerStatusEnum };
+export type { ProposerStatusEnum, ProposerLoginType };
 
 export { MainLayoutNavEnum };

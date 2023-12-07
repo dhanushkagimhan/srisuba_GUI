@@ -3,14 +3,14 @@ import { useCookies } from "react-cookie";
 import { useEffect } from "react";
 import dayjs from "dayjs";
 import { ProposerLogin } from "./proposer";
-import { useMainLayOutStore } from "../states";
+import { useMainLayoutStore } from "../states";
 import { MainLayoutNavEnum } from "../utility/types";
 
 export default function Home() {
   const [_, setCookie] = useCookies(["ref"]);
   const [searchParams] = useSearchParams();
 
-  const mainLayoutState = useMainLayOutStore();
+  const mainLayoutState = useMainLayoutStore();
 
   useEffect(() => {
     if (searchParams.get("r") != null) {

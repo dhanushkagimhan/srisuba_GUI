@@ -1,14 +1,15 @@
 import { Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
-
-type FieldType = {
-  email?: string;
-  password?: string;
-};
+import { ProposerLoginType } from "../../utility/types";
+import { SyncOutlined } from "@ant-design/icons";
+import { useProposerLogin } from "../../services/proposer";
 
 export default function ProposerLogin() {
-  const onFinish = (values: unknown) => {
+  const proposerLoginMutation = useProposerLogin();
+
+  const onFinish = (values: ProposerLoginType) => {
     console.log("Success:", values);
+    proposerLoginMutation.mutate(values);
   };
 
   const onFinishFailed = (errorInfo: unknown) => {
@@ -25,14 +26,14 @@ export default function ProposerLogin() {
         autoComplete="off"
         className="xl:w-3/5 w-full flex flex-col gap-2"
       >
-        <Form.Item<FieldType>
+        <Form.Item<ProposerLoginType>
           name="email"
           rules={[{ required: true, message: "Please input your email" }]}
         >
           <Input type="email" placeholder="Email" className="py-2" />
         </Form.Item>
 
-        <Form.Item<FieldType>
+        <Form.Item<ProposerLoginType>
           name="password"
           rules={[{ required: true, message: "Please input your password!" }]}
         >
@@ -45,6 +46,7 @@ export default function ProposerLogin() {
             htmlType="submit"
             className="w-full pb-10 text-2xl font-medium"
           >
+            {proposerLoginMutation.isPending ? <SyncOutlined spin /> : <></>}{" "}
             Login
           </Button>
         </Form.Item>
