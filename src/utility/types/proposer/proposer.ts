@@ -1,3 +1,5 @@
+import { Gender } from "..";
+
 enum ProposerStatusEnum {
   PendingEmailVerification = "PendingEmailVerification",
   EmailVerified = "EmailVerified",
@@ -15,6 +17,16 @@ type ProposerLoginType = {
   password: string;
 };
 
-export type { ProposerLoginType };
+type ProposerRegisterType = {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  birthDay: string;
+  gender: Gender;
+  referralCode?: string;
+};
+
+export type { ProposerLoginType, ProposerRegisterType };
 
 export { ProposerStatusEnum };

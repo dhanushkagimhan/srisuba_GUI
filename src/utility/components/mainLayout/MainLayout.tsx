@@ -17,7 +17,10 @@ export default function MainLayout(props: MainLayoutProps) {
         return (
           <div className="flex flex-row items-center">
             <div>
-              <Link to="#" className=" no-underline text-white font-semibold ">
+              <Link
+                to="/proposer-register"
+                className=" no-underline text-white font-semibold "
+              >
                 <p className="bg-orange-600 py-1 px-2 rounded-md">
                   Post proposal
                 </p>

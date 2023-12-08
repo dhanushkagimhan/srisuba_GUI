@@ -8,13 +8,14 @@ import useProposerStore, {
 } from "../../states/proposer/useProposerStore";
 import { useCookies } from "react-cookie";
 import dayjs from "dayjs";
+import { getMutationError } from "../../utility/Methods";
 
 export default function ProposerLogin() {
   const proposerLoginMutation = useProposerLogin();
   const proposerState = useProposerStore();
   const [_, setCookie] = useCookies(["proposerJwt"]);
 
-  const onFinish = (values: ProposerLoginType) => {
+  const onSubmit = (values: ProposerLoginType) => {
     proposerLoginMutation.mutate(values, {
       onSuccess: (data) => {
         if (data.data.success) {
@@ -35,9 +36,7 @@ export default function ProposerLogin() {
         {proposerLoginMutation.isError ? (
           <div className="xl:w-3/5 w-full mb-4">
             <Alert
-              message={
-                proposerLoginMutation.error.response.data.message ?? "Error"
-              }
+              message={getMutationError(proposerLoginMutation)}
               type="error"
             />
           </div>
@@ -47,14 +46,19 @@ export default function ProposerLogin() {
       </div>
       <Form
         name="loginForm"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
+        onFinish={onSubmit}
         autoComplete="off"
         className="xl:w-3/5 w-full flex flex-col gap-2"
       >
         <Form.Item<ProposerLoginType>
           name="email"
-          rules={[{ required: true, message: "Please input your email" }]}
+          rules={[
+            {
+              type: "email",
+              message: "The input is not valid E-mail!",
+            },
+            { required: true, message: "Please input your email" },
+          ]}
         >
           <Input type="email" placeholder="Email" className="py-2" />
         </Form.Item>
@@ -75,7 +79,13 @@ export default function ProposerLogin() {
             htmlType="submit"
             className="w-full pb-10 text-2xl font-medium"
           >
-            {proposerLoginMutation.isPending ? <SyncOutlined spin /> : <></>}{" "}
+            {proposerLoginMutation.isPending ? (
+              <span className="text-lg mr-2">
+                <SyncOutlined spin />
+              </span>
+            ) : (
+              <></>
+            )}
             Login
           </Button>
         </Form.Item>
@@ -86,7 +96,7 @@ export default function ProposerLogin() {
         </Link>
       </div>
       <div className="-mt-2">
-        <Link to="#" className="no-underline text-sky-500">
+        <Link to="/proposer-register" className="no-underline text-sky-500">
           <p>Still not posted my proposal, Post my proposal</p>
         </Link>
       </div>
