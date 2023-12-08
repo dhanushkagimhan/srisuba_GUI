@@ -1,11 +1,22 @@
 import { useMutation } from "@tanstack/react-query";
 import { proposerClient } from "../../client";
-import { ProposerLoginType } from "../../../utility/types";
+import {
+  ProposerLoginType,
+  ProposerRegisterType,
+} from "../../../utility/types";
 
-export default function useProposerLogin() {
+export function useProposerLogin() {
   return useMutation({
     mutationFn: (loginData: ProposerLoginType) => {
       return proposerClient.post("/login", loginData);
+    },
+  });
+}
+
+export function useProposerRegister() {
+  return useMutation({
+    mutationFn: (registerData: ProposerRegisterType) => {
+      return proposerClient.post("/register", registerData);
     },
   });
 }

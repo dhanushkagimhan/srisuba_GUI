@@ -3,13 +3,13 @@ import { devtools, persist } from "zustand/middleware";
 import { ProposerStatusEnum } from "../../utility/types";
 
 export type ProposerData = {
-  id: number;
-  email: string;
-  firstName: string;
-  lastName: string;
-  accessToken: string;
-  status: ProposerStatusEnum;
-  membershipExpiration: Date;
+  id?: number;
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  accessToken?: string;
+  status?: ProposerStatusEnum;
+  membershipExpiration?: Date;
 };
 
 type ProposerState = {

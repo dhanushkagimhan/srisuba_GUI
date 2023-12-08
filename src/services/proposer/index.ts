@@ -1,3 +1,6 @@
-import useProposerLogin from "./authentication/authentication";
+import {
+  useProposerLogin,
+  useProposerRegister,
+} from "./authentication/authentication";
 
-export { useProposerLogin };
+export { useProposerLogin, useProposerRegister };

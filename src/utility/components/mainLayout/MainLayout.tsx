@@ -36,11 +36,13 @@ export default function MainLayout(props: MainLayoutProps) {
 
   return (
     <div>
-      <div className="w-full h-14 bg-teal-700 flex items-center fixed">
+      <div className="w-full h-14 bg-teal-700 flex items-center fixed z-50">
         <div className="container mx-auto">
           <div className="flex flex-row justify-between mx-2">
             <div>
-              <h1 className=" text-white">Srisuba</h1>
+              <Link to={state.data.logoLink} className="no-underline">
+                <h1 className=" text-white">Srisuba</h1>
+              </Link>
             </div>
             {getNavMenu()}
           </div>

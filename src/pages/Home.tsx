@@ -23,6 +23,7 @@ export default function Home() {
       navMenu: MainLayoutNavEnum.postProposer,
       showFooter: true,
       showMarketing: true,
+      logoLink: "/",
     });
   }, []);
 

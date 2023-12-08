@@ -6,6 +6,7 @@ type MainLayoutData = {
   navMenu?: MainLayoutNavEnum;
   showFooter: boolean;
   showMarketing: boolean;
+  logoLink: string;
 };
 
 type MainLayoutState = {
@@ -21,6 +22,7 @@ const useMainLayoutStore = create<MainLayoutState>()(
           navMenu: MainLayoutNavEnum.postProposer,
           showFooter: false,
           showMarketing: false,
+          logoLink: "/",
         },
         setData: (values) => set(() => ({ data: values })),
       }),

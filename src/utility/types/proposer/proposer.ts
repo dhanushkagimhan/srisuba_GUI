@@ -20,6 +20,7 @@ type ProposerLoginType = {
 type ProposerRegisterType = {
   email: string;
   password: string;
+  confirmPassword?: string;
   firstName: string;
   lastName: string;
   birthDay: string;
