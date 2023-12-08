@@ -47,7 +47,6 @@ export default function ProposerLogin() {
       <Form
         name="loginForm"
         onFinish={onSubmit}
-        autoComplete="off"
         className="xl:w-3/5 w-full flex flex-col gap-2"
       >
         <Form.Item<ProposerLoginType>

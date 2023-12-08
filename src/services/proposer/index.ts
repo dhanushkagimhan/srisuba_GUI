@@ -1,6 +1,7 @@
 import {
+  useProposerEmailVerify,
   useProposerLogin,
   useProposerRegister,
 } from "./authentication/authentication";
 
-export { useProposerLogin, useProposerRegister };
+export { useProposerLogin, useProposerRegister, useProposerEmailVerify };

@@ -10,6 +10,7 @@ import { SyncOutlined } from "@ant-design/icons";
 import useProposerStore, {
   ProposerData,
 } from "../../states/proposer/useProposerStore";
+import { useNavigate } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -18,6 +19,7 @@ export default function ProposerRegister() {
   const proposerRegisterMutation = useProposerRegister();
   const mainLayoutState = useMainLayoutStore();
   const proposerState = useProposerStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
     mainLayoutState.setData({
@@ -42,6 +44,7 @@ export default function ProposerRegister() {
         if (data.data.success) {
           const proposerData: ProposerData = data.data.data;
           proposerState.setData(proposerData);
+          navigate("/proposer-email-verify");
         }
       },
     });
@@ -67,7 +70,6 @@ export default function ProposerRegister() {
           name="loginForm"
           onFinish={onSubmit}
           layout="vertical"
-          autoComplete="off"
           className="flex flex-col gap-2"
         >
           <Form.Item<ProposerRegisterType>

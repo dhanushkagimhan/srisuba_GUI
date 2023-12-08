@@ -28,6 +28,15 @@ type ProposerRegisterType = {
   referralCode?: string;
 };
 
-export type { ProposerLoginType, ProposerRegisterType };
+type ProposerEmailVerifyType = {
+  email?: string;
+  code: string;
+};
+
+export type {
+  ProposerLoginType,
+  ProposerRegisterType,
+  ProposerEmailVerifyType,
+};
 
 export { ProposerStatusEnum };
