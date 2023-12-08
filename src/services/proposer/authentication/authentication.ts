@@ -3,6 +3,7 @@ import { proposerClient } from "../../client";
 import {
   ProposerEmailVerifyType,
   ProposerLoginType,
+  ProposerRegenEmailVerifyType,
   ProposerRegisterType,
 } from "../../../utility/types";
 
@@ -26,6 +27,14 @@ export function useProposerEmailVerify() {
   return useMutation({
     mutationFn: (emailVerifyData: ProposerEmailVerifyType) => {
       return proposerClient.post("/email-verify", emailVerifyData);
+    },
+  });
+}
+
+export function useProposerRegenEmailVerify() {
+  return useMutation({
+    mutationFn: (regenEmailVerifyData: ProposerRegenEmailVerifyType) => {
+      return proposerClient.post("/regen-email-verify", regenEmailVerifyData);
     },
   });
 }

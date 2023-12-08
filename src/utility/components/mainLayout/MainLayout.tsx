@@ -21,7 +21,7 @@ export default function MainLayout(props: MainLayoutProps) {
                 to="/proposer-register"
                 className=" no-underline text-white font-semibold "
               >
-                <p className="bg-orange-600 py-1 px-2 rounded-md">
+                <p className="bg-orange-600 py-1 px-2 rounded-md hover:bg-orange-500">
                   Post proposal
                 </p>
               </Link>

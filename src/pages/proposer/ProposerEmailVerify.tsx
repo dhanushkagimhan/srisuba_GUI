@@ -4,8 +4,14 @@ import useProposerStore, {
   ProposerData,
 } from "../../states/proposer/useProposerStore";
 import { Alert, Button, Form, Input } from "antd";
-import { ProposerEmailVerifyType } from "../../utility/types";
-import { useProposerEmailVerify } from "../../services/proposer";
+import {
+  ProposerEmailVerifyType,
+  ProposerRegenEmailVerifyType,
+} from "../../utility/types";
+import {
+  useProposerEmailVerify,
+  useProposerRegenEmailVerify,
+} from "../../services/proposer";
 import { useCookies } from "react-cookie";
 import dayjs from "dayjs";
 import { getMutationError } from "../../utility/Methods";
@@ -15,6 +21,7 @@ export default function ProposerEmailVerify() {
   const mainLayoutState = useMainLayoutStore();
   const proposerState = useProposerStore();
   const proposerEmailVerifyMutation = useProposerEmailVerify();
+  const proposerRegenEmailVerifyMutation = useProposerRegenEmailVerify();
   const [_, setCookie] = useCookies(["proposerJwt"]);
 
   useEffect(() => {
@@ -27,14 +34,13 @@ export default function ProposerEmailVerify() {
   }, []);
 
   const onSubmit = (values: ProposerEmailVerifyType) => {
-    console.log(values);
     const emailVerifyData: ProposerEmailVerifyType = {
       email: proposerState.data?.email,
       code: values.code,
     };
+
     proposerEmailVerifyMutation.mutate(emailVerifyData, {
       onSuccess: (data) => {
-        console.log(data);
         if (data.data.success) {
           const proposerData: ProposerData = data.data.data;
           proposerState.setData(proposerData);
@@ -44,6 +50,14 @@ export default function ProposerEmailVerify() {
         }
       },
     });
+  };
+
+  const regenEmailVerify = () => {
+    const regenEmailVerify: ProposerRegenEmailVerifyType = {
+      email: proposerState.data?.email,
+    };
+
+    proposerRegenEmailVerifyMutation.mutate(regenEmailVerify);
   };
 
   return (
@@ -60,6 +74,26 @@ export default function ProposerEmailVerify() {
               <Alert
                 message={getMutationError(proposerEmailVerifyMutation)}
                 type="error"
+              />
+            </div>
+          ) : (
+            <></>
+          )}
+          {proposerRegenEmailVerifyMutation.isError ? (
+            <div className="mb-4">
+              <Alert
+                message={getMutationError(proposerRegenEmailVerifyMutation)}
+                type="error"
+              />
+            </div>
+          ) : (
+            <></>
+          )}
+          {proposerRegenEmailVerifyMutation.isSuccess ? (
+            <div className="mb-4">
+              <Alert
+                message="Email Verification code again sent successfully. Check your email inbox"
+                type="success"
               />
             </div>
           ) : (
@@ -115,6 +149,21 @@ export default function ProposerEmailVerify() {
             </Button>
           </Form.Item>
         </Form>
+        <div>
+          <p
+            className="text-sky-500 cursor-pointer hover:text-sky-400"
+            onClick={regenEmailVerify}
+          >
+            Resend Email verification code
+            {proposerRegenEmailVerifyMutation.isPending ? (
+              <span className="ml-2">
+                <SyncOutlined spin />
+              </span>
+            ) : (
+              <></>
+            )}
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -33,10 +33,15 @@ type ProposerEmailVerifyType = {
   code: string;
 };
 
+type ProposerRegenEmailVerifyType = {
+  email?: string;
+};
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
   ProposerEmailVerifyType,
+  ProposerRegenEmailVerifyType,
 };
 
 export { ProposerStatusEnum };

@@ -1,6 +1,6 @@
 import { Alert, Button, Form, Input } from "antd";
-import { Link } from "react-router-dom";
-import { ProposerLoginType } from "../../utility/types";
+import { Link, useNavigate } from "react-router-dom";
+import { ProposerLoginType, ProposerStatusEnum } from "../../utility/types";
 import { SyncOutlined } from "@ant-design/icons";
 import { useProposerLogin } from "../../services/proposer";
 import useProposerStore, {
@@ -14,6 +14,7 @@ export default function ProposerLogin() {
   const proposerLoginMutation = useProposerLogin();
   const proposerState = useProposerStore();
   const [_, setCookie] = useCookies(["proposerJwt"]);
+  const navigate = useNavigate();
 
   const onSubmit = (values: ProposerLoginType) => {
     proposerLoginMutation.mutate(values, {
@@ -21,9 +22,21 @@ export default function ProposerLogin() {
         if (data.data.success) {
           const proposerData: ProposerData = data.data.data;
           proposerState.setData(proposerData);
-          setCookie("proposerJwt", proposerData.accessToken, {
-            expires: dayjs().add(1, "h").toDate(),
-          });
+
+          if (
+            proposerData.status !== ProposerStatusEnum.PendingEmailVerification
+          ) {
+            setCookie("proposerJwt", proposerData.accessToken, {
+              expires: dayjs().add(1, "h").toDate(),
+            });
+          }
+
+          switch (proposerData.status) {
+            case ProposerStatusEnum.PendingEmailVerification: {
+              navigate("/proposer-email-verify");
+              break;
+            }
+          }
         }
       },
     });
@@ -90,12 +103,15 @@ export default function ProposerLogin() {
         </Form.Item>
       </Form>
       <div className="-mt-5">
-        <Link to="#" className="no-underline text-sky-500">
+        <Link to="#" className="no-underline text-sky-500 hover:text-sky-400">
           <p>Forgotten password?</p>
         </Link>
       </div>
       <div className="-mt-2">
-        <Link to="/proposer-register" className="no-underline text-sky-500">
+        <Link
+          to="/proposer-register"
+          className="no-underline text-sky-500 hover:text-sky-400"
+        >
           <p>Still not posted my proposal, Post my proposal</p>
         </Link>
       </div>
