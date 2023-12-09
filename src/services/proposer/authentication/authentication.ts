@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { proposerClient } from "../../client";
 import {
   ProposerEmailVerifyType,
+  ProposerForgotPasswordType,
   ProposerLoginType,
   ProposerRegenEmailVerifyType,
   ProposerRegisterType,
@@ -35,6 +36,14 @@ export function useProposerRegenEmailVerify() {
   return useMutation({
     mutationFn: (regenEmailVerifyData: ProposerRegenEmailVerifyType) => {
       return proposerClient.post("/regen-email-verify", regenEmailVerifyData);
+    },
+  });
+}
+
+export function useProposerForgotPassword() {
+  return useMutation({
+    mutationFn: (forgotPasswordData: ProposerForgotPasswordType) => {
+      return proposerClient.post("/forgot-password", forgotPasswordData);
     },
   });
 }

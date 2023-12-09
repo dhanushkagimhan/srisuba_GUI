@@ -1,5 +1,6 @@
 import {
   useProposerEmailVerify,
+  useProposerForgotPassword,
   useProposerLogin,
   useProposerRegenEmailVerify,
   useProposerRegister,
@@ -10,4 +11,5 @@ export {
   useProposerRegister,
   useProposerEmailVerify,
   useProposerRegenEmailVerify,
+  useProposerForgotPassword,
 };

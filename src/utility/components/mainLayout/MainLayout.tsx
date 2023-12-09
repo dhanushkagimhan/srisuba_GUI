@@ -76,7 +76,7 @@ export default function MainLayout(props: MainLayoutProps) {
                   <div>
                     <Link
                       to="#"
-                      className=" no-underline text-white font-semibold "
+                      className=" no-underline text-white font-semibold hover:text-amber-300"
                     >
                       <p className="max-sm:text-center">Affiliate marketing</p>
                     </Link>{" "}

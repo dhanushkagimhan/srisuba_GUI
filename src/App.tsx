@@ -2,7 +2,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { MainLayout } from "./utility/components";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ProposerEmailVerify, ProposerRegister } from "./pages/proposer";
+import {
+  ProposerEmailVerify,
+  ProposerForgotPassword,
+  ProposerRegister,
+} from "./pages/proposer";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +21,10 @@ function App() {
             <Route
               path="/proposer-email-verify"
               element={<ProposerEmailVerify />}
+            />
+            <Route
+              path="/proposer-forgot-password"
+              element={<ProposerForgotPassword />}
             />
           </Routes>
         </MainLayout>

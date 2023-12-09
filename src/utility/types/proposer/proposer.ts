@@ -37,11 +37,16 @@ type ProposerRegenEmailVerifyType = {
   email?: string;
 };
 
+type ProposerForgotPasswordType = {
+  email?: string;
+};
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
   ProposerEmailVerifyType,
   ProposerRegenEmailVerifyType,
+  ProposerForgotPasswordType,
 };
 
 export { ProposerStatusEnum };

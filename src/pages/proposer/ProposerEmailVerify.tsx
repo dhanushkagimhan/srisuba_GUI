@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import { useMainLayoutStore } from "../../states";
-import useProposerStore, {
+import {
   ProposerData,
-} from "../../states/proposer/useProposerStore";
+  useMainLayoutStore,
+  useProposerStore,
+} from "../../states";
 import { Alert, Button, Form, Input } from "antd";
 import {
   ProposerEmailVerifyType,

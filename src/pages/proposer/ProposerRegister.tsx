@@ -1,15 +1,16 @@
 import { Alert, Button, DatePicker, Form, Input, Select } from "antd";
 import { Gender, ProposerRegisterType } from "../../utility/types";
 import { useEffect } from "react";
-import { useMainLayoutStore } from "../../states";
+import {
+  ProposerData,
+  useMainLayoutStore,
+  useProposerStore,
+} from "../../states";
 import dayjs from "dayjs";
 import { useCookies } from "react-cookie";
 import { useProposerRegister } from "../../services/proposer";
 import { getMutationError } from "../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";
-import useProposerStore, {
-  ProposerData,
-} from "../../states/proposer/useProposerStore";
 import { useNavigate } from "react-router-dom";
 
 const { Option } = Select;

@@ -1,5 +1,5 @@
 import useMainLayoutStore from "./mainLayout/useMainLayoutStore";
-import { ProposerData } from "./proposer/useProposerStore";
+import useProposerStore, { ProposerData } from "./proposer/useProposerStore";
 
-export { useMainLayoutStore };
+export { useMainLayoutStore, useProposerStore };
 export type { ProposerData };
