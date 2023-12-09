@@ -6,6 +6,7 @@ import {
   ProposerEmailVerify,
   ProposerForgotPassword,
   ProposerRegister,
+  ProposerResetPassword,
 } from "./pages/proposer";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,10 @@ function App() {
             <Route
               path="/proposer-forgot-password"
               element={<ProposerForgotPassword />}
+            />
+            <Route
+              path="/proposer-reset-password"
+              element={<ProposerResetPassword />}
             />
           </Routes>
         </MainLayout>

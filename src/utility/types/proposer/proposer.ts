@@ -41,12 +41,20 @@ type ProposerForgotPasswordType = {
   email?: string;
 };
 
+type ProposerResetPasswordType = {
+  email?: string;
+  code: string;
+  newPassword: string;
+  confirmNewPassword?: string;
+};
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
   ProposerEmailVerifyType,
   ProposerRegenEmailVerifyType,
   ProposerForgotPasswordType,
+  ProposerResetPasswordType,
 };
 
 export { ProposerStatusEnum };

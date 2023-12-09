@@ -113,7 +113,7 @@ export default function ProposerRegister() {
                   }
                   return Promise.reject(
                     new Error(
-                      "The new password that you entered do not match!",
+                      "The confirm password that you entered do not match!",
                     ),
                   );
                 },

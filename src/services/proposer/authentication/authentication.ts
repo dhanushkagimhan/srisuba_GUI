@@ -6,6 +6,7 @@ import {
   ProposerLoginType,
   ProposerRegenEmailVerifyType,
   ProposerRegisterType,
+  ProposerResetPasswordType,
 } from "../../../utility/types";
 
 export function useProposerLogin() {
@@ -44,6 +45,14 @@ export function useProposerForgotPassword() {
   return useMutation({
     mutationFn: (forgotPasswordData: ProposerForgotPasswordType) => {
       return proposerClient.post("/forgot-password", forgotPasswordData);
+    },
+  });
+}
+
+export function useProposerResetPassword() {
+  return useMutation({
+    mutationFn: (resetPasswordData: ProposerResetPasswordType) => {
+      return proposerClient.post("/reset-password", resetPasswordData);
     },
   });
 }

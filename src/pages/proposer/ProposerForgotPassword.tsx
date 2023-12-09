@@ -9,11 +9,13 @@ import { ProposerForgotPasswordType } from "../../utility/types";
 import { useProposerForgotPassword } from "../../services/proposer";
 import { getMutationError } from "../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 export default function ProposerForgotPassword() {
   const mainLayoutState = useMainLayoutStore();
   const proposerState = useProposerStore();
   const proposerForgotPasswordMutation = useProposerForgotPassword();
+  const navigate = useNavigate();
 
   useEffect(() => {
     mainLayoutState.setData({
@@ -25,13 +27,12 @@ export default function ProposerForgotPassword() {
   }, []);
 
   const onSubmit = (values: ProposerForgotPasswordType) => {
-    console.log(values);
     proposerForgotPasswordMutation.mutate(values, {
       onSuccess: (data) => {
         if (data.data.success) {
           const proposerData: ProposerData = data.data.data;
           proposerState.setData(proposerData);
-          console.log("nice");
+          navigate("/proposer-reset-password");
         }
       },
     });

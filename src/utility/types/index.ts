@@ -6,6 +6,7 @@ import {
   ProposerEmailVerifyType,
   ProposerRegenEmailVerifyType,
   ProposerForgotPasswordType,
+  ProposerResetPasswordType,
 } from "./proposer/proposer";
 
 enum Gender {
@@ -19,6 +20,7 @@ export type {
   ProposerEmailVerifyType,
   ProposerRegenEmailVerifyType,
   ProposerForgotPasswordType,
+  ProposerResetPasswordType,
 };
 
 export { MainLayoutNavEnum, Gender, ProposerStatusEnum };

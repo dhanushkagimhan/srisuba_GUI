@@ -4,6 +4,7 @@ import {
   useProposerLogin,
   useProposerRegenEmailVerify,
   useProposerRegister,
+  useProposerResetPassword,
 } from "./authentication/authentication";
 
 export {
@@ -12,4 +13,5 @@ export {
   useProposerEmailVerify,
   useProposerRegenEmailVerify,
   useProposerForgotPassword,
+  useProposerResetPassword,
 };
