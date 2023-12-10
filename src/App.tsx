@@ -8,6 +8,7 @@ import {
   ProposerRegister,
   ProposerResetPassword,
 } from "./pages/proposer";
+import Error404 from "./pages/Error404";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ function App() {
               path="/proposer-reset-password"
               element={<ProposerResetPassword />}
             />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </MainLayout>
       </BrowserRouter>
