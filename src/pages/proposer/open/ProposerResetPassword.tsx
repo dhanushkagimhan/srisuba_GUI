@@ -1,10 +1,10 @@
 import { Alert, Button, Form, Input } from "antd";
-import { useMainLayoutStore, useProposerStore } from "../../states";
+import { useMainLayoutStore, useProposerStore } from "../../../states";
 import { useEffect } from "react";
-import { ProposerResetPasswordType } from "../../utility/types";
+import { ProposerResetPasswordType } from "../../../utility/types";
 import { useNavigate } from "react-router-dom";
-import { useProposerResetPassword } from "../../services/proposer";
-import { getMutationError } from "../../utility/Methods";
+import { useProposerResetPassword } from "../../../services/proposer";
+import { getMutationError } from "../../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";
 
 export default function ProposerResetPassword() {
@@ -18,7 +18,7 @@ export default function ProposerResetPassword() {
       navMenu: undefined,
       showFooter: false,
       showMarketing: false,
-      logoLink: "/",
+      logoLink: "#",
     });
   }, []);
 

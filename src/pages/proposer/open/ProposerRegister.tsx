@@ -1,15 +1,15 @@
 import { Alert, Button, DatePicker, Form, Input, Select } from "antd";
-import { Gender, ProposerRegisterType } from "../../utility/types";
+import { GenderEnum, ProposerRegisterType } from "../../../utility/types";
 import { useEffect } from "react";
 import {
   ProposerData,
   useMainLayoutStore,
   useProposerStore,
-} from "../../states";
+} from "../../../states";
 import dayjs from "dayjs";
 import { useCookies } from "react-cookie";
-import { useProposerRegister } from "../../services/proposer";
-import { getMutationError } from "../../utility/Methods";
+import { useProposerRegister } from "../../../services/proposer";
+import { getMutationError } from "../../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
@@ -173,8 +173,8 @@ export default function ProposerRegister() {
             rules={[{ required: true, message: "Please select gender!" }]}
           >
             <Select placeholder="select your gender">
-              <Option value={Gender.Male}>Male</Option>
-              <Option value={Gender.Female}>Female</Option>
+              <Option value={GenderEnum.Male}>Male</Option>
+              <Option value={GenderEnum.Female}>Female</Option>
             </Select>
           </Form.Item>
 

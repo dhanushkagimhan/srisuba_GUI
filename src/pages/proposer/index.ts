@@ -1,8 +1,10 @@
-import ProposerForgotPassword from "./ProposerForgotPassword";
-import ProposerEmailVerify from "./ProposerEmailVerify";
-import ProposerLogin from "./ProposerLogin";
-import ProposerRegister from "./ProposerRegister";
-import ProposerResetPassword from "./ProposerResetPassword";
+import ProposerForgotPassword from "./open/ProposerForgotPassword";
+import ProposerEmailVerify from "./open/ProposerEmailVerify";
+import ProposerLogin from "./open/ProposerLogin";
+import ProposerRegister from "./open/ProposerRegister";
+import ProposerResetPassword from "./open/ProposerResetPassword";
+import CreateOrUpdateProposal from "./protected/proposal/CreateOrUpdateProposal";
+import MembershipExpired from "./protected/profile/MembershipExpired";
 
 export {
   ProposerLogin,
@@ -10,4 +12,6 @@ export {
   ProposerEmailVerify,
   ProposerForgotPassword,
   ProposerResetPassword,
+  CreateOrUpdateProposal,
+  MembershipExpired,
 };

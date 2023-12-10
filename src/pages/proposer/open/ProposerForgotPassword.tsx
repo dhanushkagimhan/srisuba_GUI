@@ -4,10 +4,10 @@ import {
   ProposerData,
   useMainLayoutStore,
   useProposerStore,
-} from "../../states";
-import { ProposerForgotPasswordType } from "../../utility/types";
-import { useProposerForgotPassword } from "../../services/proposer";
-import { getMutationError } from "../../utility/Methods";
+} from "../../../states";
+import { ProposerForgotPasswordType } from "../../../utility/types";
+import { useProposerForgotPassword } from "../../../services/proposer";
+import { getMutationError } from "../../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 

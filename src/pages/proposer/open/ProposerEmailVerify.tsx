@@ -3,20 +3,21 @@ import {
   ProposerData,
   useMainLayoutStore,
   useProposerStore,
-} from "../../states";
+} from "../../../states";
 import { Alert, Button, Form, Input } from "antd";
 import {
   ProposerEmailVerifyType,
   ProposerRegenEmailVerifyType,
-} from "../../utility/types";
+} from "../../../utility/types";
 import {
   useProposerEmailVerify,
   useProposerRegenEmailVerify,
-} from "../../services/proposer";
+} from "../../../services/proposer";
 import { useCookies } from "react-cookie";
 import dayjs from "dayjs";
-import { getMutationError } from "../../utility/Methods";
+import { getMutationError } from "../../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 export default function ProposerEmailVerify() {
   const mainLayoutState = useMainLayoutStore();
@@ -24,13 +25,14 @@ export default function ProposerEmailVerify() {
   const proposerEmailVerifyMutation = useProposerEmailVerify();
   const proposerRegenEmailVerifyMutation = useProposerRegenEmailVerify();
   const [_, setCookie] = useCookies(["proposerJwt"]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     mainLayoutState.setData({
       navMenu: undefined,
       showFooter: false,
       showMarketing: false,
-      logoLink: "/",
+      logoLink: "#",
     });
   }, []);
 
@@ -48,6 +50,7 @@ export default function ProposerEmailVerify() {
           setCookie("proposerJwt", proposerData.accessToken, {
             expires: dayjs().add(1, "h").toDate(),
           });
+          navigate("/cu-proposal");
         }
       },
     });

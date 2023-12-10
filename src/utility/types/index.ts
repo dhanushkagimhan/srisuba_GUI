@@ -7,9 +7,11 @@ import {
   ProposerRegenEmailVerifyType,
   ProposerForgotPasswordType,
   ProposerResetPasswordType,
+  ProposerProposalType,
+  ProposerFoodPreferenceEnum,
 } from "./proposer/proposer";
 
-enum Gender {
+enum GenderEnum {
   Male = "Male",
   Female = "Female",
 }
@@ -21,6 +23,12 @@ export type {
   ProposerRegenEmailVerifyType,
   ProposerForgotPasswordType,
   ProposerResetPasswordType,
+  ProposerProposalType,
 };
 
-export { MainLayoutNavEnum, Gender, ProposerStatusEnum };
+export {
+  MainLayoutNavEnum,
+  GenderEnum,
+  ProposerStatusEnum,
+  ProposerFoodPreferenceEnum,
+};

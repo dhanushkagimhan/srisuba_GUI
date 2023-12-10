@@ -1,12 +1,12 @@
 import { Alert, Button, Form, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import { ProposerLoginType, ProposerStatusEnum } from "../../utility/types";
+import { ProposerLoginType, ProposerStatusEnum } from "../../../utility/types";
 import { SyncOutlined } from "@ant-design/icons";
-import { useProposerLogin } from "../../services/proposer";
+import { useProposerLogin } from "../../../services/proposer";
 import { useCookies } from "react-cookie";
 import dayjs from "dayjs";
-import { getMutationError } from "../../utility/Methods";
-import { ProposerData, useProposerStore } from "../../states";
+import { getMutationError } from "../../../utility/Methods";
+import { ProposerData, useProposerStore } from "../../../states";
 
 export default function ProposerLogin() {
   const proposerLoginMutation = useProposerLogin();
@@ -19,20 +19,46 @@ export default function ProposerLogin() {
       onSuccess: (data) => {
         if (data.data.success) {
           const proposerData: ProposerData = data.data.data;
-          proposerState.setData(proposerData);
 
           if (
-            proposerData.status !== ProposerStatusEnum.PendingEmailVerification
+            proposerData.membershipExpiration == null ||
+            proposerData.status == null ||
+            (proposerData.status !==
+              ProposerStatusEnum.PendingEmailVerification &&
+              proposerData.accessToken == null)
           ) {
-            setCookie("proposerJwt", proposerData.accessToken, {
-              expires: dayjs().add(1, "h").toDate(),
-            });
-          }
+            navigate("/error-500");
+          } else {
+            proposerState.setData(proposerData);
 
-          switch (proposerData.status) {
-            case ProposerStatusEnum.PendingEmailVerification: {
-              navigate("/proposer-email-verify");
-              break;
+            if (
+              proposerData.status !==
+              ProposerStatusEnum.PendingEmailVerification
+            ) {
+              setCookie("proposerJwt", proposerData.accessToken, {
+                expires: dayjs().add(1, "h").toDate(),
+              });
+            }
+
+            if (
+              proposerData.membershipExpiration < new Date() &&
+              proposerData.status !==
+                ProposerStatusEnum.PendingEmailVerification &&
+              proposerData.status !== ProposerStatusEnum.EmailVerified &&
+              proposerData.status !== ProposerStatusEnum.PendingPayment
+            ) {
+              navigate("/membership-expired");
+            }
+
+            switch (proposerData.status) {
+              case ProposerStatusEnum.PendingEmailVerification: {
+                navigate("/proposer-email-verify");
+                break;
+              }
+              case ProposerStatusEnum.EmailVerified: {
+                navigate("/cu-proposal");
+                break;
+              }
             }
           }
         }

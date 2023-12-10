@@ -1,4 +1,4 @@
-import { Gender } from "..";
+import { GenderEnum } from "..";
 
 enum ProposerStatusEnum {
   PendingEmailVerification = "PendingEmailVerification",
@@ -24,7 +24,7 @@ type ProposerRegisterType = {
   firstName: string;
   lastName: string;
   birthDay: string;
-  gender: Gender;
+  gender: GenderEnum;
   referralCode?: string;
 };
 
@@ -48,6 +48,46 @@ type ProposerResetPasswordType = {
   confirmNewPassword?: string;
 };
 
+enum ProposerFoodPreferenceEnum {
+  NonVegetarian = "NonVegetarian",
+  Vegetarian = "Vegetarian",
+  Vegan = "Vegan",
+}
+
+type ProposerProposalType = {
+  profilePhoto: string;
+  otherPictures?: string[];
+  bioTitle?: string;
+  bioDescription?: string;
+  whatsAppNumber: string;
+  ethnicity: string;
+  religion: string;
+  caste?: string;
+  civilStatus: string;
+  height: string;
+  country: string;
+  stateOrDistrict: string;
+  city: string;
+  education: string;
+  profession: string;
+  drinking: boolean;
+  smoking: boolean;
+  foodPreference: ProposerFoodPreferenceEnum;
+  fatherEthnicity: string;
+  fatherReligion: string;
+  fatherCaste?: string;
+  fatherProfession?: string;
+  fatherCountryOfResidence: string;
+  fatherAdditionalInfo?: string;
+  motherEthnicity: string;
+  motherReligion: string;
+  motherCaste?: string;
+  motherProfession?: string;
+  motherCountryOfResidence: string;
+  motherAdditionalInfo?: string;
+  horoscopeMatching: boolean;
+};
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
@@ -55,6 +95,7 @@ export type {
   ProposerRegenEmailVerifyType,
   ProposerForgotPasswordType,
   ProposerResetPasswordType,
+  ProposerProposalType,
 };
 
-export { ProposerStatusEnum };
+export { ProposerStatusEnum, ProposerFoodPreferenceEnum };

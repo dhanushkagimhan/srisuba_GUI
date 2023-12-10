@@ -3,12 +3,16 @@ import Home from "./pages/Home";
 import { MainLayout } from "./utility/components";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
+  CreateOrUpdateProposal,
+  MembershipExpired,
   ProposerEmailVerify,
   ProposerForgotPassword,
   ProposerRegister,
   ProposerResetPassword,
 } from "./pages/proposer";
 import Error404 from "./pages/Error404";
+import { ProposerProtectedRoute } from "./middlewares/protectedRoutes";
+import Error500 from "./pages/Error500";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +36,14 @@ function App() {
               path="/proposer-reset-password"
               element={<ProposerResetPassword />}
             />
+            <Route element={<ProposerProtectedRoute />}>
+              <Route path="/cu-proposal" element={<CreateOrUpdateProposal />} />
+              <Route
+                path="/membership-expired"
+                element={<MembershipExpired />}
+              />
+            </Route>
+            <Route path="/error-500" element={<Error500 />} />
             <Route path="*" element={<Error404 />} />
           </Routes>
         </MainLayout>
