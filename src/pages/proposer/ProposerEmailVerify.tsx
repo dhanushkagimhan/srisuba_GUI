@@ -61,6 +61,45 @@ export default function ProposerEmailVerify() {
     proposerRegenEmailVerifyMutation.mutate(regenEmailVerify);
   };
 
+  const getEmailVerifyAlert = () => {
+    if (proposerEmailVerifyMutation.isError) {
+      return (
+        <div className="mb-4">
+          <Alert
+            message={getMutationError(proposerEmailVerifyMutation)}
+            type="error"
+          />
+        </div>
+      );
+    } else {
+      return <></>;
+    }
+  };
+
+  const getResendEmailVerifyAlert = () => {
+    if (proposerRegenEmailVerifyMutation.isError) {
+      return (
+        <div className="mb-4">
+          <Alert
+            message={getMutationError(proposerRegenEmailVerifyMutation)}
+            type="error"
+          />
+        </div>
+      );
+    } else if (proposerRegenEmailVerifyMutation.isSuccess) {
+      return (
+        <div className="mb-4">
+          <Alert
+            message="Email Verification code again sent successfully. Check your email inbox"
+            type="success"
+          />
+        </div>
+      );
+    } else {
+      return <></>;
+    }
+  };
+
   return (
     <div className="flex flex-row justify-center">
       <div className="md:w-3/5 w-full">
@@ -69,38 +108,8 @@ export default function ProposerEmailVerify() {
           Email verification code sent to your Email. Please check your email
           inbox.
         </p>
-        <div>
-          {proposerEmailVerifyMutation.isError ? (
-            <div className="mb-4">
-              <Alert
-                message={getMutationError(proposerEmailVerifyMutation)}
-                type="error"
-              />
-            </div>
-          ) : (
-            <></>
-          )}
-          {proposerRegenEmailVerifyMutation.isError ? (
-            <div className="mb-4">
-              <Alert
-                message={getMutationError(proposerRegenEmailVerifyMutation)}
-                type="error"
-              />
-            </div>
-          ) : (
-            <></>
-          )}
-          {proposerRegenEmailVerifyMutation.isSuccess ? (
-            <div className="mb-4">
-              <Alert
-                message="Email Verification code again sent successfully. Check your email inbox"
-                type="success"
-              />
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
+        <div>{getEmailVerifyAlert()}</div>
+        <div>{getResendEmailVerifyAlert()}</div>
         <Form
           name="loginForm"
           onFinish={onSubmit}

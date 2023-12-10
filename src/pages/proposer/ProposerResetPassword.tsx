@@ -60,6 +60,8 @@ export default function ProposerResetPassword() {
           />
         </div>
       );
+    } else {
+      return <></>;
     }
   };
 
