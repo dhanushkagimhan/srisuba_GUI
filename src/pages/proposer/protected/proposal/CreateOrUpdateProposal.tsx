@@ -1,5 +1,9 @@
-import { Button, Form, Input, Radio, Select, Switch } from "antd";
-import { useMainLayoutStore } from "../../../../states";
+import { Alert, Button, Form, Input, Radio, Select, Switch } from "antd";
+import {
+  ProposerData,
+  useMainLayoutStore,
+  useProposerStore,
+} from "../../../../states";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import {
@@ -7,12 +11,18 @@ import {
   ProposerProposalType,
 } from "../../../../utility/typesAndEnum";
 import { countries } from "../../../../utility/const";
+import { useProposerProposalCreateOrUpdate } from "../../../../services/proposer";
+import { getMutationError } from "../../../../utility/Methods";
+import { SyncOutlined } from "@ant-design/icons";
 
 const { TextArea } = Input;
 
 export default function CreateOrUpdateProposal() {
   const mainLayoutState = useMainLayoutStore();
   const navigate = useNavigate();
+  const proposerProposalCreateOrUpdateMutation =
+    useProposerProposalCreateOrUpdate();
+  const proposerState = useProposerStore();
 
   useEffect(() => {
     mainLayoutState.setData({
@@ -25,16 +35,22 @@ export default function CreateOrUpdateProposal() {
 
   const onSubmit = (formValues: ProposerProposalType) => {
     console.log(formValues);
+    const proposalData: ProposerProposalType = {
+      ...formValues,
+      profilePhoto:
+        "https://cdn.siasat.com/wp-content/uploads/2022/05/srk-5.jpg",
+    };
 
-    // proposerRegisterMutation.mutate(formValues, {
-    //   onSuccess: (data) => {
-    //     if (data.data.success) {
-    //       const proposerData: ProposerData = data.data.data;
-    //       proposerState.setData(proposerData);
-    //       navigate("/proposer-email-verify");
-    //     }
-    //   },
-    // });
+    proposerProposalCreateOrUpdateMutation.mutate(proposalData, {
+      onSuccess: (data) => {
+        if (data.data.success) {
+          const proposerData: ProposerData = data.data.data;
+          proposerState.setData(proposerData);
+          console.log("nice");
+          // navigate("/proposer-email-verify");
+        }
+      },
+    });
   };
 
   return (
@@ -42,16 +58,18 @@ export default function CreateOrUpdateProposal() {
       <div className="md:w-3/5 w-full">
         <h2 className="text-2xl font-semibold">{"Proposal Creation"}</h2>
         <div>
-          {/* {proposerRegisterMutation.isError ? (
+          {proposerProposalCreateOrUpdateMutation.isError ? (
             <div className="mb-4">
               <Alert
-                message={getMutationError(proposerRegisterMutation)}
+                message={getMutationError(
+                  proposerProposalCreateOrUpdateMutation,
+                )}
                 type="error"
               />
             </div>
           ) : (
             <></>
-          )} */}
+          )}
         </div>
         <Form
           name="proposalCreateOrUpdateForm"
@@ -406,13 +424,13 @@ export default function CreateOrUpdateProposal() {
               htmlType="submit"
               className="w-full pb-10 text-2xl font-medium"
             >
-              {/* {proposerRegisterMutation.isPending ? (
+              {proposerProposalCreateOrUpdateMutation.isPending ? (
                 <span className="text-lg mr-2">
                   <SyncOutlined spin />
                 </span>
               ) : (
                 <></>
-              )} */}
+              )}
               {"Create"}
             </Button>
           </Form.Item>

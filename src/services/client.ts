@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const proposerClient = axios.create({
   baseURL: import.meta.env.VITE_BASEURL + "/v1/proposer",
@@ -7,4 +8,16 @@ const proposerClient = axios.create({
   },
 });
 
-export { proposerClient };
+const useProposerAuthClient = () => {
+  const [cookies] = useCookies(["proposerJwt"]);
+
+  return axios.create({
+    baseURL: import.meta.env.VITE_BASEURL + "/v1/proposer/p",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${cookies.proposerJwt}`,
+    },
+  });
+};
+
+export { proposerClient, useProposerAuthClient };

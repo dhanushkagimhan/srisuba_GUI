@@ -6,6 +6,7 @@ import {
   useProposerRegister,
   useProposerResetPassword,
 } from "./authentication/authentication";
+import { useProposerProposalCreateOrUpdate } from "./proposal/proposal";
 
 export {
   useProposerLogin,
@@ -14,4 +15,5 @@ export {
   useProposerRegenEmailVerify,
   useProposerForgotPassword,
   useProposerResetPassword,
+  useProposerProposalCreateOrUpdate,
 };
