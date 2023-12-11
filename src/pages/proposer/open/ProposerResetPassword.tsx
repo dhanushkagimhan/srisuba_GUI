@@ -71,7 +71,7 @@ export default function ProposerResetPassword() {
         <h2 className="text-2xl font-semibold">Reset Password</h2>
         <div>{getAlert()}</div>
         <Form
-          name="loginForm"
+          name="proposerResetPasswordForm"
           onFinish={onSubmit}
           autoComplete="off"
           layout="vertical"

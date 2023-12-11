@@ -3,8 +3,10 @@ import { useMainLayoutStore } from "../../../../states";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { ProposerProposalType } from "../../../../utility/types";
+import { countries } from "../../../../utility/const";
 
 const { Option } = Select;
+const { TextArea } = Input;
 
 export default function CreateOrUpdateProposal() {
   const mainLayoutState = useMainLayoutStore();
@@ -13,8 +15,8 @@ export default function CreateOrUpdateProposal() {
   useEffect(() => {
     mainLayoutState.setData({
       navMenu: undefined,
-      showFooter: true,
-      showMarketing: true,
+      showFooter: false,
+      showMarketing: false,
       logoLink: "#",
     });
   }, []);
@@ -36,7 +38,7 @@ export default function CreateOrUpdateProposal() {
   return (
     <div className="flex flex-row justify-center">
       <div className="md:w-3/5 w-full">
-        <h2 className="text-2xl font-semibold">{"Create"} Proposal</h2>
+        <h2 className="text-2xl font-semibold">{"Proposal Creation"}</h2>
         <div>
           {/* {proposerRegisterMutation.isError ? (
             <div className="mb-4">
@@ -50,106 +52,103 @@ export default function CreateOrUpdateProposal() {
           )} */}
         </div>
         <Form
-          name="loginForm"
+          name="proposalCreateOrUpdateForm"
           onFinish={onSubmit}
           layout="vertical"
           className="flex flex-col gap-2"
         >
-          {/* <Form.Item<ProposerProposalType>
-            name="email"
-            label="Email"
-            labelAlign="right"
-            rules={[{ required: true, message: "Please input your email" }]}
-          >
-            <Input type="email" placeholder="Email" className="py-2" />
+          <Form.Item<ProposerProposalType> name="bioTitle" label="Title">
+            <Input placeholder="Title" className="py-2" />
           </Form.Item>
 
-          <Form.Item<ProposerRegisterType>
-            name="password"
-            label="Password"
-            hasFeedback
-            rules={[
-              { required: true, message: "Please input password!" },
-              {
-                min: 8,
-                message: "password need to have more than 8 characters",
-              },
-            ]}
+          <Form.Item<ProposerProposalType>
+            name="bioDescription"
+            label="Description"
           >
-            <Input.Password
-              placeholder="Confirm password"
-              className="py-2 w-full"
+            <TextArea
+              rows={3}
+              placeholder="Description"
+              showCount
+              maxLength={250}
+              className="py-2"
             />
           </Form.Item>
 
-          <Form.Item<ProposerRegisterType>
-            name="confirmPassword"
-            label="Confirm Password"
-            hasFeedback
+          <Form.Item<ProposerProposalType>
+            name="whatsAppNumber"
+            label="WhatsApp Number (Phone Number)"
             rules={[
-              { required: true, message: "Please input confirm password!" },
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (!value || getFieldValue("password") === value) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(
-                    new Error(
-                      "The confirm password that you entered do not match!",
-                    ),
-                  );
-                },
-              }),
+              { required: true, message: "Please input your WhatsApp number" },
             ]}
           >
-            <Input.Password placeholder="Password" className="py-2 w-full" />
+            <Input type="tel" placeholder="WhatsApp number" className="py-2" />
           </Form.Item>
 
-          <Form.Item<ProposerRegisterType>
-            name="firstName"
-            label="First Name"
-            rules={[
-              { required: true, message: "Please input your first name!" },
-            ]}
+          <h3 className="text-xl font-semibold">Basic</h3>
+
+          <Form.Item<ProposerProposalType>
+            name="ethnicity"
+            label="Ethnicity"
+            rules={[{ required: true, message: "Please input your ethnicity" }]}
           >
-            <Input placeholder="First name" className="py-2 w-full" />
+            <Input placeholder="Ethnicity" className="py-2" />
           </Form.Item>
 
-          <Form.Item<ProposerRegisterType>
-            name="lastName"
-            label="Last Name"
-            rules={[
-              { required: true, message: "Please input your last name!" },
-            ]}
+          <Form.Item<ProposerProposalType>
+            name="religion"
+            label="Religion"
+            rules={[{ required: true, message: "Please input your religion" }]}
           >
-            <Input placeholder="Last name" className="py-2 w-full" />
+            <Input placeholder="Religion" className="py-2" />
           </Form.Item>
 
-          <Form.Item<ProposerRegisterType>
-            name="birthDay"
-            label="Birthday"
-            rules={[
-              { required: true, message: "Please input your Birthday!" },
-              () => ({
-                validator(_, value) {
-                  const dob = dayjs(value);
-                  const age = dayjs().diff(dob, "year");
+          <Form.Item<ProposerProposalType> name="caste" label="Caste">
+            <Input placeholder="Caste" className="py-2" />
+          </Form.Item>
 
-                  if (age < 18) {
-                    return Promise.reject(
-                      new Error("Age must be older than 18 years!"),
-                    );
-                  } else {
-                    return Promise.resolve();
-                  }
-                },
-              }),
-            ]}
+          <Form.Item<ProposerProposalType>
+            name="civilStatus"
+            label="Civil Status"
+            tooltip="Your civil status. example : If you never married before, add here as 'never married'. Or else, add your previous marriage status information here."
+            rules={[{ required: true, message: "Please input your religion" }]}
           >
-            <DatePicker className="py-2 w-full" />
+            <Input placeholder="Civil Status" className="py-2" />
           </Form.Item>
 
-          <Form.Item<ProposerRegisterType>
+          <Form.Item<ProposerProposalType>
+            name="height"
+            label="Height"
+            rules={[{ required: true, message: "Please input your height" }]}
+          >
+            <Input placeholder="Height" className="py-2" />
+          </Form.Item>
+
+          <h3 className="text-xl font-semibold">Residency</h3>
+
+          <Form.Item<ProposerProposalType>
+            name="country"
+            label="Country"
+            rules={[{ required: true, message: "Please select your country" }]}
+          >
+            <Select
+              showSearch
+              placeholder="Search to Select"
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                (option?.label.toLowerCase() ?? "").includes(
+                  input.toLowerCase(),
+                )
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? "")
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? "").toLowerCase())
+              }
+              options={countries}
+            />
+          </Form.Item>
+
+          {/* <Form.Item<ProposerRegisterType>
             name="gender"
             label="Gender"
             rules={[{ required: true, message: "Please select gender!" }]}
@@ -158,19 +157,7 @@ export default function CreateOrUpdateProposal() {
               <Option value={Gender.Male}>Male</Option>
               <Option value={Gender.Female}>Female</Option>
             </Select>
-          </Form.Item>
-
-          {cookies.ref == null ? (
-            <Form.Item<ProposerRegisterType>
-              name="referralCode"
-              label="Referral Code"
-              tooltip="If you have a referral code, add it. If haven't, don't worry. Go forward."
-            >
-              <Input placeholder="Referral code" className="py-2 w-full" />
-            </Form.Item>
-          ) : (
-            <></>
-          )} */}
+          </Form.Item> */}
 
           <Form.Item>
             <Button

@@ -68,7 +68,7 @@ export default function ProposerRegister() {
           )}
         </div>
         <Form
-          name="loginForm"
+          name="proposerRegisterForm"
           onFinish={onSubmit}
           layout="vertical"
           className="flex flex-col gap-2"
@@ -76,7 +76,6 @@ export default function ProposerRegister() {
           <Form.Item<ProposerRegisterType>
             name="email"
             label="Email"
-            labelAlign="right"
             rules={[{ required: true, message: "Please input your email" }]}
           >
             <Input type="email" placeholder="Email" className="py-2" />

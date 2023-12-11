@@ -114,7 +114,7 @@ export default function ProposerEmailVerify() {
         <div>{getEmailVerifyAlert()}</div>
         <div>{getResendEmailVerifyAlert()}</div>
         <Form
-          name="loginForm"
+          name="proposerEmailVerifyForm"
           onFinish={onSubmit}
           autoComplete="off"
           layout="vertical"

@@ -58,7 +58,7 @@ export default function ProposerForgotPassword() {
           )}
         </div>
         <Form
-          name="loginForm"
+          name="proposerForgotPasswordForm"
           onFinish={onSubmit}
           layout="vertical"
           initialValues={{ email: proposerState.data?.email }}
