@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { ProposerStatusEnum } from "../../utility/types";
+import { ProposerStatusEnum } from "../../utility/typesAndEnum";
 
 export type ProposerData = {
   id?: number;

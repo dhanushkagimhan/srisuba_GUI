@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import dayjs from "dayjs";
 import { ProposerLogin } from "./proposer";
 import { useMainLayoutStore } from "../states";
-import { MainLayoutNavEnum } from "../utility/types";
+import { MainLayoutNavEnum } from "../utility/typesAndEnum";
 
 export default function Home() {
   const [_, setCookie] = useCookies(["ref"]);

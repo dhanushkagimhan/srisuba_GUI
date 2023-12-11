@@ -5,7 +5,7 @@ import {
   useMainLayoutStore,
   useProposerStore,
 } from "../../../states";
-import { ProposerForgotPasswordType } from "../../../utility/types";
+import { ProposerForgotPasswordType } from "../../../utility/typesAndEnum";
 import { useProposerForgotPassword } from "../../../services/proposer";
 import { getMutationError } from "../../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";

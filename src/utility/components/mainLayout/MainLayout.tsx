@@ -2,7 +2,7 @@ import { CopyrightOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useMainLayoutStore } from "../../../states";
-import { MainLayoutNavEnum } from "../../types";
+import { MainLayoutNavEnum } from "../../typesAndEnum";
 
 type MainLayoutProps = {
   children: ReactNode;

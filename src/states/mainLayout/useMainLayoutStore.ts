@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { MainLayoutNavEnum } from "../../utility/types";
+import { MainLayoutNavEnum } from "../../utility/typesAndEnum";
 
 type MainLayoutData = {
   navMenu?: MainLayoutNavEnum;

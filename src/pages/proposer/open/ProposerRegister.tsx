@@ -1,5 +1,8 @@
 import { Alert, Button, DatePicker, Form, Input, Select } from "antd";
-import { GenderEnum, ProposerRegisterType } from "../../../utility/types";
+import {
+  GenderEnum,
+  ProposerRegisterType,
+} from "../../../utility/typesAndEnum";
 import { useEffect } from "react";
 import {
   ProposerData,

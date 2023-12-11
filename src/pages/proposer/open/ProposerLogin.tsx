@@ -1,6 +1,9 @@
 import { Alert, Button, Form, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import { ProposerLoginType, ProposerStatusEnum } from "../../../utility/types";
+import {
+  ProposerLoginType,
+  ProposerStatusEnum,
+} from "../../../utility/typesAndEnum";
 import { SyncOutlined } from "@ant-design/icons";
 import { useProposerLogin } from "../../../services/proposer";
 import { useCookies } from "react-cookie";

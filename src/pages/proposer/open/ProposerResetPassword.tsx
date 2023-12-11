@@ -1,7 +1,7 @@
 import { Alert, Button, Form, Input } from "antd";
 import { useMainLayoutStore, useProposerStore } from "../../../states";
 import { useEffect } from "react";
-import { ProposerResetPasswordType } from "../../../utility/types";
+import { ProposerResetPasswordType } from "../../../utility/typesAndEnum";
 import { useNavigate } from "react-router-dom";
 import { useProposerResetPassword } from "../../../services/proposer";
 import { getMutationError } from "../../../utility/Methods";

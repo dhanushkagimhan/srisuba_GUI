@@ -8,7 +8,7 @@ import { Alert, Button, Form, Input } from "antd";
 import {
   ProposerEmailVerifyType,
   ProposerRegenEmailVerifyType,
-} from "../../../utility/types";
+} from "../../../utility/typesAndEnum";
 import {
   useProposerEmailVerify,
   useProposerRegenEmailVerify,

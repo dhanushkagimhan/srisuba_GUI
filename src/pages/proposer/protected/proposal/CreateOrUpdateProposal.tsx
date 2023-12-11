@@ -1,11 +1,13 @@
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, Radio, Select, Switch } from "antd";
 import { useMainLayoutStore } from "../../../../states";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { ProposerProposalType } from "../../../../utility/types";
+import {
+  ProposerFoodPreferenceEnum,
+  ProposerProposalType,
+} from "../../../../utility/typesAndEnum";
 import { countries } from "../../../../utility/const";
 
-const { Option } = Select;
 const { TextArea } = Input;
 
 export default function CreateOrUpdateProposal() {
@@ -56,6 +58,9 @@ export default function CreateOrUpdateProposal() {
           onFinish={onSubmit}
           layout="vertical"
           className="flex flex-col gap-2"
+          initialValues={{
+            foodPreference: ProposerFoodPreferenceEnum.NonVegetarian,
+          }}
         >
           <Form.Item<ProposerProposalType> name="bioTitle" label="Title">
             <Input placeholder="Title" className="py-2" />
@@ -148,16 +153,252 @@ export default function CreateOrUpdateProposal() {
             />
           </Form.Item>
 
-          {/* <Form.Item<ProposerRegisterType>
-            name="gender"
-            label="Gender"
-            rules={[{ required: true, message: "Please select gender!" }]}
+          <Form.Item<ProposerProposalType>
+            name="stateOrDistrict"
+            label="State / District"
+            rules={[
+              { required: true, message: "Please input your state / district" },
+            ]}
           >
-            <Select placeholder="select your gender">
-              <Option value={Gender.Male}>Male</Option>
-              <Option value={Gender.Female}>Female</Option>
-            </Select>
-          </Form.Item> */}
+            <Input placeholder="State / District" className="py-2" />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="city"
+            label="City"
+            rules={[{ required: true, message: "Please input your city" }]}
+          >
+            <Input placeholder="City" className="py-2" />
+          </Form.Item>
+
+          <h3 className="text-xl font-semibold">Education and Profession</h3>
+
+          <Form.Item<ProposerProposalType>
+            name="education"
+            label="Education"
+            rules={[
+              {
+                required: true,
+                message: "Please input your education details",
+              },
+            ]}
+          >
+            <Input placeholder="Education details" className="py-2" />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="profession"
+            label="Profession"
+            rules={[
+              {
+                required: true,
+                message: "Please input your profession",
+              },
+            ]}
+          >
+            <Input placeholder="Profession" className="py-2" />
+          </Form.Item>
+
+          <h3 className="text-xl font-semibold">Habits</h3>
+
+          <Form.Item<ProposerProposalType>
+            name="drinking"
+            label="Drinking"
+            valuePropName="checked"
+          >
+            <Switch checkedChildren="Yes" unCheckedChildren="No" />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="smoking"
+            label="Smoking"
+            valuePropName="checked"
+          >
+            <Switch checkedChildren="Yes" unCheckedChildren="No" />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="foodPreference"
+            label="Food Preference"
+          >
+            <Radio.Group>
+              <Radio value={ProposerFoodPreferenceEnum.NonVegetarian}>
+                non vegetarian
+              </Radio>
+              <Radio value={ProposerFoodPreferenceEnum.Vegetarian}>
+                vegetarian
+              </Radio>
+              <Radio value={ProposerFoodPreferenceEnum.Vegan}>vegan</Radio>
+            </Radio.Group>
+          </Form.Item>
+
+          <h3 className="text-xl font-semibold">Family Information</h3>
+
+          <Form.Item<ProposerProposalType>
+            name="fatherEthnicity"
+            label="Father's Ethnicity"
+            rules={[
+              {
+                required: true,
+                message: "Please input your father's ethnicity",
+              },
+            ]}
+          >
+            <Input placeholder="Father's ethnicity" className="py-2" />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="fatherReligion"
+            label="Father's Religion"
+            rules={[
+              {
+                required: true,
+                message: "Please input your father's religion",
+              },
+            ]}
+          >
+            <Input placeholder="Father's religion" className="py-2" />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="fatherCaste"
+            label="Father's Caste"
+          >
+            <Input placeholder="Father's caste" className="py-2" />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="fatherProfession"
+            label="Father's Profession"
+          >
+            <Input placeholder="Father's profession" className="py-2" />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="fatherCountryOfResidence"
+            label="Father's Country of Residence"
+            rules={[
+              {
+                required: true,
+                message: "Please select your father's country cf residence",
+              },
+            ]}
+          >
+            <Select
+              showSearch
+              placeholder="Search to Select"
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                (option?.label.toLowerCase() ?? "").includes(
+                  input.toLowerCase(),
+                )
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? "")
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? "").toLowerCase())
+              }
+              options={countries}
+            />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="fatherAdditionalInfo"
+            label="Father's Additional Information"
+          >
+            <Input
+              placeholder="Father's additional information"
+              className="py-2"
+            />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="motherEthnicity"
+            label="Mother's Ethnicity"
+            rules={[
+              {
+                required: true,
+                message: "Please input your mother's ethnicity",
+              },
+            ]}
+          >
+            <Input placeholder="Mother's ethnicity" className="py-2" />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="motherReligion"
+            label="Mother's Religion"
+            rules={[
+              {
+                required: true,
+                message: "Please input your mother's religion",
+              },
+            ]}
+          >
+            <Input placeholder="Mother's religion" className="py-2" />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="motherCaste"
+            label="Mother's Caste"
+          >
+            <Input placeholder="Mother's caste" className="py-2" />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="motherProfession"
+            label="Mother's Profession"
+          >
+            <Input placeholder="Mother's profession" className="py-2" />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="motherCountryOfResidence"
+            label="Mother's Country of Residence"
+            rules={[
+              {
+                required: true,
+                message: "Please select your mother's country cf residence",
+              },
+            ]}
+          >
+            <Select
+              showSearch
+              placeholder="Search to Select"
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                (option?.label.toLowerCase() ?? "").includes(
+                  input.toLowerCase(),
+                )
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? "")
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? "").toLowerCase())
+              }
+              options={countries}
+            />
+          </Form.Item>
+
+          <Form.Item<ProposerProposalType>
+            name="motherAdditionalInfo"
+            label="Mother's Additional Information"
+          >
+            <Input
+              placeholder="Mother's additional information"
+              className="py-2"
+            />
+          </Form.Item>
+
+          <h3 className="text-xl font-semibold">Horoscope Information</h3>
+
+          <Form.Item<ProposerProposalType>
+            name="horoscopeMatching"
+            label="Horoscope Matching"
+            valuePropName="checked"
+          >
+            <Switch checkedChildren="Required" unCheckedChildren="No" />
+          </Form.Item>
 
           <Form.Item>
             <Button
