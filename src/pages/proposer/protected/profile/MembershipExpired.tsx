@@ -25,12 +25,19 @@ export default function MembershipExpired() {
         <p>You need to renew your membership. for that,</p>
         <div className="mt-4">
           Membership payment : Rs. {proposalPriceState.price ?? ""} (LKR) per 3
-          months
+          months,
         </div>
         <div className="mt-4">
-          Transfer the Rs. {proposalPriceState.price ?? ""} (LKR) to following
-          bank account and send the slip / screenshot and you email to the{" "}
-          {systemContactNumber} via whatsApp.
+          <ol>
+            <li>
+              Transfer Rs. {proposalPriceState.price ?? ""} (LKR) to the
+              following bank account.
+            </li>
+            <li>
+              Send the transaction slip / screenshot with your email to the{" "}
+              {systemContactNumber} via whatsApp.
+            </li>
+          </ol>
         </div>
         <BankAccount />
       </div>
