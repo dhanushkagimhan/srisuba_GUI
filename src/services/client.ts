@@ -20,4 +20,11 @@ const useProposerAuthClient = () => {
   });
 };
 
-export { proposerClient, useProposerAuthClient };
+const commonClient = axios.create({
+  baseURL: import.meta.env.VITE_BASEURL + "/v1/c",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+export { proposerClient, useProposerAuthClient, commonClient };

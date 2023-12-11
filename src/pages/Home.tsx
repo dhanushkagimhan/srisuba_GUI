@@ -3,14 +3,16 @@ import { useCookies } from "react-cookie";
 import { useEffect } from "react";
 import dayjs from "dayjs";
 import { ProposerLogin } from "./proposer";
-import { useMainLayoutStore } from "../states";
+import { useMainLayoutStore, useProposalPriceStore } from "../states";
 import { MainLayoutNavEnum } from "../utility/typesAndEnum";
+import { useProposalPrice } from "../services/common";
 
 export default function Home() {
   const [_, setCookie] = useCookies(["ref"]);
   const [searchParams] = useSearchParams();
-
   const mainLayoutState = useMainLayoutStore();
+  const proposalPriceQuery = useProposalPrice();
+  const proposalPriceState = useProposalPriceStore();
 
   useEffect(() => {
     if (searchParams.get("r") != null) {
@@ -25,7 +27,17 @@ export default function Home() {
       showMarketing: true,
       logoLink: "/",
     });
+
+    setProposalPrice();
   }, []);
+
+  const setProposalPrice = () => {
+    if (proposalPriceQuery.isSuccess) {
+      if (proposalPriceQuery.data.data.success) {
+        proposalPriceState.setPrice(proposalPriceQuery.data.data.data.price);
+      }
+    }
+  };
 
   return (
     <div className="flex flex-row max-md:flex-col md:justify-between h-[70vh]">

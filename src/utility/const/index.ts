@@ -255,4 +255,6 @@ const countries = [
 //     return country ? country.label : "Country not found";
 //   }
 
-export { countries };
+const systemContactNumber: string = "+94 71 7 99 35 99";
+
+export { countries, systemContactNumber };

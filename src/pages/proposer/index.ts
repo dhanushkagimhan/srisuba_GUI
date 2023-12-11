@@ -5,6 +5,7 @@ import ProposerRegister from "./open/ProposerRegister";
 import ProposerResetPassword from "./open/ProposerResetPassword";
 import CreateOrUpdateProposal from "./protected/proposal/CreateOrUpdateProposal";
 import MembershipExpired from "./protected/profile/MembershipExpired";
+import ProposalStatusView from "./protected/proposal/ProposalStatusView";
 
 export {
   ProposerLogin,
@@ -14,4 +15,5 @@ export {
   ProposerResetPassword,
   CreateOrUpdateProposal,
   MembershipExpired,
+  ProposalStatusView,
 };

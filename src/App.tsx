@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   CreateOrUpdateProposal,
   MembershipExpired,
+  ProposalStatusView,
   ProposerEmailVerify,
   ProposerForgotPassword,
   ProposerRegister,
@@ -42,6 +43,7 @@ function App() {
                 path="/membership-expired"
                 element={<MembershipExpired />}
               />
+              <Route path="/proposer-status" element={<ProposalStatusView />} />
             </Route>
             <Route path="/error-500" element={<Error500 />} />
             <Route path="*" element={<Error404 />} />

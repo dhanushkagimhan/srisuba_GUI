@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useMainLayoutStore } from "../../../states";
 import { MainLayoutNavEnum } from "../../typesAndEnum";
+import { systemContactNumber } from "../../const";
 
 type MainLayoutProps = {
   children: ReactNode;
@@ -69,7 +70,7 @@ export default function MainLayout(props: MainLayoutProps) {
                     Contact us
                   </p>
                   <p className="text-white max-sm:text-center">
-                    <WhatsAppOutlined /> +94 71 7 99 35 99
+                    <WhatsAppOutlined /> {systemContactNumber}
                   </p>
                 </div>
                 {state.data.showMarketing ? (

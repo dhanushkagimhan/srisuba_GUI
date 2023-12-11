@@ -62,6 +62,16 @@ export default function ProposerLogin() {
                 navigate("/cu-proposal");
                 break;
               }
+
+              case ProposerStatusEnum.PendingPayment:
+              case ProposerStatusEnum.PaymentApproved:
+              case ProposerStatusEnum.Rejected:
+              case ProposerStatusEnum.RejectionResolved:
+              case ProposerStatusEnum.Banned:
+              case ProposerStatusEnum.BannedResolved: {
+                navigate("/proposer-status");
+                break;
+              }
             }
           }
         }

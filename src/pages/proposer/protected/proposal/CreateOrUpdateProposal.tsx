@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import {
   ProposerFoodPreferenceEnum,
   ProposerProposalType,
+  ProposerStatusEnum,
 } from "../../../../utility/typesAndEnum";
 import { countries } from "../../../../utility/const";
 import { useProposerProposalCreateOrUpdate } from "../../../../services/proposer";
@@ -46,8 +47,9 @@ export default function CreateOrUpdateProposal() {
         if (data.data.success) {
           const proposerData: ProposerData = data.data.data;
           proposerState.setData(proposerData);
-          console.log("nice");
-          // navigate("/proposer-email-verify");
+          if (proposerData.status !== ProposerStatusEnum.Active) {
+            navigate("/proposer-status");
+          }
         }
       },
     });
