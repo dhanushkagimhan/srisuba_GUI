@@ -35,9 +35,8 @@ export default function ProposalStatusView() {
       if (proposalBlockReasonQuery.data.data.success) {
         return proposalBlockReasonQuery.data.data.data.reason;
       }
-      return null;
     }
-    return null;
+    return "";
   };
 
   const statusView = () => {
@@ -91,12 +90,24 @@ export default function ProposalStatusView() {
               For fix this you need to update your proposal again.
             </div>
             <div className="mt-8">
-              Reject Reason : {getProposalBlockReason() ?? ""}
+              Reject Reason : {getProposalBlockReason()}
             </div>
             <div className="mt-8">
               <Button type="primary" onClick={() => navigate("/cu-proposal")}>
                 Update Proposal
               </Button>
+            </div>
+          </div>
+        );
+      }
+      case ProposerStatusEnum.RejectionResolved: {
+        return (
+          <div>
+            <div className="font-semibold text-xl">
+              Your membership payment was approved.
+            </div>
+            <div className="mt-8">
+              Please wait until the review your updated proposal.
             </div>
           </div>
         );

@@ -5,7 +5,7 @@ import {
   useProposerStore,
 } from "../../../../states";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   MainLayoutNavEnum,
   ProposerFoodPreferenceEnum,
@@ -13,11 +13,22 @@ import {
   ProposerStatusEnum,
 } from "../../../../utility/typesAndEnum";
 import { countries } from "../../../../utility/const";
-import { useProposerProposalCreateOrUpdate } from "../../../../services/proposer";
-import { getMutationError } from "../../../../utility/Methods";
+import {
+  useProposerGetMyProposal,
+  useProposerProposalCreateOrUpdate,
+} from "../../../../services/proposer";
+import {
+  getMutationError,
+  removeNullFields,
+} from "../../../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";
 
 const { TextArea } = Input;
+
+type CreateOrUpdateProposalFormTextType = {
+  heading: string;
+  buttonText: string;
+};
 
 export default function CreateOrUpdateProposal() {
   const mainLayoutState = useMainLayoutStore();
@@ -25,6 +36,12 @@ export default function CreateOrUpdateProposal() {
   const proposerProposalCreateOrUpdateMutation =
     useProposerProposalCreateOrUpdate();
   const proposerState = useProposerStore();
+  const [form] = Form.useForm();
+  const proposerGetMyProposalQuery = useProposerGetMyProposal();
+  const [formText, setFormText] = useState<CreateOrUpdateProposalFormTextType>({
+    heading: "Proposal Creation",
+    buttonText: "Create",
+  });
 
   useEffect(() => {
     mainLayoutState.setData({
@@ -33,11 +50,31 @@ export default function CreateOrUpdateProposal() {
       showMarketing: false,
       logoLink: "#",
     });
-  }, []);
+
+    setFormData();
+  }, [proposerGetMyProposalQuery.isSuccess]);
+
+  const setFormData = () => {
+    if (proposerState.data?.status === ProposerStatusEnum.EmailVerified) {
+      form.setFieldsValue({
+        foodPreference: ProposerFoodPreferenceEnum.NonVegetarian,
+      });
+    } else {
+      setFormText({
+        heading: "Update Proposal",
+        buttonText: "Update",
+      });
+      if (proposerGetMyProposalQuery.isSuccess) {
+        if (proposerGetMyProposalQuery.data.data.success) {
+          form.setFieldsValue(proposerGetMyProposalQuery.data.data.data);
+        }
+      }
+    }
+  };
 
   const onSubmit = (formValues: ProposerProposalType) => {
     const proposalData: ProposerProposalType = {
-      ...formValues,
+      ...removeNullFields<ProposerProposalType>(formValues),
       profilePhoto:
         "https://cdn.siasat.com/wp-content/uploads/2022/05/srk-5.jpg",
     };
@@ -58,7 +95,7 @@ export default function CreateOrUpdateProposal() {
   return (
     <div className="flex flex-row justify-center">
       <div className="md:w-3/5 w-full">
-        <h2 className="text-2xl font-semibold">{"Proposal Creation"}</h2>
+        <h2 className="text-2xl font-semibold">{formText.heading}</h2>
         <div>
           {proposerProposalCreateOrUpdateMutation.isError ? (
             <div className="mb-4">
@@ -72,15 +109,23 @@ export default function CreateOrUpdateProposal() {
           ) : (
             <></>
           )}
+          {proposerProposalCreateOrUpdateMutation.isSuccess ? (
+            <div className="mb-4">
+              <Alert
+                message={"Successfully updated proposal!"}
+                type="success"
+              />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
         <Form
           name="proposalCreateOrUpdateForm"
           onFinish={onSubmit}
           layout="vertical"
           className="flex flex-col gap-2"
-          initialValues={{
-            foodPreference: ProposerFoodPreferenceEnum.NonVegetarian,
-          }}
+          form={form}
         >
           <Form.Item<ProposerProposalType> name="bioTitle" label="Title">
             <Input placeholder="Title" className="py-2" />
@@ -433,7 +478,7 @@ export default function CreateOrUpdateProposal() {
               ) : (
                 <></>
               )}
-              {"Create"}
+              {formText.buttonText}
             </Button>
           </Form.Item>
         </Form>

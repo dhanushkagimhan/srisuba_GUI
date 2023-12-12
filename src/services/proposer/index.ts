@@ -7,6 +7,7 @@ import {
   useProposerResetPassword,
 } from "./authentication/authentication";
 import {
+  useProposerGetMyProposal,
   useProposerProposalCreateOrUpdate,
   useProposerProposalGetBlockReason,
 } from "./proposal/proposal";
@@ -20,4 +21,5 @@ export {
   useProposerResetPassword,
   useProposerProposalCreateOrUpdate,
   useProposerProposalGetBlockReason,
+  useProposerGetMyProposal,
 };
