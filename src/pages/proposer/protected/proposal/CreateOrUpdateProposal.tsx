@@ -7,6 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import {
+  MainLayoutNavEnum,
   ProposerFoodPreferenceEnum,
   ProposerProposalType,
   ProposerStatusEnum,
@@ -27,7 +28,7 @@ export default function CreateOrUpdateProposal() {
 
   useEffect(() => {
     mainLayoutState.setData({
-      navMenu: undefined,
+      navMenu: MainLayoutNavEnum.proposerLogout,
       showFooter: false,
       showMarketing: false,
       logoLink: "#",
@@ -35,7 +36,6 @@ export default function CreateOrUpdateProposal() {
   }, []);
 
   const onSubmit = (formValues: ProposerProposalType) => {
-    console.log(formValues);
     const proposalData: ProposerProposalType = {
       ...formValues,
       profilePhoto:

@@ -4,7 +4,10 @@ import {
   useProposalPriceStore,
   useProposerStore,
 } from "../../../../states";
-import { ProposerStatusEnum } from "../../../../utility/typesAndEnum";
+import {
+  MainLayoutNavEnum,
+  ProposerStatusEnum,
+} from "../../../../utility/typesAndEnum";
 import { systemContactNumber } from "../../../../utility/const";
 import { BankAccount } from "../../../../utility/components";
 
@@ -15,7 +18,7 @@ export default function ProposalStatusView() {
 
   useEffect(() => {
     mainLayoutState.setData({
-      navMenu: undefined,
+      navMenu: MainLayoutNavEnum.proposerLogout,
       showFooter: false,
       showMarketing: false,
       logoLink: "#",

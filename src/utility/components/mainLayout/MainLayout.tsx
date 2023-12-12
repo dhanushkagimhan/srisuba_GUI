@@ -1,9 +1,10 @@
 import { CopyrightOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMainLayoutStore } from "../../../states";
 import { MainLayoutNavEnum } from "../../typesAndEnum";
 import { systemContactNumber } from "../../const";
+import { useCookies } from "react-cookie";
 
 type MainLayoutProps = {
   children: ReactNode;
@@ -11,6 +12,8 @@ type MainLayoutProps = {
 
 export default function MainLayout(props: MainLayoutProps) {
   const state = useMainLayoutStore();
+  const [_, __, removeCookie] = useCookies(["proposerJwt"]);
+  const navigate = useNavigate();
 
   const getNavMenu = () => {
     switch (state.data.navMenu) {
@@ -30,9 +33,26 @@ export default function MainLayout(props: MainLayoutProps) {
           </div>
         );
       }
+      case MainLayoutNavEnum.proposerLogout: {
+        return (
+          <div className="flex flex-row items-center">
+            <div
+              className="text-white font-semibold cursor-pointer hover:text-yellow-300"
+              onClick={proposerLogout}
+            >
+              Logout
+            </div>
+          </div>
+        );
+      }
       default:
         return <></>;
     }
+  };
+
+  const proposerLogout = () => {
+    removeCookie("proposerJwt");
+    navigate("/");
   };
 
   return (
