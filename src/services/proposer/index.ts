@@ -6,7 +6,10 @@ import {
   useProposerRegister,
   useProposerResetPassword,
 } from "./authentication/authentication";
-import { useProposerProposalCreateOrUpdate } from "./proposal/proposal";
+import {
+  useProposerProposalCreateOrUpdate,
+  useProposerProposalGetBlockReason,
+} from "./proposal/proposal";
 
 export {
   useProposerLogin,
@@ -16,4 +19,5 @@ export {
   useProposerForgotPassword,
   useProposerResetPassword,
   useProposerProposalCreateOrUpdate,
+  useProposerProposalGetBlockReason,
 };

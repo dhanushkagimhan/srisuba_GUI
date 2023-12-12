@@ -10,11 +10,16 @@ import {
 } from "../../../../utility/typesAndEnum";
 import { systemContactNumber } from "../../../../utility/const";
 import { BankAccount } from "../../../../utility/components";
+import { useProposerProposalGetBlockReason } from "../../../../services/proposer";
+import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export default function ProposalStatusView() {
   const mainLayoutState = useMainLayoutStore();
   const proposerState = useProposerStore();
   const proposalPriceState = useProposalPriceStore();
+  const proposalBlockReasonQuery = useProposerProposalGetBlockReason();
+  const navigate = useNavigate();
 
   useEffect(() => {
     mainLayoutState.setData({
@@ -24,6 +29,16 @@ export default function ProposalStatusView() {
       logoLink: "#",
     });
   }, []);
+
+  const getProposalBlockReason = () => {
+    if (proposalBlockReasonQuery.isSuccess) {
+      if (proposalBlockReasonQuery.data.data.success) {
+        return proposalBlockReasonQuery.data.data.data.reason;
+      }
+      return null;
+    }
+    return null;
+  };
 
   const statusView = () => {
     switch (proposerState.data?.status) {
@@ -50,6 +65,39 @@ export default function ProposalStatusView() {
               </ol>
             </div>
             <BankAccount />
+          </div>
+        );
+      }
+      case ProposerStatusEnum.PaymentApproved: {
+        return (
+          <div>
+            <div className="font-semibold text-xl">
+              Your membership payment was approved.
+            </div>
+            <div className="mt-8">
+              Please wait until the review your proposal.
+            </div>
+          </div>
+        );
+      }
+      case ProposerStatusEnum.Rejected: {
+        return (
+          <div>
+            <div className="font-semibold text-xl">
+              Your membership payment was approved.
+            </div>
+            <div className="mt-8">
+              But when reviewing your proposal. we decided to reject proposal.
+              For fix this you need to update your proposal again.
+            </div>
+            <div className="mt-8">
+              Reject Reason : {getProposalBlockReason() ?? ""}
+            </div>
+            <div className="mt-8">
+              <Button type="primary" onClick={() => navigate("/cu-proposal")}>
+                Update Proposal
+              </Button>
+            </div>
           </div>
         );
       }
