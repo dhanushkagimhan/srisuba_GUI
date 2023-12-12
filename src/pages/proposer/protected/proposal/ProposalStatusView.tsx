@@ -86,8 +86,8 @@ export default function ProposalStatusView() {
               Your membership payment was approved.
             </div>
             <div className="mt-8">
-              But when reviewing your proposal. we decided to reject proposal.
-              For fix this you need to update your proposal again.
+              But when reviewing your proposal, we decided to reject your
+              proposal. For fix this you need to update your proposal again.
             </div>
             <div className="mt-8">
               Reject Reason : {getProposalBlockReason()}
@@ -105,6 +105,39 @@ export default function ProposalStatusView() {
           <div>
             <div className="font-semibold text-xl">
               Your membership payment was approved.
+            </div>
+            <div className="mt-8">
+              Please wait until the review your updated proposal.
+            </div>
+          </div>
+        );
+      }
+      case ProposerStatusEnum.Banned: {
+        return (
+          <div>
+            <div className="font-semibold text-xl">
+              Your proposal was Banned.
+            </div>
+            <div className="mt-8">
+              When reviewing your proposal, we decided to banned your proposal.
+              For fix this you need to update your proposal again.
+            </div>
+            <div className="mt-8">
+              Banned Reason : {getProposalBlockReason()}
+            </div>
+            <div className="mt-8">
+              <Button type="primary" onClick={() => navigate("/cu-proposal")}>
+                Update Proposal
+              </Button>
+            </div>
+          </div>
+        );
+      }
+      case ProposerStatusEnum.BannedResolved: {
+        return (
+          <div>
+            <div className="font-semibold text-xl">
+              We reviewing your banned resolved proposal.
             </div>
             <div className="mt-8">
               Please wait until the review your updated proposal.
