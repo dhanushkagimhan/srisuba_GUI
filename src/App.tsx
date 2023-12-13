@@ -8,6 +8,7 @@ import {
   ProposalStatusView,
   ProposerEmailVerify,
   ProposerForgotPassword,
+  ProposerHome,
   ProposerRegister,
   ProposerResetPassword,
 } from "./pages/proposer";
@@ -44,6 +45,7 @@ function App() {
                 element={<MembershipExpired />}
               />
               <Route path="/proposer-status" element={<ProposalStatusView />} />
+              <Route path="/proposer-home" element={<ProposerHome />} />
             </Route>
             <Route path="/error-500" element={<Error500 />} />
             <Route path="*" element={<Error404 />} />

@@ -72,6 +72,10 @@ export default function ProposerLogin() {
                 navigate("/proposer-status");
                 break;
               }
+              case ProposerStatusEnum.Active: {
+                navigate("/proposer-home");
+                break;
+              }
             }
           }
         }
