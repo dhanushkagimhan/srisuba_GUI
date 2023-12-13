@@ -3,7 +3,7 @@ import { commonClient } from "../../client";
 
 export function useProposalPrice() {
   return useQuery({
-    queryKey: ["getProposalPrice"],
+    queryKey: [],
     queryFn: () => {
       return commonClient.get("/proposal/price");
     },

@@ -2,6 +2,7 @@ import { Tabs } from "antd";
 import { useEffect } from "react";
 import { MainLayoutNavEnum } from "../../../../utility/typesAndEnum";
 import { useMainLayoutStore } from "../../../../states";
+import { ProposerProposals } from "./tabPages";
 
 export default function ProposerHome() {
   const mainLayoutState = useMainLayoutStore();
@@ -21,32 +22,32 @@ export default function ProposerHome() {
         type="card"
         items={[
           {
-            label: `Proposals`,
+            label: <span className="font-semibold">Proposals</span>,
             key: "proposal",
-            children: `proposals`,
+            children: <ProposerProposals />,
           },
           {
-            label: `Partners`,
+            label: <span className="font-semibold">Partners</span>,
             key: "partners",
             children: `Partners`,
           },
           {
-            label: `Requested`,
+            label: <span className="font-semibold">Requested</span>,
             key: "requested",
             children: `Requested`,
           },
           {
-            label: `Received`,
+            label: <span className="font-semibold">Received</span>,
             key: "received",
             children: `Received`,
           },
           {
-            label: `Rejected`,
+            label: <span className="font-semibold">Rejected</span>,
             key: "rejected",
             children: `Rejected`,
           },
           {
-            label: "Profile",
+            label: <span className="font-semibold">Profile</span>,
             key: "profile",
             children: `Profile`,
           },

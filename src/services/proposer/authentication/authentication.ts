@@ -7,7 +7,7 @@ import {
   ProposerRegenEmailVerifyType,
   ProposerRegisterType,
   ProposerResetPasswordType,
-} from "../../../utility/types";
+} from "../../../utility/typesAndEnum";
 
 export function useProposerLogin() {
   return useMutation({

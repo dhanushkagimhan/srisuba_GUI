@@ -21,7 +21,7 @@ export function useProposerProposalGetBlockReason() {
   const proposerState = useProposerStore();
 
   return useQuery({
-    queryKey: ["proposer-proposal-block-reason"],
+    queryKey: [],
     queryFn: () => {
       return proposerAuthClient.get("/proposal/block-reason");
     },
@@ -36,10 +36,26 @@ export function useProposerGetMyProposal() {
   const proposerState = useProposerStore();
 
   return useQuery({
-    queryKey: ["proposer-get-my-proposal"],
+    queryKey: [],
     queryFn: () => {
       return proposerAuthClient.get("/proposal/my");
     },
     enabled: proposerState.data?.status !== ProposerStatusEnum.EmailVerified,
+  });
+}
+
+export function useProposerGetOtherProposers(
+  pageNumber: number = 1,
+  pageSize: number = 10,
+) {
+  const proposerAuthClient = useProposerAuthClient();
+
+  return useQuery({
+    queryKey: [`${pageNumber}`, `${pageSize}`],
+    queryFn: () => {
+      return proposerAuthClient.get(
+        `/m/proposal?pageSize=${pageSize}&page=${pageNumber}`,
+      );
+    },
   });
 }

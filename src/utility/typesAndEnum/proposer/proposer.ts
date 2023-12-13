@@ -88,6 +88,20 @@ type ProposerProposalType = {
   horoscopeMatching: boolean;
 };
 
+type ProposerOtherProposer = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  profilePhoto: string;
+  city: string;
+  country: string;
+  ethnicity: string;
+  religion: string;
+  age: number;
+  profession: string;
+};
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
@@ -96,6 +110,7 @@ export type {
   ProposerForgotPasswordType,
   ProposerResetPasswordType,
   ProposerProposalType,
+  ProposerOtherProposer,
 };
 
 export { ProposerStatusEnum, ProposerFoodPreferenceEnum };
