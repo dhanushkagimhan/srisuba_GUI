@@ -20,9 +20,7 @@ export default function ProposerProposals() {
   }, [currentPage, otherProposersQuery.isSuccess]);
 
   const loadOhterProposersData = () => {
-    console.log("dd");
     if (otherProposersQuery.isSuccess) {
-      console.log("ss");
       if (otherProposersQuery.data.data.success) {
         setOtherProposers(otherProposersQuery.data.data.data);
       }
@@ -34,7 +32,6 @@ export default function ProposerProposals() {
     if (totalDataCount === 0) {
       return <Empty />;
     } else if (otherProposersQuery.isPending) {
-      console.log("hi");
       return <Skeleton active />;
     } else if (otherProposersQuery.isSuccess) {
       return (
@@ -53,7 +50,7 @@ export default function ProposerProposals() {
                       alt="Profile photo"
                     />
                   </div>
-                  <div className="w-full bg-slate-50 rounded-lg p-4 flex flex-col">
+                  <div className="sm:w-full bg-slate-50 rounded-lg p-4 flex flex-col">
                     <div className="mb-2">
                       <span className="capitalize text-2xl font-semibold">
                         {otherProposer.firstName + " " + otherProposer.lastName}
@@ -101,7 +98,7 @@ export default function ProposerProposals() {
                       </div>
                     </div>
                     <div className="flex flex-row justify-end p-2">
-                      <div className="text-xl cursor-pointer font-semibold hover:text-slate-700">
+                      <div className="sm:text-xl text-lg cursor-pointer font-semibold hover:text-slate-700">
                         View Full Proposal {">>"}
                       </div>
                     </div>
