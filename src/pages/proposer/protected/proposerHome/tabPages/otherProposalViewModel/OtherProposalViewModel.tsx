@@ -1,4 +1,4 @@
-import { Modal, Image, Skeleton } from "antd";
+import { Modal, Image, Skeleton, Alert } from "antd";
 import {
   ProposerFoodPreferenceEnum,
   ProposerMatchingProposalStatusEnum,
@@ -27,13 +27,78 @@ export default function OtherProposalViewModel(
 
   useEffect(() => {
     loadOtherProposalData();
-  }, [otherProposalQuery.isSuccess]);
+  }, [otherProposalQuery]);
 
   const loadOtherProposalData = () => {
     if (otherProposalQuery.isSuccess) {
       if (otherProposalQuery.data.data.success) {
         setOtherProposalData(otherProposalQuery.data.data.data);
       }
+    }
+  };
+
+  const getRespondContent = () => {
+    if (otherProposalData?.connection == null) {
+      return (
+        <div>
+          <span className="font-semibold">
+            If you interest about this proposal, You can propose.
+          </span>
+          <div className="my-4 pl-8">
+            <div className="bg-black hover:bg-gray-800 text-white py-2 px-10 rounded-lg font-semibold w-fit cursor-pointer">
+              Propose
+            </div>
+          </div>
+        </div>
+      );
+    } else if (
+      otherProposalData?.connection.status ===
+      ProposerMatchingProposalStatusEnum.Pending
+    ) {
+      return (
+        <div>
+          <span className="font-semibold">
+            Wait for the review your proposal.
+          </span>
+          <div className="my-4 pl-8">
+            <div className="bg-gray-600  text-white py-2 px-10 rounded-lg font-semibold w-fit cursor-default">
+              Pending
+            </div>
+          </div>
+        </div>
+      );
+    } else if (
+      otherProposalData?.connection.status ===
+      ProposerMatchingProposalStatusEnum.Accepted
+    ) {
+      return (
+        <div>
+          <div className="my-2 pl-8">
+            <div className="bg-green-600  text-white py-2 px-10 rounded-lg font-semibold w-fit cursor-default">
+              Matched Proposal
+            </div>
+          </div>
+        </div>
+      );
+    } else if (
+      otherProposalData?.connection.status ===
+      ProposerMatchingProposalStatusEnum.Rejected
+    ) {
+      return (
+        <div>
+          <span className="font-semibold">
+            Proposal rejected. You can propose again.
+          </span>
+          <div className="my-4 pl-8">
+            <div className="bg-gray-600  text-white py-2 px-10 rounded-lg font-semibold w-fit cursor-default">
+              Rejected
+            </div>
+            <div className="bg-black hover:bg-gray-800 text-white py-2 px-10 rounded-lg font-semibold w-fit cursor-pointer">
+              Propose Again
+            </div>
+          </div>
+        </div>
+      );
     }
   };
 
@@ -74,6 +139,26 @@ export default function OtherProposalViewModel(
             ) : (
               <></>
             )}
+
+            {otherProposalData?.connection?.status !==
+            ProposerMatchingProposalStatusEnum.Accepted ? (
+              <div className="my-2">
+                <Alert
+                  message="Only matched proposal can view the contact details and birthday."
+                  type="info"
+                  showIcon
+                />
+              </div>
+            ) : (
+              <></>
+            )}
+
+            <div className="bg-cyan-100 rounded-lg p-4 mt-4">
+              <span className="text-lg font-semibold">Respond</span>
+              <div className="my-4 p-4 bg-white rounded-lg">
+                {getRespondContent()}
+              </div>
+            </div>
 
             <div className="bg-cyan-100 rounded-lg p-4 mt-4">
               <span className="text-lg font-semibold">
