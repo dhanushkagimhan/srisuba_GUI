@@ -27,14 +27,14 @@ export default function ProposerHome() {
             children: <ProposerProposals />,
           },
           {
-            label: <span className="font-semibold">Partners</span>,
-            key: "partners",
-            children: `Partners`,
+            label: <span className="font-semibold">Matched Proposals</span>,
+            key: "matchedProposals",
+            children: `matchedProposals`,
           },
           {
-            label: <span className="font-semibold">Requested</span>,
-            key: "requested",
-            children: `Requested`,
+            label: <span className="font-semibold">Proposed</span>,
+            key: "proposed",
+            children: `proposed`,
           },
           {
             label: <span className="font-semibold">Received</span>,
