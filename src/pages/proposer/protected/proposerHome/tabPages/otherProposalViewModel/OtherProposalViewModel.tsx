@@ -1,12 +1,14 @@
 import { Modal, Image, Skeleton } from "antd";
 import {
   ProposerFoodPreferenceEnum,
+  ProposerMatchingProposalStatusEnum,
   ProposerOtherProposalType,
   ProposerOtherProposerType,
 } from "../../../../../../utility/typesAndEnum";
 import { useProposerGetOtherProposal } from "../../../../../../services/proposer";
 import { useEffect, useState } from "react";
 import { getCountryLabel } from "../../../../../../utility/Methods";
+import dayjs from "dayjs";
 
 type OtherProposalViewModelProp = {
   isModalOpen: boolean;
@@ -57,6 +59,22 @@ export default function OtherProposalViewModel(
                 prop.otherProposer?.lastName}
             </span>
 
+            {otherProposalData?.bioTitle ? (
+              <div className="my-2 pl-2 font-medium">
+                {otherProposalData?.bioTitle}
+              </div>
+            ) : (
+              <></>
+            )}
+
+            {otherProposalData?.bioDescription ? (
+              <div className="my-2 pl-2 text-justify">
+                {otherProposalData?.bioDescription}
+              </div>
+            ) : (
+              <></>
+            )}
+
             <div className="bg-cyan-100 rounded-lg p-4 mt-4">
               <span className="text-lg font-semibold">
                 Personal Information
@@ -87,6 +105,21 @@ export default function OtherProposalViewModel(
                         {otherProposalData?.age} years old
                       </div>
                     </div>
+                    {otherProposalData?.connection?.status ===
+                    ProposerMatchingProposalStatusEnum.Accepted ? (
+                      <div className="flex flex-row gap-4 py-2">
+                        <div className="font-medium w-full text-right">
+                          Birthday
+                        </div>
+                        <div className="w-full">
+                          {dayjs(otherProposalData.birthDay).format(
+                            "DD/MM/YYYY",
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                   <div className="w-full">
                     <div className="flex flex-row gap-4 py-2 bg-slate-100 rounded-lg">
@@ -112,6 +145,24 @@ export default function OtherProposalViewModel(
                   </div>
                 </div>
               </div>
+              {otherProposalData?.connection?.status ===
+              ProposerMatchingProposalStatusEnum.Accepted ? (
+                <div className="my-4 p-4 bg-white rounded-lg">
+                  <span className="font-semibold">Contact Details</span>
+                  <div className="w-1/2 mt-2">
+                    <div className="flex flex-row gap-4 py-2 mr-2 bg-slate-100 rounded-lg">
+                      <div className="font-medium w-full text-right">
+                        WhatsApp Number
+                      </div>
+                      <div className="w-full">
+                        {otherProposalData?.whatsAppNumber}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <></>
+              )}
 
               <div className="my-4 p-4 bg-white rounded-lg">
                 <span className="font-semibold">Residency</span>
@@ -325,7 +376,7 @@ export default function OtherProposalViewModel(
 
             <div className="bg-cyan-100 rounded-lg p-4 mt-4">
               <span className="text-lg font-semibold">
-                Horoscope Information
+                Horoscope Requirements
               </span>
 
               <div className="my-4 p-4 bg-white rounded-lg">
