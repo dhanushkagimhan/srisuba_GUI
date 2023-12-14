@@ -59,3 +59,17 @@ export function useProposerGetOtherProposers(
     },
   });
 }
+
+export function useProposerGetOtherProposal(
+  otherProposerId: number | undefined,
+) {
+  const proposerAuthClient = useProposerAuthClient();
+
+  return useQuery({
+    queryKey: [`${otherProposerId}`],
+    queryFn: () => {
+      return proposerAuthClient.get(`/m/proposal/${otherProposerId}`);
+    },
+    enabled: otherProposerId != null,
+  });
+}

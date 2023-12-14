@@ -9,7 +9,9 @@ import {
   ProposerResetPasswordType,
   ProposerProposalType,
   ProposerFoodPreferenceEnum,
-  ProposerOtherProposer,
+  ProposerOtherProposerType,
+  ProposerOtherProposalType,
+  ProposerMatchingProposalStatusEnum,
 } from "./proposer/proposer";
 
 enum GenderEnum {
@@ -25,7 +27,8 @@ export type {
   ProposerForgotPasswordType,
   ProposerResetPasswordType,
   ProposerProposalType,
-  ProposerOtherProposer,
+  ProposerOtherProposerType,
+  ProposerOtherProposalType,
 };
 
 export {
@@ -33,4 +36,5 @@ export {
   GenderEnum,
   ProposerStatusEnum,
   ProposerFoodPreferenceEnum,
+  ProposerMatchingProposalStatusEnum,
 };

@@ -8,6 +8,7 @@ import {
 } from "./authentication/authentication";
 import {
   useProposerGetMyProposal,
+  useProposerGetOtherProposal,
   useProposerProposalCreateOrUpdate,
   useProposerProposalGetBlockReason,
 } from "./proposal/proposal";
@@ -22,4 +23,5 @@ export {
   useProposerProposalCreateOrUpdate,
   useProposerProposalGetBlockReason,
   useProposerGetMyProposal,
+  useProposerGetOtherProposal,
 };

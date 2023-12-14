@@ -88,7 +88,7 @@ type ProposerProposalType = {
   horoscopeMatching: boolean;
 };
 
-type ProposerOtherProposer = {
+type ProposerOtherProposerType = {
   id: number;
   firstName: string;
   lastName: string;
@@ -102,6 +102,51 @@ type ProposerOtherProposer = {
   profession: string;
 };
 
+enum ProposerMatchingProposalStatusEnum {
+  Pending = "Pending",
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+}
+
+type ProposerOtherProposalType = {
+  profilePhoto: string;
+  otherPictures: string[] | null;
+  bioTitle: string | null;
+  bioDescription: string | null;
+  whatsAppNumber?: string;
+  ethnicity: string;
+  religion: string;
+  caste: string | null;
+  civilStatus: string;
+  height: string;
+  country: string;
+  stateOrDistrict: string;
+  city: string;
+  education: string;
+  profession: string;
+  drinking: boolean;
+  smoking: boolean;
+  foodPreference: ProposerFoodPreferenceEnum;
+  fatherEthnicity: string;
+  fatherReligion: string;
+  fatherCaste: string | null;
+  fatherProfession: string | null;
+  fatherCountryOfResidence: string;
+  fatherAdditionalInfo: string | null;
+  motherEthnicity: string;
+  motherReligion: string;
+  motherCaste: string | null;
+  motherProfession: string | null;
+  motherCountryOfResidence: string;
+  motherAdditionalInfo: string | null;
+  horoscopeMatching: boolean;
+  age: number;
+  birthDay?: Date;
+  connection?: {
+    status: ProposerMatchingProposalStatusEnum;
+  };
+};
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
@@ -110,7 +155,12 @@ export type {
   ProposerForgotPasswordType,
   ProposerResetPasswordType,
   ProposerProposalType,
-  ProposerOtherProposer,
+  ProposerOtherProposerType,
+  ProposerOtherProposalType,
 };
 
-export { ProposerStatusEnum, ProposerFoodPreferenceEnum };
+export {
+  ProposerStatusEnum,
+  ProposerFoodPreferenceEnum,
+  ProposerMatchingProposalStatusEnum,
+};

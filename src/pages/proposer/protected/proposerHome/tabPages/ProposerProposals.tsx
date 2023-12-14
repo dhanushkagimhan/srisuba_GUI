@@ -1,19 +1,24 @@
 import { Empty, Pagination, Skeleton, Image } from "antd";
 import { useEffect, useState } from "react";
 import { useProposerGetOtherProposers } from "../../../../../services/proposer/proposal/proposal";
-import { ProposerOtherProposer } from "../../../../../utility/typesAndEnum";
+import { ProposerOtherProposerType } from "../../../../../utility/typesAndEnum";
 import { FaLocationDot, FaUser, FaBookOpenReader } from "react-icons/fa6";
 import { getCountryLabel } from "../../../../../utility/Methods";
 import { FaBirthdayCake } from "react-icons/fa";
 import { HiBuildingOffice2 } from "react-icons/hi2";
+import OtherProposalViewModel from "./otherProposalViewModel/OtherProposalViewModel";
 
 export default function ProposerProposals() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalDataCount, setTotalDataCount] = useState<number>();
-  const [otherProposers, setOtherProposers] = useState<ProposerOtherProposer[]>(
-    [],
-  );
+  const [otherProposers, setOtherProposers] = useState<
+    ProposerOtherProposerType[]
+  >([]);
   const otherProposersQuery = useProposerGetOtherProposers(currentPage);
+  const [isOtherProposalViewModelOpen, setIsOtherProposalViewModelOpen] =
+    useState<boolean>(false);
+  const [otherProposerData, setOtherProposerData] =
+    useState<ProposerOtherProposerType>();
 
   useEffect(() => {
     loadOhterProposersData();
@@ -36,7 +41,7 @@ export default function ProposerProposals() {
     } else if (otherProposersQuery.isSuccess) {
       return (
         <div>
-          {otherProposers.map((otherProposer: ProposerOtherProposer) => {
+          {otherProposers.map((otherProposer: ProposerOtherProposerType) => {
             return (
               <div
                 key={otherProposer.id}
@@ -98,7 +103,10 @@ export default function ProposerProposals() {
                       </div>
                     </div>
                     <div className="flex flex-row justify-end p-2">
-                      <div className="sm:text-xl text-lg cursor-pointer font-semibold hover:text-slate-700">
+                      <div
+                        className="sm:text-xl text-lg cursor-pointer font-semibold p-2 bg-white rounded-lg hover:text-white hover:bg-black"
+                        onClick={() => viewOtherProposal(otherProposer)}
+                      >
                         View Full Proposal {">>"}
                       </div>
                     </div>
@@ -110,6 +118,11 @@ export default function ProposerProposals() {
         </div>
       );
     }
+  };
+
+  const viewOtherProposal = (otherProposer: ProposerOtherProposerType) => {
+    setOtherProposerData(otherProposer);
+    setIsOtherProposalViewModelOpen(true);
   };
 
   return (
@@ -131,6 +144,11 @@ export default function ProposerProposals() {
           />
         </div>
       </div>
+      <OtherProposalViewModel
+        isModalOpen={isOtherProposalViewModelOpen}
+        setIdModelOpen={setIsOtherProposalViewModelOpen}
+        otherProposer={otherProposerData}
+      />
     </div>
   );
 }
