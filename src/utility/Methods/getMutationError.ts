@@ -1,4 +1,4 @@
-const getMutationError = (mutationResult: unknown) => {
+const getMutationError = (mutationResult: any) => {
   try {
     if (mutationResult?.error?.response.data.message != null) {
       return mutationResult?.error?.response.data.message;
