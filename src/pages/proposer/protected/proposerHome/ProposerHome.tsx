@@ -2,7 +2,7 @@ import { Tabs } from "antd";
 import { useEffect } from "react";
 import { MainLayoutNavEnum } from "../../../../utility/typesAndEnum";
 import { useMainLayoutStore } from "../../../../states";
-import { ProposerProposals } from "./tabPages";
+import { MatchedProposals, ProposerProposals } from "./tabPages";
 
 export default function ProposerHome() {
   const mainLayoutState = useMainLayoutStore();
@@ -29,7 +29,7 @@ export default function ProposerHome() {
           {
             label: <span className="font-semibold">Matched Proposals</span>,
             key: "matchedProposals",
-            children: `matchedProposals`,
+            children: <MatchedProposals />,
           },
           {
             label: <span className="font-semibold">Received</span>,

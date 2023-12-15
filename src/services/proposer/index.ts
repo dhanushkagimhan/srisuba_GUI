@@ -6,7 +6,10 @@ import {
   useProposerRegister,
   useProposerResetPassword,
 } from "./authentication/authentication";
-import { useProposerPropose } from "./connection/connection";
+import {
+  useProposerGetMatchedProposers,
+  useProposerPropose,
+} from "./connection/connection";
 import {
   useProposerGetMyProposal,
   useProposerGetOtherProposal,
@@ -26,4 +29,5 @@ export {
   useProposerGetMyProposal,
   useProposerGetOtherProposal,
   useProposerPropose,
+  useProposerGetMatchedProposers,
 };
