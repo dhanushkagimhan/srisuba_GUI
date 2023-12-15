@@ -32,14 +32,14 @@ export default function ProposerHome() {
             children: `matchedProposals`,
           },
           {
-            label: <span className="font-semibold">Proposed</span>,
-            key: "proposed",
-            children: `proposed`,
-          },
-          {
             label: <span className="font-semibold">Received</span>,
             key: "received",
             children: `Received`,
+          },
+          {
+            label: <span className="font-semibold">Proposed</span>,
+            key: "proposed",
+            children: `proposed`,
           },
           {
             label: <span className="font-semibold">Rejected</span>,
