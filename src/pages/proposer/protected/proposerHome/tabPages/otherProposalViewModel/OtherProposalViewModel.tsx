@@ -4,11 +4,19 @@ import {
   ProposerMatchingProposalStatusEnum,
   ProposerOtherProposalType,
   ProposerOtherProposerType,
+  ProposerProposeType,
 } from "../../../../../../utility/typesAndEnum";
-import { useProposerGetOtherProposal } from "../../../../../../services/proposer";
+import {
+  useProposerGetOtherProposal,
+  useProposerPropose,
+} from "../../../../../../services/proposer";
 import { useEffect, useState } from "react";
-import { getCountryLabel } from "../../../../../../utility/Methods";
+import {
+  getCountryLabel,
+  getMutationError,
+} from "../../../../../../utility/Methods";
 import dayjs from "dayjs";
+import { SyncOutlined } from "@ant-design/icons";
 
 type OtherProposalViewModelProp = {
   isModalOpen: boolean;
@@ -24,6 +32,7 @@ export default function OtherProposalViewModel(
   );
   const [otherProposalData, setOtherProposalData] =
     useState<ProposerOtherProposalType>();
+  const proposerProposeMutation = useProposerPropose();
 
   useEffect(() => {
     loadOtherProposalData();
@@ -37,6 +46,21 @@ export default function OtherProposalViewModel(
     }
   };
 
+  const onPropose = () => {
+    if (prop.otherProposer?.id != null) {
+      const proposeData: ProposerProposeType = {
+        proposerId: prop.otherProposer.id,
+      };
+      proposerProposeMutation.mutate(proposeData, {
+        onSuccess: (data) => {
+          if (data.data.success) {
+            otherProposalQuery.refetch();
+          }
+        },
+      });
+    }
+  };
+
   const getRespondContent = () => {
     if (otherProposalData?.connection == null) {
       return (
@@ -44,8 +68,30 @@ export default function OtherProposalViewModel(
           <span className="font-semibold">
             If you interest about this proposal, You can propose.
           </span>
+          <div>
+            {proposerProposeMutation.isError ? (
+              <div className="xl:w-3/5 w-full my-4">
+                <Alert
+                  message={getMutationError(proposerProposeMutation)}
+                  type="error"
+                />
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
           <div className="my-4 pl-8">
-            <div className="bg-black hover:bg-gray-800 text-white py-2 px-10 rounded-lg font-semibold w-fit cursor-pointer">
+            <div
+              className="bg-black hover:bg-gray-800 text-white py-2 px-10 rounded-lg font-semibold w-fit cursor-pointer"
+              onClick={onPropose}
+            >
+              {proposerProposeMutation.isPending ? (
+                <span className="mr-2">
+                  <SyncOutlined spin />
+                </span>
+              ) : (
+                <></>
+              )}
               Propose
             </div>
           </div>

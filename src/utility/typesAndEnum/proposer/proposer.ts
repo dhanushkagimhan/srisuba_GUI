@@ -147,6 +147,10 @@ type ProposerOtherProposalType = {
   };
 };
 
+type ProposerProposeType = {
+  proposerId: number;
+};
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
@@ -157,6 +161,7 @@ export type {
   ProposerProposalType,
   ProposerOtherProposerType,
   ProposerOtherProposalType,
+  ProposerProposeType,
 };
 
 export {
