@@ -80,9 +80,9 @@ export default function OtherProposalViewModel(
               <></>
             )}
           </div>
-          <div className="my-4 pl-8">
+          <div className="my-4 sm:pl-8">
             <div
-              className="bg-black hover:bg-gray-800 text-white py-2 px-10 rounded-lg font-semibold w-fit cursor-pointer"
+              className="bg-black hover:bg-gray-800 text-white py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-pointer"
               onClick={onPropose}
             >
               {proposerProposeMutation.isPending ? (
@@ -106,8 +106,8 @@ export default function OtherProposalViewModel(
           <span className="font-semibold">
             Wait for the review your proposal.
           </span>
-          <div className="my-4 pl-8">
-            <div className="bg-gray-600  text-white py-2 px-10 rounded-lg font-semibold w-fit cursor-default">
+          <div className="my-4 sm:pl-8">
+            <div className="bg-gray-600  text-white py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-default">
               Pending
             </div>
           </div>
@@ -119,8 +119,8 @@ export default function OtherProposalViewModel(
     ) {
       return (
         <div>
-          <div className="my-2 pl-8">
-            <div className="bg-green-600  text-white py-2 px-10 rounded-lg font-semibold w-fit cursor-default">
+          <div className="my-2 sm:pl-8">
+            <div className="bg-green-600  text-white py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-default">
               Matched Proposal
             </div>
           </div>
@@ -135,11 +135,11 @@ export default function OtherProposalViewModel(
           <span className="font-semibold">
             Proposal rejected. You can propose again.
           </span>
-          <div className="my-4 pl-8">
-            <div className="bg-gray-600  text-white py-2 px-10 rounded-lg font-semibold w-fit cursor-default">
+          <div className="my-4 sm:pl-8">
+            <div className="bg-gray-600  text-white py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-default">
               Rejected
             </div>
-            <div className="bg-black hover:bg-gray-800 text-white py-2 px-10 rounded-lg font-semibold w-fit cursor-pointer">
+            <div className="bg-black hover:bg-gray-800 text-white py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-pointer">
               Propose Again
             </div>
           </div>
@@ -155,9 +155,9 @@ export default function OtherProposalViewModel(
       return (
         <div>
           <div className="flex flex-row justify-center">
-            <div className="w-[250px] lg:w-[300px] h-[250px] lg:h-[300px] flex justify-center items-center">
+            <div className="w-[200px] sm:w-[250px] lg:w-[300px] h-[200px] sm:h-[250px] lg:h-[300px] flex justify-center items-center">
               <Image
-                className="max-w-[250px] lg:max-w-[300px] h-[250px] lg:max-h-[300px]"
+                className="max-w-[200px] sm:max-w-[250px] lg:max-w-[300px] max-h-[200px] sm:max-h-[250px] lg:max-h-[300px]"
                 src={otherProposalData?.profilePhoto}
                 alt="Profile photo"
               />
@@ -212,7 +212,7 @@ export default function OtherProposalViewModel(
               </span>
               <div className="my-4 p-4 bg-white rounded-lg">
                 <span className="font-semibold">Basic</span>
-                <div className="flex flex-row gap-4 mt-2">
+                <div className="flex md:flex-row flex-col md:gap-4 mt-2">
                   <div className="w-full">
                     <div className="flex flex-row gap-4 py-2 bg-slate-100 rounded-lg">
                       <div className="font-medium w-full text-right">
@@ -280,8 +280,8 @@ export default function OtherProposalViewModel(
               ProposerMatchingProposalStatusEnum.Accepted ? (
                 <div className="my-4 p-4 bg-white rounded-lg">
                   <span className="font-semibold">Contact Details</span>
-                  <div className="w-1/2 mt-2">
-                    <div className="flex flex-row gap-4 py-2 mr-2 bg-slate-100 rounded-lg">
+                  <div className="md:w-1/2 w-full mt-2">
+                    <div className="flex flex-row gap-4 py-2 md:mr-2 bg-slate-100 rounded-lg">
                       <div className="font-medium w-full text-right">
                         WhatsApp Number
                       </div>
@@ -297,7 +297,7 @@ export default function OtherProposalViewModel(
 
               <div className="my-4 p-4 bg-white rounded-lg">
                 <span className="font-semibold">Residency</span>
-                <div className="flex flex-row gap-4 mt-2">
+                <div className="flex md:flex-row flex-col md:gap-4 mt-2">
                   <div className="w-full">
                     <div className="flex flex-row gap-4 py-2 bg-slate-100 rounded-lg">
                       <div className="font-medium w-full text-right">
@@ -329,7 +329,7 @@ export default function OtherProposalViewModel(
 
               <div className="my-4 p-4 bg-white rounded-lg">
                 <span className="font-semibold">Education and Profession</span>
-                <div className="flex flex-row gap-4 mt-2">
+                <div className="flex md:flex-row flex-col md:gap-4 mt-2">
                   <div className="w-full">
                     <div className="flex flex-row gap-4 py-2 bg-slate-100 rounded-lg">
                       <div className="font-medium w-full text-right">
@@ -341,7 +341,7 @@ export default function OtherProposalViewModel(
                     </div>
                   </div>
                   <div className="w-full">
-                    <div className="flex flex-row gap-4 py-2 bg-slate-100 rounded-lg">
+                    <div className="flex flex-row gap-4 py-2 md:bg-slate-100 md:rounded-lg">
                       <div className="font-medium w-full text-right">
                         Profession
                       </div>
@@ -355,7 +355,7 @@ export default function OtherProposalViewModel(
 
               <div className="my-4 p-4 bg-white rounded-lg">
                 <span className="font-semibold">Habits</span>
-                <div className="flex flex-row gap-4 mt-2">
+                <div className="flex md:flex-row flex-col md:gap-4 mt-2">
                   <div className="w-full">
                     <div className="flex flex-row gap-4 py-2 bg-slate-100 rounded-lg">
                       <div className="font-medium w-full text-right">
@@ -394,7 +394,7 @@ export default function OtherProposalViewModel(
             <div className="bg-cyan-100 rounded-lg p-4 mt-4">
               <span className="text-lg font-semibold">Family Information</span>
               <div className="my-4 p-4 bg-white rounded-lg">
-                <div className=" flex flex-row gap-4">
+                <div className=" flex md:flex-row flex-col gap-4">
                   <div className="w-full">
                     <span className="font-semibold">Father</span>
                     <div className="flex flex-row gap-4 py-2 bg-slate-100 rounded-lg mt-2">
@@ -511,8 +511,8 @@ export default function OtherProposalViewModel(
               </span>
 
               <div className="my-4 p-4 bg-white rounded-lg">
-                <div className="w-1/2">
-                  <div className="flex flex-row gap-4 py-2 mr-2 bg-slate-100 rounded-lg">
+                <div className="md:w-1/2 w-full">
+                  <div className="flex flex-row gap-4 py-2 md:mr-2 bg-slate-100 rounded-lg">
                     <div className="font-medium w-full text-right">
                       Horoscope Matching
                     </div>
@@ -538,7 +538,7 @@ export default function OtherProposalViewModel(
       okButtonProps={{ className: "hidden" }}
       width={1000}
     >
-      <div className="my-8 p-4 max-h-[65vh] overflow-y-auto">
+      <div className="my-8 sm:p-4 max-h-[65vh] overflow-y-auto">
         {getContent()}
       </div>
     </Modal>
