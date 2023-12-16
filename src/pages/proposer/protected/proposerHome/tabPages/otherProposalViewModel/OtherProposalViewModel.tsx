@@ -219,11 +219,31 @@ export default function OtherProposalViewModel(
           <span className="font-semibold">
             Proposal rejected. You can propose again.
           </span>
+          {proposerProposeMutation.isError ? (
+            <div className="xl:w-3/5 w-full my-4">
+              <Alert
+                message={getMutationError(proposerProposeMutation)}
+                type="error"
+              />
+            </div>
+          ) : (
+            <></>
+          )}
           <div className="my-4 sm:pl-8">
-            <div className="bg-gray-600  text-white py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-default">
+            <div className="bg-slate-200  text-black py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-default">
               Rejected
             </div>
-            <div className="bg-black hover:bg-gray-800 text-white py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-pointer">
+            <div
+              className="bg-black hover:bg-gray-800 text-white py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-pointer mt-4"
+              onClick={onPropose}
+            >
+              {proposerProposeMutation.isPending ? (
+                <span className="mr-2">
+                  <SyncOutlined spin />
+                </span>
+              ) : (
+                <></>
+              )}
               Propose Again
             </div>
           </div>
