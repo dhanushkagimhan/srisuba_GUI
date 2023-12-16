@@ -10,6 +10,7 @@ import {
   useProposerGetMatchedProposers,
   useProposerGetProposedProposers,
   useProposerGetReceivedProposers,
+  useProposerGetRejectedProposers,
   useProposerProposalAcceptation,
   useProposerPropose,
 } from "./connection/connection";
@@ -36,4 +37,5 @@ export {
   useProposerGetReceivedProposers,
   useProposerProposalAcceptation,
   useProposerGetProposedProposers,
+  useProposerGetRejectedProposers,
 };

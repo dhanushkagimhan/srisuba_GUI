@@ -180,6 +180,15 @@ type ProposerProposedProposerType = {
   receiverId: number;
 };
 
+type ProposerRejectedProposerType = {
+  id: number;
+  status: ProposerMatchingProposalStatusEnum;
+  firstName: string;
+  lastName: string;
+  receiverId: number;
+  isIPropose: boolean;
+};
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
@@ -195,6 +204,7 @@ export type {
   ProposerReceivedProposerType,
   ProposerProposalAcceptationType,
   ProposerProposedProposerType,
+  ProposerRejectedProposerType,
 };
 
 export {

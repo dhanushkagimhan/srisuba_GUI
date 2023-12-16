@@ -6,6 +6,7 @@ import {
   MatchedProposals,
   ProposerProposals,
   ProposerProposedProposals,
+  ProposerRejectedProposals,
   ReceivedProposals,
 } from "./tabPages";
 
@@ -50,7 +51,7 @@ export default function ProposerHome() {
           {
             label: <span className="font-semibold">Rejected</span>,
             key: "rejected",
-            children: `Rejected`,
+            children: <ProposerRejectedProposals />,
           },
           {
             label: <span className="font-semibold">Profile</span>,

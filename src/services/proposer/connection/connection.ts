@@ -60,3 +60,14 @@ export function useProposerGetProposedProposers() {
     },
   });
 }
+
+export function useProposerGetRejectedProposers() {
+  const proposerAuthClient = useProposerAuthClient();
+
+  return useQuery({
+    queryKey: [],
+    queryFn: () => {
+      return proposerAuthClient.get(`/m/connection/rejected-requests`);
+    },
+  });
+}
