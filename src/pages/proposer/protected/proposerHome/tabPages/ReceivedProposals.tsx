@@ -16,6 +16,7 @@ export default function ReceivedProposals() {
     useState<boolean>(false);
   const [otherProposerData, setOtherProposerData] =
     useState<Partial<ProposerOtherProposerType>>();
+  const [proposalRequestId, setProposalRequestId] = useState<number>();
 
   useEffect(() => {
     loadReceivedProposersData();
@@ -84,6 +85,7 @@ export default function ReceivedProposals() {
       lastName: receivedProposer.lastName,
     };
     setOtherProposerData(otherProposer);
+    setProposalRequestId(receivedProposer.id);
     setIsOtherProposalViewModelOpen(true);
   };
 
@@ -102,6 +104,7 @@ export default function ReceivedProposals() {
         isModalOpen={isOtherProposalViewModelOpen}
         setIdModelOpen={setIsOtherProposalViewModelOpen}
         otherProposer={otherProposerData}
+        proposalRequestId={proposalRequestId}
       />
     </div>
   );

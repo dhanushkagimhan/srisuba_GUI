@@ -1,13 +1,15 @@
-import { Modal, Image, Skeleton, Alert } from "antd";
+import { Modal, Image, Skeleton, Alert, Popconfirm } from "antd";
 import {
   ProposerFoodPreferenceEnum,
   ProposerMatchingProposalStatusEnum,
   ProposerOtherProposalType,
   ProposerOtherProposerType,
+  ProposerProposalAcceptationType,
   ProposerProposeType,
 } from "../../../../../../utility/typesAndEnum";
 import {
   useProposerGetOtherProposal,
+  useProposerProposalAcceptation,
   useProposerPropose,
 } from "../../../../../../services/proposer";
 import { useEffect, useState } from "react";
@@ -22,6 +24,7 @@ type OtherProposalViewModelProp = {
   isModalOpen: boolean;
   setIdModelOpen: (value: boolean) => void;
   otherProposer?: Partial<ProposerOtherProposerType>;
+  proposalRequestId?: number;
 };
 
 export default function OtherProposalViewModel(
@@ -33,6 +36,7 @@ export default function OtherProposalViewModel(
   const [otherProposalData, setOtherProposalData] =
     useState<ProposerOtherProposalType>();
   const proposerProposeMutation = useProposerPropose();
+  const proposerProposalAcceptationMutation = useProposerProposalAcceptation();
 
   useEffect(() => {
     loadOtherProposalData();
@@ -51,7 +55,27 @@ export default function OtherProposalViewModel(
       const proposeData: ProposerProposeType = {
         proposerId: prop.otherProposer.id,
       };
+
       proposerProposeMutation.mutate(proposeData, {
+        onSuccess: (data) => {
+          if (data.data.success) {
+            otherProposalQuery.refetch();
+          }
+        },
+      });
+    }
+  };
+
+  const onProposalAccept = (
+    changeStatus: ProposerMatchingProposalStatusEnum,
+  ) => {
+    if (prop.proposalRequestId != null) {
+      const proposalAcceptationData: ProposerProposalAcceptationType = {
+        requestId: prop.proposalRequestId,
+        status: changeStatus,
+      };
+
+      proposerProposalAcceptationMutation.mutate(proposalAcceptationData, {
         onSuccess: (data) => {
           if (data.data.success) {
             otherProposalQuery.refetch();
@@ -103,14 +127,74 @@ export default function OtherProposalViewModel(
     ) {
       return (
         <div>
-          <span className="font-semibold">
-            Wait for the review your proposal.
-          </span>
-          <div className="my-4 sm:pl-8">
-            <div className="bg-gray-600  text-white py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-default">
-              Pending
+          {prop.proposalRequestId ? (
+            <div>
+              <span className="font-semibold">
+                you can accept or reject this proposal.
+              </span>
+              <div>
+                {proposerProposalAcceptationMutation.isError ? (
+                  <div className="xl:w-3/5 w-full my-4">
+                    <Alert
+                      message={getMutationError(
+                        proposerProposalAcceptationMutation,
+                      )}
+                      type="error"
+                    />
+                  </div>
+                ) : (
+                  <></>
+                )}
+                {proposerProposalAcceptationMutation.isPending ? (
+                  <span className="mr-2 my-4">
+                    Loading... <SyncOutlined spin />
+                  </span>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="my-4 flex flex-row max-[320px]:flex-col gap-4 sm:pl-8">
+                <div>
+                  <Popconfirm
+                    title="Reject this proposal"
+                    description="Are you sure to reject this proposal?"
+                    okText="Yes"
+                    cancelText="No"
+                    onConfirm={() =>
+                      onProposalAccept(
+                        ProposerMatchingProposalStatusEnum.Rejected,
+                      )
+                    }
+                  >
+                    <div className="bg-white border-[1px] border-solid border-black hover:border-gray-800 text-black hover:text-gray-800 py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-pointer">
+                      Reject
+                    </div>
+                  </Popconfirm>
+                </div>
+                <div
+                  className="bg-black hover:bg-gray-800 text-white py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-pointer"
+                  onClick={() =>
+                    onProposalAccept(
+                      ProposerMatchingProposalStatusEnum.Accepted,
+                    )
+                  }
+                >
+                  Accept
+                </div>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div>
+              <span className="font-semibold">
+                Wait for the review your proposal.
+              </span>
+              <div className="my-4 sm:pl-8">
+                <div className="bg-gray-600  text-white py-2 px-4 sm:px-10 rounded-lg font-semibold w-fit cursor-default">
+                  Pending
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       );
     } else if (
