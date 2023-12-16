@@ -8,6 +8,7 @@ import {
 } from "./authentication/authentication";
 import {
   useProposerGetMatchedProposers,
+  useProposerGetReceivedProposers,
   useProposerPropose,
 } from "./connection/connection";
 import {
@@ -30,4 +31,5 @@ export {
   useProposerGetOtherProposal,
   useProposerPropose,
   useProposerGetMatchedProposers,
+  useProposerGetReceivedProposers,
 };

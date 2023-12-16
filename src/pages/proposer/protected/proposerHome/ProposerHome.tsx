@@ -2,7 +2,11 @@ import { Tabs } from "antd";
 import { useEffect } from "react";
 import { MainLayoutNavEnum } from "../../../../utility/typesAndEnum";
 import { useMainLayoutStore } from "../../../../states";
-import { MatchedProposals, ProposerProposals } from "./tabPages";
+import {
+  MatchedProposals,
+  ProposerProposals,
+  ReceivedProposals,
+} from "./tabPages";
 
 export default function ProposerHome() {
   const mainLayoutState = useMainLayoutStore();
@@ -20,6 +24,7 @@ export default function ProposerHome() {
     <div className="w-full">
       <Tabs
         type="card"
+        destroyInactiveTabPane={true}
         items={[
           {
             label: <span className="font-semibold">Proposals</span>,
@@ -34,7 +39,7 @@ export default function ProposerHome() {
           {
             label: <span className="font-semibold">Received</span>,
             key: "received",
-            children: `Received`,
+            children: <ReceivedProposals />,
           },
           {
             label: <span className="font-semibold">Proposed</span>,

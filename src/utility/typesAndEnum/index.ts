@@ -14,6 +14,7 @@ import {
   ProposerMatchingProposalStatusEnum,
   ProposerProposeType,
   ProposerMatchedProposerType,
+  ProposerReceivedProposerType,
 } from "./proposer/proposer";
 
 enum GenderEnum {
@@ -33,6 +34,7 @@ export type {
   ProposerOtherProposalType,
   ProposerProposeType,
   ProposerMatchedProposerType,
+  ProposerReceivedProposerType,
 };
 
 export {
