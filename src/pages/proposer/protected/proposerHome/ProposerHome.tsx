@@ -5,6 +5,7 @@ import { useMainLayoutStore } from "../../../../states";
 import {
   MatchedProposals,
   ProposerProposals,
+  ProposerProposedProposals,
   ReceivedProposals,
 } from "./tabPages";
 
@@ -44,7 +45,7 @@ export default function ProposerHome() {
           {
             label: <span className="font-semibold">Proposed</span>,
             key: "proposed",
-            children: `proposed`,
+            children: <ProposerProposedProposals />,
           },
           {
             label: <span className="font-semibold">Rejected</span>,

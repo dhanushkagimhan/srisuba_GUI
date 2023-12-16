@@ -172,6 +172,14 @@ type ProposerProposalAcceptationType = {
   status: ProposerMatchingProposalStatusEnum;
 };
 
+type ProposerProposedProposerType = {
+  id: number;
+  status: ProposerMatchingProposalStatusEnum;
+  firstName: string;
+  lastName: string;
+  receiverId: number;
+};
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
@@ -186,6 +194,7 @@ export type {
   ProposerMatchedProposerType,
   ProposerReceivedProposerType,
   ProposerProposalAcceptationType,
+  ProposerProposedProposerType,
 };
 
 export {

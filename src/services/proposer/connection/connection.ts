@@ -49,3 +49,14 @@ export function useProposerProposalAcceptation() {
     },
   });
 }
+
+export function useProposerGetProposedProposers() {
+  const proposerAuthClient = useProposerAuthClient();
+
+  return useQuery({
+    queryKey: [],
+    queryFn: () => {
+      return proposerAuthClient.get(`/m/connection/sent-requests`);
+    },
+  });
+}
