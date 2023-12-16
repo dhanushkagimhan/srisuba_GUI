@@ -1,0 +1,32 @@
+import { Tabs } from "antd";
+import { ProposerEditProfile } from "./tabPages";
+
+export default function ProposerProfile() {
+  return (
+    <div className="flex flex-row justify-center">
+      <div className="xl:w-4/5 w-full">
+        <Tabs
+          destroyInactiveTabPane={true}
+          type="card"
+          items={[
+            {
+              label: <span className="font-semibold">Edit Profile</span>,
+              key: "editProfile",
+              children: <ProposerEditProfile />,
+            },
+            {
+              label: <span className="font-semibold">Edit Proposal</span>,
+              key: "editProposal",
+              children: "changeProposal",
+            },
+            {
+              label: <span className="font-semibold">Change Password</span>,
+              key: "changePassword",
+              children: "changePassword",
+            },
+          ]}
+        />
+      </div>
+    </div>
+  );
+}

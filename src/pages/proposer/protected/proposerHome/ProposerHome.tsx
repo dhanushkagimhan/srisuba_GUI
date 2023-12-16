@@ -4,6 +4,7 @@ import { MainLayoutNavEnum } from "../../../../utility/typesAndEnum";
 import { useMainLayoutStore } from "../../../../states";
 import {
   MatchedProposals,
+  ProposerProfile,
   ProposerProposals,
   ProposerProposedProposals,
   ProposerRejectedProposals,
@@ -25,7 +26,7 @@ export default function ProposerHome() {
   return (
     <div className="w-full">
       <Tabs
-        type="card"
+        type="line"
         destroyInactiveTabPane={true}
         items={[
           {
@@ -56,7 +57,7 @@ export default function ProposerHome() {
           {
             label: <span className="font-semibold">Profile</span>,
             key: "profile",
-            children: `Profile`,
+            children: <ProposerProfile />,
           },
         ]}
       />
