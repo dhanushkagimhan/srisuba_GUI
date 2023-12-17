@@ -9,6 +9,7 @@ export type ProposerData = {
   lastName?: string;
   accessToken?: string;
   status?: ProposerStatusEnum;
+  birthDay?: Date;
   membershipExpiration?: Date;
 };
 

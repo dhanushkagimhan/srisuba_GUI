@@ -189,6 +189,18 @@ type ProposerRejectedProposerType = {
   isIPropose: boolean;
 };
 
+type ProposerEditProfileType = {
+  firstName: string;
+  lastName: string;
+  birthDay: string;
+};
+
+type ProposerEditProfileResponseType = {
+  firstName: string;
+  lastName: string;
+  birthDay: Date;
+};
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
@@ -205,6 +217,8 @@ export type {
   ProposerProposalAcceptationType,
   ProposerProposedProposerType,
   ProposerRejectedProposerType,
+  ProposerEditProfileType,
+  ProposerEditProfileResponseType,
 };
 
 export {
