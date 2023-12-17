@@ -1,5 +1,6 @@
 import { Tabs } from "antd";
 import { ProposerEditProfile } from "./tabPages";
+import CreateOrUpdateProposalForm from "../../../proposal/createOrUpdateProposalForm/CreateOrUpdateProposalForm";
 
 export default function ProposerProfile() {
   return (
@@ -17,7 +18,7 @@ export default function ProposerProfile() {
             {
               label: <span className="font-semibold">Edit Proposal</span>,
               key: "editProposal",
-              children: "changeProposal",
+              children: <CreateOrUpdateProposalForm />,
             },
             {
               label: <span className="font-semibold">Change Password</span>,
