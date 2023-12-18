@@ -45,6 +45,19 @@ export default function MainLayout(props: MainLayoutProps) {
           </div>
         );
       }
+      case MainLayoutNavEnum.marketerRegister: {
+        return (
+          <div className="flex flex-row items-center">
+            <div>
+              <Link to="#" className=" no-underline text-white font-semibold ">
+                <p className="bg-orange-600 py-1 px-2 rounded-md hover:bg-orange-500">
+                  Register
+                </p>
+              </Link>
+            </div>
+          </div>
+        );
+      }
       default:
         return <></>;
     }
@@ -96,7 +109,7 @@ export default function MainLayout(props: MainLayoutProps) {
                 {state.data.showMarketing ? (
                   <div>
                     <Link
-                      to="#"
+                      to="/marketer"
                       className=" no-underline text-white font-semibold hover:text-amber-300"
                     >
                       <p className="max-sm:text-center">Affiliate marketing</p>

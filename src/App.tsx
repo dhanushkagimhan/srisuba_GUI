@@ -15,6 +15,7 @@ import {
 import Error404 from "./pages/Error404";
 import { ProposerProtectedRoute } from "./middlewares/protectedRoutes";
 import Error500 from "./pages/Error500";
+import { MarketerHome } from "./pages/marketer";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,9 @@ function App() {
               <Route path="/proposer-status" element={<ProposalStatusView />} />
               <Route path="/proposer-home" element={<ProposerHome />} />
             </Route>
+
+            <Route path="/marketer" element={<MarketerHome />} />
+
             <Route path="/error-500" element={<Error500 />} />
             <Route path="*" element={<Error404 />} />
           </Routes>
