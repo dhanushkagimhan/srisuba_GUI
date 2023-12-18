@@ -39,12 +39,15 @@ export default function CreateOrUpdateProposalForm() {
 
   useEffect(() => {
     setFormData();
-  }, [proposerGetMyProposalQuery.isSuccess]);
+  }, [proposerGetMyProposalQuery.data]);
 
   const setFormData = () => {
     if (proposerState.data?.status === ProposerStatusEnum.EmailVerified) {
       form.setFieldsValue({
         foodPreference: ProposerFoodPreferenceEnum.NonVegetarian,
+        drinking: false,
+        smoking: false,
+        horoscopeMatching: false,
       });
     } else {
       setFormText({
@@ -53,7 +56,7 @@ export default function CreateOrUpdateProposalForm() {
       });
       if (proposerGetMyProposalQuery.isSuccess) {
         if (proposerGetMyProposalQuery.data.data.success) {
-          form.setFieldsValue(proposerGetMyProposalQuery.data.data.data);
+          form.setFieldsValue({ ...proposerGetMyProposalQuery.data.data.data });
         }
       }
     }
@@ -71,10 +74,17 @@ export default function CreateOrUpdateProposalForm() {
         if (data.data.success) {
           const proposerData: ProposerData = data.data.data;
           proposerState.setData(proposerData);
-          if (proposerData.status !== ProposerStatusEnum.Active) {
+
+          if (proposerData.status === ProposerStatusEnum.Active) {
+            proposerGetMyProposalQuery.refetch();
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          } else {
             navigate("/proposer-status");
           }
         }
+      },
+      onError: () => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
       },
     });
   };
