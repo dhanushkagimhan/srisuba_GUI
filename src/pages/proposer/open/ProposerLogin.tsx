@@ -44,37 +44,37 @@ export default function ProposerLogin() {
             }
 
             if (
-              proposerData.membershipExpiration < new Date() &&
+              new Date(proposerData.membershipExpiration) < new Date() &&
               proposerData.status !==
                 ProposerStatusEnum.PendingEmailVerification &&
               proposerData.status !== ProposerStatusEnum.EmailVerified &&
               proposerData.status !== ProposerStatusEnum.PendingPayment
             ) {
               navigate("/membership-expired");
-            }
+            } else {
+              switch (proposerData.status) {
+                case ProposerStatusEnum.PendingEmailVerification: {
+                  navigate("/proposer-email-verify");
+                  break;
+                }
+                case ProposerStatusEnum.EmailVerified: {
+                  navigate("/cu-proposal");
+                  break;
+                }
 
-            switch (proposerData.status) {
-              case ProposerStatusEnum.PendingEmailVerification: {
-                navigate("/proposer-email-verify");
-                break;
-              }
-              case ProposerStatusEnum.EmailVerified: {
-                navigate("/cu-proposal");
-                break;
-              }
-
-              case ProposerStatusEnum.PendingPayment:
-              case ProposerStatusEnum.PaymentApproved:
-              case ProposerStatusEnum.Rejected:
-              case ProposerStatusEnum.RejectionResolved:
-              case ProposerStatusEnum.Banned:
-              case ProposerStatusEnum.BannedResolved: {
-                navigate("/proposer-status");
-                break;
-              }
-              case ProposerStatusEnum.Active: {
-                navigate("/proposer-home");
-                break;
+                case ProposerStatusEnum.PendingPayment:
+                case ProposerStatusEnum.PaymentApproved:
+                case ProposerStatusEnum.Rejected:
+                case ProposerStatusEnum.RejectionResolved:
+                case ProposerStatusEnum.Banned:
+                case ProposerStatusEnum.BannedResolved: {
+                  navigate("/proposer-status");
+                  break;
+                }
+                case ProposerStatusEnum.Active: {
+                  navigate("/proposer-home");
+                  break;
+                }
               }
             }
           }

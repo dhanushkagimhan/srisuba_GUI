@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useMainLayoutStore, useProposalPriceStore } from "../../../../states";
 import { BankAccount } from "../../../../utility/components";
 import { systemContactNumber } from "../../../../utility/const";
+import { MainLayoutNavEnum } from "../../../../utility/typesAndEnum";
 
 export default function MembershipExpired() {
   const mainLayoutState = useMainLayoutStore();
@@ -9,7 +10,7 @@ export default function MembershipExpired() {
 
   useEffect(() => {
     mainLayoutState.setData({
-      navMenu: undefined,
+      navMenu: MainLayoutNavEnum.proposerLogout,
       showFooter: false,
       showMarketing: false,
       logoLink: "#",
