@@ -20,6 +20,7 @@ import {
   ProposerRejectedProposerType,
   ProposerEditProfileType,
   ProposerEditProfileResponseType,
+  ProposerChangePasswordType,
 } from "./proposer/proposer";
 
 enum GenderEnum {
@@ -45,6 +46,7 @@ export type {
   ProposerRejectedProposerType,
   ProposerEditProfileType,
   ProposerEditProfileResponseType,
+  ProposerChangePasswordType,
 };
 
 export {

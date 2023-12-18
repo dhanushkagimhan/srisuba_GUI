@@ -118,7 +118,7 @@ export default function ProposerResetPassword() {
             ]}
           >
             <Input.Password
-              placeholder="Confirm password"
+              placeholder="New password"
               className="py-2 w-full"
             />
           </Form.Item>
@@ -146,7 +146,10 @@ export default function ProposerResetPassword() {
               }),
             ]}
           >
-            <Input.Password placeholder="Password" className="py-2 w-full" />
+            <Input.Password
+              placeholder="Confirm new Password"
+              className="py-2 w-full"
+            />
           </Form.Item>
 
           <Form.Item>

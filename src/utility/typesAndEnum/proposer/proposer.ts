@@ -201,6 +201,12 @@ type ProposerEditProfileResponseType = {
   birthDay: Date;
 };
 
+type ProposerChangePasswordType = {
+  currentPassword: string;
+  newPassword: string;
+  confirmNewPassword?: string;
+};
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
@@ -219,6 +225,7 @@ export type {
   ProposerRejectedProposerType,
   ProposerEditProfileType,
   ProposerEditProfileResponseType,
+  ProposerChangePasswordType,
 };
 
 export {

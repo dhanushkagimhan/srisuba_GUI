@@ -1,3 +1,4 @@
+import ProposerChangePassword from "./ProposerChangePassword";
 import ProposerEditProfile from "./ProposerEditProfile";
 
-export { ProposerEditProfile };
+export { ProposerEditProfile, ProposerChangePassword };

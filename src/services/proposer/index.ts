@@ -14,7 +14,10 @@ import {
   useProposerProposalAcceptation,
   useProposerPropose,
 } from "./connection/connection";
-import { useProposerProfileEdit } from "./profile/profile";
+import {
+  useProposerChangePassword,
+  useProposerProfileEdit,
+} from "./profile/profile";
 import {
   useProposerGetMyProposal,
   useProposerGetOtherProposal,
@@ -40,4 +43,5 @@ export {
   useProposerGetProposedProposers,
   useProposerGetRejectedProposers,
   useProposerProfileEdit,
+  useProposerChangePassword,
 };

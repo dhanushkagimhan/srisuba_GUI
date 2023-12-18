@@ -1,5 +1,5 @@
 import { Tabs } from "antd";
-import { ProposerEditProfile } from "./tabPages";
+import { ProposerChangePassword, ProposerEditProfile } from "./tabPages";
 import CreateOrUpdateProposalForm from "../../../proposal/createOrUpdateProposalForm/CreateOrUpdateProposalForm";
 
 export default function ProposerProfile() {
@@ -23,7 +23,7 @@ export default function ProposerProfile() {
             {
               label: <span className="font-semibold">Change Password</span>,
               key: "changePassword",
-              children: "changePassword",
+              children: <ProposerChangePassword />,
             },
           ]}
         />
