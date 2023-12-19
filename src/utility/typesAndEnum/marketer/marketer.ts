@@ -20,6 +20,15 @@ type MarketerRegisterType = {
   country: string;
 };
 
-export type { MarketerLoginType, MarketerRegisterType };
+type MarketerEmailVerifyType = {
+  email?: string;
+  code: string;
+};
+
+export type {
+  MarketerLoginType,
+  MarketerRegisterType,
+  MarketerEmailVerifyType,
+};
 
 export { MarketerStatusEnum };

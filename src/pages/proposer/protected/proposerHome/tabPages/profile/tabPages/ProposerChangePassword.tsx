@@ -40,7 +40,7 @@ export default function ProposerChangePassword() {
           )}
         </div>
         <Form
-          name="proposerResetPasswordForm"
+          name="proposerChangePasswordForm"
           onFinish={onSubmit}
           autoComplete="off"
           layout="vertical"

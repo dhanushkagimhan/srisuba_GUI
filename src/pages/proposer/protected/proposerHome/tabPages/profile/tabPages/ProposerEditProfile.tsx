@@ -74,7 +74,7 @@ export default function ProposerEditProfile() {
           )}
         </div>
         <Form
-          name="proposerRegisterForm"
+          name="proposerProfileEditForm"
           onFinish={onSubmit}
           layout="vertical"
           className="flex flex-col gap-2"

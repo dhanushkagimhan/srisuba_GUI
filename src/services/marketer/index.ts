@@ -1,6 +1,7 @@
 import {
+  useMarketerEmailVerify,
   useMarketerLogin,
   useMarketerRegister,
 } from "./authentication/authentication";
 
-export { useMarketerLogin, useMarketerRegister };
+export { useMarketerLogin, useMarketerRegister, useMarketerEmailVerify };

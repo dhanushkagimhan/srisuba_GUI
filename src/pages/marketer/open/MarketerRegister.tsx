@@ -40,8 +40,7 @@ export default function MarketerRegister() {
         if (data.data.success) {
           const marketerData: MarketerData = data.data.data;
           marketerState.setData(marketerData);
-          // navigate("/proposer-email-verify");
-          console.log("yeh");
+          navigate("/marketer-email-verify");
         }
       },
     });
@@ -64,7 +63,7 @@ export default function MarketerRegister() {
           )}
         </div>
         <Form
-          name="proposerRegisterForm"
+          name="marketerRegisterForm"
           onFinish={onSubmit}
           layout="vertical"
           className="flex flex-col gap-2"

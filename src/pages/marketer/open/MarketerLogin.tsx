@@ -44,8 +44,7 @@ export default function MarketerLogin() {
 
             switch (marketerData.status) {
               case MarketerStatusEnum.PendingEmailVerification: {
-                console.log("email verify page");
-                navigate("#");
+                navigate("/marketer-email-verify");
                 break;
               }
               case MarketerStatusEnum.EmailVerified: {
@@ -76,7 +75,7 @@ export default function MarketerLogin() {
         )}
       </div>
       <Form
-        name="loginForm"
+        name="marketerLoginForm"
         onFinish={onSubmit}
         className="xl:w-3/5 w-full flex flex-col gap-2"
       >
