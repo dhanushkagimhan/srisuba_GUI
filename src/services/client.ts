@@ -27,4 +27,11 @@ const commonClient = axios.create({
   },
 });
 
-export { proposerClient, useProposerAuthClient, commonClient };
+const marketerClient = axios.create({
+  baseURL: import.meta.env.VITE_BASEURL + "/v1/marketer",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+export { proposerClient, useProposerAuthClient, commonClient, marketerClient };

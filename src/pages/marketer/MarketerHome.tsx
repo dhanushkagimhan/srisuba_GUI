@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useMainLayoutStore, useProposalPriceStore } from "../../states";
 import { MainLayoutNavEnum } from "../../utility/typesAndEnum";
+import MarketerLogin from "./open/MarketerLogin";
 
 export default function MarketerHome() {
   const mainLayoutState = useMainLayoutStore();
@@ -17,7 +18,7 @@ export default function MarketerHome() {
 
   return (
     <div className="flex md:flex-row flex-col md:justify-between">
-      <div className="w-full md:pt-20 lg:pl-20">
+      <div className="w-full md:pt-20 lg:pl-20 md:pr-10">
         <h1 className="md:text-6xl text-3xl text-neutral-900">
           Earn with Srisuba
         </h1>
@@ -33,7 +34,9 @@ export default function MarketerHome() {
           for every suggested proposal.
         </p>
       </div>
-      <div className="w-full pt-20 xl:pl-40">{/* <ProposerLogin /> */}</div>
+      <div className="w-full md:pt-20 pt-10 xl:pl-40">
+        <MarketerLogin />
+      </div>
     </div>
   );
 }
