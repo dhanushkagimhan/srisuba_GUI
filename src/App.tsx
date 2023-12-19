@@ -20,6 +20,7 @@ import {
   MarketerForgotPassword,
   MarketerHome,
   MarketerRegister,
+  MarketerResetPassword,
 } from "./pages/marketer";
 
 const queryClient = new QueryClient();
@@ -63,6 +64,10 @@ function App() {
             <Route
               path="/marketer-forgot-password"
               element={<MarketerForgotPassword />}
+            />
+            <Route
+              path="/marketer-reset-password"
+              element={<MarketerResetPassword />}
             />
 
             <Route path="/error-500" element={<Error500 />} />

@@ -32,8 +32,7 @@ export default function MarketerForgotPassword() {
         if (data.data.success) {
           const marketerData: MarketerData = data.data.data;
           marketerState.setData(marketerData);
-          // navigate("/proposer-reset-password");
-          console.log("yeyyyyyy");
+          navigate("/marketer-reset-password");
         }
       },
     });
@@ -59,7 +58,7 @@ export default function MarketerForgotPassword() {
           )}
         </div>
         <Form
-          name="proposerForgotPasswordForm"
+          name="marketerForgotPasswordForm"
           onFinish={onSubmit}
           layout="vertical"
           initialValues={{ email: marketerState.data?.email }}

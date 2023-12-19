@@ -4,6 +4,7 @@ import {
   useMarketerLogin,
   useMarketerRegenEmailVerify,
   useMarketerRegister,
+  useMarketerResetPassword,
 } from "./authentication/authentication";
 
 export {
@@ -12,4 +13,5 @@ export {
   useMarketerEmailVerify,
   useMarketerRegenEmailVerify,
   useMarketerForgotPassword,
+  useMarketerResetPassword,
 };

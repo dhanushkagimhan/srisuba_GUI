@@ -33,12 +33,20 @@ type MarketerForgotPasswordType = {
   email?: string;
 };
 
+type MarketerResetPasswordType = {
+  email?: string;
+  code: string;
+  newPassword: string;
+  confirmNewPassword?: string;
+};
+
 export type {
   MarketerLoginType,
   MarketerRegisterType,
   MarketerEmailVerifyType,
   MarketerRegenEmailVerifyType,
   MarketerForgotPasswordType,
+  MarketerResetPasswordType,
 };
 
 export { MarketerStatusEnum };

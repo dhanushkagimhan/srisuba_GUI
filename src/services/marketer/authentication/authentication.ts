@@ -6,6 +6,7 @@ import {
   MarketerLoginType,
   MarketerRegenEmailVerifyType,
   MarketerRegisterType,
+  MarketerResetPasswordType,
 } from "../../../utility/typesAndEnum";
 
 export function useMarketerLogin() {
@@ -44,6 +45,14 @@ export function useMarketerForgotPassword() {
   return useMutation({
     mutationFn: (forgotPasswordData: MarketerForgotPasswordType) => {
       return marketerClient.post("/forgot-password", forgotPasswordData);
+    },
+  });
+}
+
+export function useMarketerResetPassword() {
+  return useMutation({
+    mutationFn: (resetPasswordData: MarketerResetPasswordType) => {
+      return marketerClient.post("/reset-password", resetPasswordData);
     },
   });
 }

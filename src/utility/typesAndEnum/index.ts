@@ -5,6 +5,7 @@ import {
   MarketerLoginType,
   MarketerRegenEmailVerifyType,
   MarketerRegisterType,
+  MarketerResetPasswordType,
   MarketerStatusEnum,
 } from "./marketer/marketer";
 import {
@@ -60,6 +61,7 @@ export type {
   MarketerEmailVerifyType,
   MarketerRegenEmailVerifyType,
   MarketerForgotPasswordType,
+  MarketerResetPasswordType,
 };
 
 export {
