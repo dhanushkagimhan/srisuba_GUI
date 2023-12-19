@@ -126,7 +126,10 @@ export default function MarketerLogin() {
         </Link>
       </div>
       <div className="-mt-2">
-        <Link to="#" className="no-underline text-sky-500 hover:text-sky-400">
+        <Link
+          to="/marketer-register"
+          className="no-underline text-sky-500 hover:text-sky-400"
+        >
           <p>Still not registered. Register now.</p>
         </Link>
       </div>

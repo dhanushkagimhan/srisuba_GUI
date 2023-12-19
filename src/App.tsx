@@ -15,7 +15,7 @@ import {
 import Error404 from "./pages/Error404";
 import { ProposerProtectedRoute } from "./middlewares/protectedRoutes";
 import Error500 from "./pages/Error500";
-import { MarketerHome } from "./pages/marketer";
+import { MarketerHome, MarketerRegister } from "./pages/marketer";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +50,7 @@ function App() {
             </Route>
 
             <Route path="/marketer" element={<MarketerHome />} />
+            <Route path="/marketer-register" element={<MarketerRegister />} />
 
             <Route path="/error-500" element={<Error500 />} />
             <Route path="*" element={<Error404 />} />

@@ -1,3 +1,6 @@
-import { useMarketerLogin } from "./authentication/authentication";
+import {
+  useMarketerLogin,
+  useMarketerRegister,
+} from "./authentication/authentication";
 
-export { useMarketerLogin };
+export { useMarketerLogin, useMarketerRegister };

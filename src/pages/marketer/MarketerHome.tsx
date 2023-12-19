@@ -31,7 +31,7 @@ export default function MarketerHome() {
             Rs. {proposalPriceState.price ? proposalPriceState.price / 10 : ""}{" "}
             (LKR)
           </span>{" "}
-          for every suggested proposal.
+          for the every proposal suggestion.
         </p>
       </div>
       <div className="w-full md:pt-20 pt-10 xl:pl-40">

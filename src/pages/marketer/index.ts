@@ -1,3 +1,4 @@
 import MarketerHome from "./MarketerHome";
+import MarketerRegister from "./open/MarketerRegister";
 
-export { MarketerHome };
+export { MarketerHome, MarketerRegister };

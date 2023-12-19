@@ -1,5 +1,9 @@
 import { MainLayoutNavEnum } from "./components/mainLayout/mainLayout";
-import { MarketerLoginType, MarketerStatusEnum } from "./marketer/marketer";
+import {
+  MarketerLoginType,
+  MarketerRegisterType,
+  MarketerStatusEnum,
+} from "./marketer/marketer";
 import {
   ProposerStatusEnum,
   ProposerLoginType,
@@ -49,6 +53,7 @@ export type {
   ProposerEditProfileResponseType,
   ProposerChangePasswordType,
   MarketerLoginType,
+  MarketerRegisterType,
 };
 
 export {
