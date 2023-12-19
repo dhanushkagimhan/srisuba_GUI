@@ -1,5 +1,6 @@
 import {
   useMarketerEmailVerify,
+  useMarketerForgotPassword,
   useMarketerLogin,
   useMarketerRegenEmailVerify,
   useMarketerRegister,
@@ -10,4 +11,5 @@ export {
   useMarketerRegister,
   useMarketerEmailVerify,
   useMarketerRegenEmailVerify,
+  useMarketerForgotPassword,
 };

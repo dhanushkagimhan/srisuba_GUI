@@ -120,7 +120,10 @@ export default function MarketerLogin() {
         </Form.Item>
       </Form>
       <div className="-mt-5">
-        <Link to="#" className="no-underline text-sky-500 hover:text-sky-400">
+        <Link
+          to="/marketer-forgot-password"
+          className="no-underline text-sky-500 hover:text-sky-400"
+        >
           <p>Forgotten password?</p>
         </Link>
       </div>

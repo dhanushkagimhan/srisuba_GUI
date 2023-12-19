@@ -17,6 +17,7 @@ import { ProposerProtectedRoute } from "./middlewares/protectedRoutes";
 import Error500 from "./pages/Error500";
 import {
   MarketerEmailVerify,
+  MarketerForgotPassword,
   MarketerHome,
   MarketerRegister,
 } from "./pages/marketer";
@@ -58,6 +59,10 @@ function App() {
             <Route
               path="/marketer-email-verify"
               element={<MarketerEmailVerify />}
+            />
+            <Route
+              path="/marketer-forgot-password"
+              element={<MarketerForgotPassword />}
             />
 
             <Route path="/error-500" element={<Error500 />} />

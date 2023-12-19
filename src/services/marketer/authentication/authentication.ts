@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { marketerClient } from "../../client";
 import {
   MarketerEmailVerifyType,
+  MarketerForgotPasswordType,
   MarketerLoginType,
   MarketerRegenEmailVerifyType,
   MarketerRegisterType,
@@ -35,6 +36,14 @@ export function useMarketerRegenEmailVerify() {
   return useMutation({
     mutationFn: (regenEmailVerifyData: MarketerRegenEmailVerifyType) => {
       return marketerClient.post("/regen-email-verify", regenEmailVerifyData);
+    },
+  });
+}
+
+export function useMarketerForgotPassword() {
+  return useMutation({
+    mutationFn: (forgotPasswordData: MarketerForgotPasswordType) => {
+      return marketerClient.post("/forgot-password", forgotPasswordData);
     },
   });
 }
