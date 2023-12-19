@@ -5,19 +5,25 @@ import {
   useMarketerStore,
 } from "../../../states";
 import { Alert, Button, Form, Input } from "antd";
-import { MarketerEmailVerifyType } from "../../../utility/typesAndEnum";
+import {
+  MarketerEmailVerifyType,
+  MarketerRegenEmailVerifyType,
+} from "../../../utility/typesAndEnum";
 import { useCookies } from "react-cookie";
 import dayjs from "dayjs";
 import { getMutationError } from "../../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { useMarketerEmailVerify } from "../../../services/marketer";
+import {
+  useMarketerEmailVerify,
+  useMarketerRegenEmailVerify,
+} from "../../../services/marketer";
 
 export default function MarketerEmailVerify() {
   const mainLayoutState = useMainLayoutStore();
   const marketerState = useMarketerStore();
   const marketerEmailVerifyMutation = useMarketerEmailVerify();
-  // const proposerRegenEmailVerifyMutation = useProposerRegenEmailVerify();
+  const marketerRegenEmailVerifyMutation = useMarketerRegenEmailVerify();
   const [_, setCookie] = useCookies(["marketerJwt"]);
   const navigate = useNavigate();
 
@@ -51,13 +57,13 @@ export default function MarketerEmailVerify() {
     });
   };
 
-  // const regenEmailVerify = () => {
-  //   const regenEmailVerify: ProposerRegenEmailVerifyType = {
-  //     email: proposerState.data?.email,
-  //   };
+  const regenEmailVerify = () => {
+    const regenEmailVerify: MarketerRegenEmailVerifyType = {
+      email: marketerState.data?.email,
+    };
 
-  //   proposerRegenEmailVerifyMutation.mutate(regenEmailVerify);
-  // };
+    marketerRegenEmailVerifyMutation.mutate(regenEmailVerify);
+  };
 
   const getEmailVerifyAlert = () => {
     if (marketerEmailVerifyMutation.isError) {
@@ -74,29 +80,29 @@ export default function MarketerEmailVerify() {
     }
   };
 
-  // const getResendEmailVerifyAlert = () => {
-  //   if (proposerRegenEmailVerifyMutation.isError) {
-  //     return (
-  //       <div className="mb-4">
-  //         <Alert
-  //           message={getMutationError(proposerRegenEmailVerifyMutation)}
-  //           type="error"
-  //         />
-  //       </div>
-  //     );
-  //   } else if (proposerRegenEmailVerifyMutation.isSuccess) {
-  //     return (
-  //       <div className="mb-4">
-  //         <Alert
-  //           message="Email Verification code again sent successfully. Check your email inbox"
-  //           type="success"
-  //         />
-  //       </div>
-  //     );
-  //   } else {
-  //     return <></>;
-  //   }
-  // };
+  const getResendEmailVerifyAlert = () => {
+    if (marketerRegenEmailVerifyMutation.isError) {
+      return (
+        <div className="mb-4">
+          <Alert
+            message={getMutationError(marketerRegenEmailVerifyMutation)}
+            type="error"
+          />
+        </div>
+      );
+    } else if (marketerRegenEmailVerifyMutation.isSuccess) {
+      return (
+        <div className="mb-4">
+          <Alert
+            message="Email Verification code again sent successfully. Check your email inbox"
+            type="success"
+          />
+        </div>
+      );
+    } else {
+      return <></>;
+    }
+  };
 
   return (
     <div className="flex flex-row justify-center">
@@ -107,7 +113,7 @@ export default function MarketerEmailVerify() {
           inbox.
         </p>
         <div>{getEmailVerifyAlert()}</div>
-        {/* <div>{getResendEmailVerifyAlert()}</div> */}
+        <div>{getResendEmailVerifyAlert()}</div>
         <Form
           name="marketerEmailVerifyForm"
           onFinish={onSubmit}
@@ -160,16 +166,16 @@ export default function MarketerEmailVerify() {
         <div>
           <p
             className="text-sky-500 cursor-pointer hover:text-sky-400"
-            // onClick={regenEmailVerify}
+            onClick={regenEmailVerify}
           >
             Resend Email verification code
-            {/* {proposerRegenEmailVerifyMutation.isPending ? (
+            {marketerRegenEmailVerifyMutation.isPending ? (
               <span className="ml-2">
                 <SyncOutlined spin />
               </span>
             ) : (
               <></>
-            )} */}
+            )}
           </p>
         </div>
       </div>

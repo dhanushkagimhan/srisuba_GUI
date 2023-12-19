@@ -25,10 +25,15 @@ type MarketerEmailVerifyType = {
   code: string;
 };
 
+type MarketerRegenEmailVerifyType = {
+  email?: string;
+};
+
 export type {
   MarketerLoginType,
   MarketerRegisterType,
   MarketerEmailVerifyType,
+  MarketerRegenEmailVerifyType,
 };
 
 export { MarketerStatusEnum };

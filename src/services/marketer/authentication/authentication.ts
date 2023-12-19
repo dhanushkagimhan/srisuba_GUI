@@ -3,6 +3,7 @@ import { marketerClient } from "../../client";
 import {
   MarketerEmailVerifyType,
   MarketerLoginType,
+  MarketerRegenEmailVerifyType,
   MarketerRegisterType,
 } from "../../../utility/typesAndEnum";
 
@@ -26,6 +27,14 @@ export function useMarketerEmailVerify() {
   return useMutation({
     mutationFn: (emailVerifyData: MarketerEmailVerifyType) => {
       return marketerClient.post("/email-verify", emailVerifyData);
+    },
+  });
+}
+
+export function useMarketerRegenEmailVerify() {
+  return useMutation({
+    mutationFn: (regenEmailVerifyData: MarketerRegenEmailVerifyType) => {
+      return marketerClient.post("/regen-email-verify", regenEmailVerifyData);
     },
   });
 }
