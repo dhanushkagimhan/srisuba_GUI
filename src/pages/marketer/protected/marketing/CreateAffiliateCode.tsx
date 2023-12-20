@@ -1,16 +1,23 @@
 import { useNavigate } from "react-router-dom";
-import { useMainLayoutStore, useMarketerStore } from "../../../../states";
+import {
+  MarketerData,
+  useMainLayoutStore,
+  useMarketerStore,
+} from "../../../../states";
 import { useEffect } from "react";
-import { Button, Form, Input } from "antd";
+import { Alert, Button, Form, Input } from "antd";
 import {
   MainLayoutNavEnum,
   MarketerCreateAffiliateCodeType,
 } from "../../../../utility/typesAndEnum";
+import { useMarketerCreateAffiliateCode } from "../../../../services/marketer";
+import { getMutationError } from "../../../../utility/Methods";
+import { SyncOutlined } from "@ant-design/icons";
 
 export default function CreateAffiliateCode() {
   const mainLayoutState = useMainLayoutStore();
   const marketerState = useMarketerStore();
-  //   const marketerEmailVerifyMutation = useMarketerEmailVerify();
+  const marketerCreateAffiliateCodeMutation = useMarketerCreateAffiliateCode();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,23 +30,21 @@ export default function CreateAffiliateCode() {
   }, []);
 
   const onSubmit = (values: MarketerCreateAffiliateCodeType) => {
-    // const emailVerifyData: MarketerEmailVerifyType = {
-    //   email: marketerState.data?.email,
-    //   code: values.code,
-    // };
-    // marketerEmailVerifyMutation.mutate(emailVerifyData, {
-    //   onSuccess: (data) => {
-    //     if (data.data.success) {
-    //       const marketerData: MarketerData = data.data.data;
-    //       marketerState.setData(marketerData);
-    //       setCookie("marketerJwt", marketerData.accessToken, {
-    //         expires: dayjs().add(1, "h").toDate(),
-    //       });
-    //       navigate("#");
-    //       console.log("yehhhhhhh");
-    //     }
-    //   },
-    // });
+    marketerCreateAffiliateCodeMutation.mutate(values, {
+      onSuccess: (data) => {
+        if (data.data.success) {
+          if (marketerState.data != null) {
+            const marketerData: MarketerData = marketerState.data;
+            const referralCode: string = data.data.data.code;
+            marketerData.affiliateCode = referralCode;
+            marketerState.setData(marketerData);
+
+            navigate("#");
+            console.log("created affiliated code");
+          }
+        }
+      },
+    });
   };
 
   return (
@@ -53,25 +58,18 @@ export default function CreateAffiliateCode() {
           </span>{" "}
           Therefore carefully choose your code.
         </p>
-        {/* <div>
-          {proposerProfileEditMutation.isError ? (
+        <div>
+          {marketerCreateAffiliateCodeMutation.isError ? (
             <div className="mb-4">
               <Alert
-                message={getMutationError(proposerProfileEditMutation)}
+                message={getMutationError(marketerCreateAffiliateCodeMutation)}
                 type="error"
               />
             </div>
           ) : (
             <></>
           )}
-          {proposerProfileEditMutation.isSuccess ? (
-            <div className="mb-4">
-              <Alert message={"Successfully updated profile."} type="success" />
-            </div>
-          ) : (
-            <></>
-          )}
-        </div> */}
+        </div>
         <Form
           name="marketerAffiliateCodeCreateForm"
           onFinish={onSubmit}
@@ -99,13 +97,13 @@ export default function CreateAffiliateCode() {
               htmlType="submit"
               className="w-full pb-10 text-2xl font-medium"
             >
-              {/* {marketerEmailVerifyMutation.isPending ? (
+              {marketerCreateAffiliateCodeMutation.isPending ? (
                 <span className="text-lg mr-2">
                   <SyncOutlined spin />
                 </span>
               ) : (
                 <></>
-              )} */}
+              )}
               Create
             </Button>
           </Form.Item>

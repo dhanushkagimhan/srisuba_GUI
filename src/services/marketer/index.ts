@@ -6,6 +6,7 @@ import {
   useMarketerRegister,
   useMarketerResetPassword,
 } from "./authentication/authentication";
+import { useMarketerCreateAffiliateCode } from "./marketing/marketing";
 
 export {
   useMarketerLogin,
@@ -14,4 +15,5 @@ export {
   useMarketerRegenEmailVerify,
   useMarketerForgotPassword,
   useMarketerResetPassword,
+  useMarketerCreateAffiliateCode,
 };
