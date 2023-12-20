@@ -1,9 +1,16 @@
 import { message } from "antd";
 import { useMarketerStore } from "../../../../../states";
+import { useMarketerGetAccountBalance } from "../../../../../services/marketer";
+import { useEffect } from "react";
 
 export default function Home() {
   const marketerState = useMarketerStore();
   const [messageApi, contextHolder] = message.useMessage();
+  const marketerAccountBalanceQuery = useMarketerGetAccountBalance();
+
+  useEffect(() => {
+    getMarketerAccountBalance();
+  }, [marketerAccountBalanceQuery.data]);
 
   const copyToClipBoard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -11,6 +18,20 @@ export default function Home() {
       type: "success",
       content: "Copied to clipboard",
     });
+  };
+
+  const getMarketerAccountBalance = () => {
+    if (marketerAccountBalanceQuery.isSuccess) {
+      if (marketerAccountBalanceQuery.data.data.success) {
+        if (marketerState.data != null) {
+          const accountBalance: number =
+            marketerAccountBalanceQuery.data.data.data.accountBalance;
+          const marketerData = marketerState.data;
+          marketerData.accountBalance = accountBalance;
+          marketerState.setData(marketerData);
+        }
+      }
+    }
   };
 
   return (
@@ -43,8 +64,10 @@ export default function Home() {
                   )
                 }
               >
-                https://www.srisuba.com?r=
-                {marketerState.data?.affiliateCode ?? ""}
+                {marketerState.data?.affiliateCode
+                  ? "https://www.srisuba.com?r=" +
+                    marketerState.data?.affiliateCode
+                  : ""}
               </div>
             </div>
           </div>
