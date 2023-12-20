@@ -38,9 +38,7 @@ export default function CreateAffiliateCode() {
             const referralCode: string = data.data.data.code;
             marketerData.affiliateCode = referralCode;
             marketerState.setData(marketerData);
-
-            navigate("#");
-            console.log("created affiliated code");
+            navigate("/marketer-home");
           }
         }
       },

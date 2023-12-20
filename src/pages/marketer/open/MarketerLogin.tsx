@@ -51,8 +51,7 @@ export default function MarketerLogin() {
                 if (marketerData.affiliateCode == null) {
                   navigate("/marketer-create-affiliate-code");
                 } else {
-                  console.log("marketer home");
-                  navigate("#");
+                  navigate("/marketer-home");
                 }
                 break;
               }
@@ -65,7 +64,7 @@ export default function MarketerLogin() {
 
   return (
     <div>
-      <div className="text-2xl font-semibold mb-5">Login</div>
+      <div className="text-2xl font-semibold mb-5">Marketer Login</div>
       <div>
         {marketerLoginMutation.isError ? (
           <div className="xl:w-3/5 w-full mb-4">

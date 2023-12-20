@@ -23,6 +23,7 @@ import {
   MarketerEmailVerify,
   MarketerForgotPassword,
   MarketerHome,
+  MarketerProtectedHome,
   MarketerRegister,
   MarketerResetPassword,
 } from "./pages/marketer";
@@ -79,6 +80,10 @@ function App() {
               <Route
                 path="/marketer-create-affiliate-code"
                 element={<CreateAffiliateCode />}
+              />
+              <Route
+                path="/marketer-home"
+                element={<MarketerProtectedHome />}
               />
             </Route>
 
