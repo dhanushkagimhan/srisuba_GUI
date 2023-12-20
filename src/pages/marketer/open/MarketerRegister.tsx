@@ -50,6 +50,13 @@ export default function MarketerRegister() {
     <div className="flex flex-row justify-center">
       <div className="md:w-3/5 w-full">
         <h2 className="text-2xl font-semibold">Registration</h2>
+        <div className="mb-4">
+          <Alert
+            message="Still affiliate marketer can withdraw money to Sri Lankan bank accounts only."
+            type="info"
+            showIcon
+          />
+        </div>
         <div>
           {marketerRegisterMutation.isError ? (
             <div className="mb-4">
