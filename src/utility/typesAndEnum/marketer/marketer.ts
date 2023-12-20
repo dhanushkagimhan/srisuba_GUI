@@ -1,4 +1,4 @@
-import { GenderEnum } from "..";
+import { GenderEnum, PaymentStatus } from "..";
 
 enum MarketerStatusEnum {
   PendingEmailVerification = "PendingEmailVerification",
@@ -44,6 +44,16 @@ type MarketerCreateAffiliateCodeType = {
   code: string;
 };
 
+type MarketerAffiliatedProposerType = {
+  id: number;
+  paymentValue: number;
+  paymentStatus: PaymentStatus;
+  createdAt: Date;
+  firstName: string;
+  lastName: `${string}` & { length: 1 };
+  country?: string;
+};
+
 export type {
   MarketerLoginType,
   MarketerRegisterType,
@@ -52,6 +62,7 @@ export type {
   MarketerForgotPasswordType,
   MarketerResetPasswordType,
   MarketerCreateAffiliateCodeType,
+  MarketerAffiliatedProposerType,
 };
 
 export { MarketerStatusEnum };

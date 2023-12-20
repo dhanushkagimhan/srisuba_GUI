@@ -1,5 +1,6 @@
 import { MainLayoutNavEnum } from "./components/mainLayout/mainLayout";
 import {
+  MarketerAffiliatedProposerType,
   MarketerCreateAffiliateCodeType,
   MarketerEmailVerifyType,
   MarketerForgotPasswordType,
@@ -38,6 +39,11 @@ enum GenderEnum {
   Female = "Female",
 }
 
+enum PaymentStatus {
+  Pending = "Pending",
+  Approved = "Approved",
+}
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
@@ -64,6 +70,7 @@ export type {
   MarketerForgotPasswordType,
   MarketerResetPasswordType,
   MarketerCreateAffiliateCodeType,
+  MarketerAffiliatedProposerType,
 };
 
 export {
@@ -73,4 +80,5 @@ export {
   ProposerFoodPreferenceEnum,
   ProposerMatchingProposalStatusEnum,
   MarketerStatusEnum,
+  PaymentStatus,
 };

@@ -1,16 +1,10 @@
 import { message } from "antd";
 import { useMarketerStore } from "../../../../../states";
-import { useMarketerGetAccountBalance } from "../../../../../services/marketer";
-import { useEffect } from "react";
+import { MarketerAccountBalance, MarketerAffiliatedProposers } from ".";
 
 export default function Home() {
   const marketerState = useMarketerStore();
   const [messageApi, contextHolder] = message.useMessage();
-  const marketerAccountBalanceQuery = useMarketerGetAccountBalance();
-
-  useEffect(() => {
-    getMarketerAccountBalance();
-  }, [marketerAccountBalanceQuery.data]);
 
   const copyToClipBoard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -18,20 +12,6 @@ export default function Home() {
       type: "success",
       content: "Copied to clipboard",
     });
-  };
-
-  const getMarketerAccountBalance = () => {
-    if (marketerAccountBalanceQuery.isSuccess) {
-      if (marketerAccountBalanceQuery.data.data.success) {
-        if (marketerState.data != null) {
-          const accountBalance: number =
-            marketerAccountBalanceQuery.data.data.data.accountBalance;
-          const marketerData = marketerState.data;
-          marketerData.accountBalance = accountBalance;
-          marketerState.setData(marketerData);
-        }
-      }
-    }
   };
 
   return (
@@ -71,10 +51,14 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex flex-row gap-2">
-            <div className="font-medium">Account balance : </div>
-            <div>Rs. {marketerState.data?.accountBalance ?? ""} (LKR)</div>
+          <div>
+            <MarketerAccountBalance />
           </div>
+        </div>
+
+        <div className="mt-8">
+          <div className="font-semibold mb-4 text-lg">Affiliated Proposers</div>
+          <MarketerAffiliatedProposers />
         </div>
       </div>
     </>
