@@ -3,6 +3,7 @@ import MarketerEmailVerify from "./open/MarketerEmailVerify";
 import MarketerForgotPassword from "./open/MarketerForgotPassword";
 import MarketerRegister from "./open/MarketerRegister";
 import MarketerResetPassword from "./open/MarketerResetPassword";
+import CreateAffiliateCode from "./protected/marketing/CreateAffiliateCode";
 
 export {
   MarketerHome,
@@ -10,4 +11,5 @@ export {
   MarketerEmailVerify,
   MarketerForgotPassword,
   MarketerResetPassword,
+  CreateAffiliateCode,
 };

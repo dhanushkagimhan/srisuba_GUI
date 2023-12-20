@@ -48,8 +48,12 @@ export default function MarketerLogin() {
                 break;
               }
               case MarketerStatusEnum.EmailVerified: {
-                console.log("marketer home");
-                navigate("#");
+                if (marketerData.affiliateCode == null) {
+                  navigate("/marketer-create-affiliate-code");
+                } else {
+                  console.log("marketer home");
+                  navigate("#");
+                }
                 break;
               }
             }

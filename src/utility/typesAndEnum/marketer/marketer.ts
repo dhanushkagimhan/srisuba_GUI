@@ -40,6 +40,10 @@ type MarketerResetPasswordType = {
   confirmNewPassword?: string;
 };
 
+type MarketerCreateAffiliateCodeType = {
+  code: string;
+};
+
 export type {
   MarketerLoginType,
   MarketerRegisterType,
@@ -47,6 +51,7 @@ export type {
   MarketerRegenEmailVerifyType,
   MarketerForgotPasswordType,
   MarketerResetPasswordType,
+  MarketerCreateAffiliateCodeType,
 };
 
 export { MarketerStatusEnum };

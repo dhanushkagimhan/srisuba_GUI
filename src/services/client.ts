@@ -34,4 +34,22 @@ const marketerClient = axios.create({
   },
 });
 
-export { proposerClient, useProposerAuthClient, commonClient, marketerClient };
+const useMarketerAuthClient = () => {
+  const [cookies] = useCookies(["marketerJwt"]);
+
+  return axios.create({
+    baseURL: import.meta.env.VITE_BASEURL + "/v1/marketer/p",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${cookies.marketerJwt}`,
+    },
+  });
+};
+
+export {
+  proposerClient,
+  useProposerAuthClient,
+  commonClient,
+  marketerClient,
+  useMarketerAuthClient,
+};

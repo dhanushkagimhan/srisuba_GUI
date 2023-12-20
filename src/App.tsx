@@ -13,9 +13,13 @@ import {
   ProposerResetPassword,
 } from "./pages/proposer";
 import Error404 from "./pages/Error404";
-import { ProposerProtectedRoute } from "./middlewares/protectedRoutes";
+import {
+  MarketerProtectedRoute,
+  ProposerProtectedRoute,
+} from "./middlewares/protectedRoutes";
 import Error500 from "./pages/Error500";
 import {
+  CreateAffiliateCode,
   MarketerEmailVerify,
   MarketerForgotPassword,
   MarketerHome,
@@ -45,6 +49,7 @@ function App() {
               path="/proposer-reset-password"
               element={<ProposerResetPassword />}
             />
+
             <Route element={<ProposerProtectedRoute />}>
               <Route path="/cu-proposal" element={<CreateOrUpdateProposal />} />
               <Route
@@ -69,6 +74,13 @@ function App() {
               path="/marketer-reset-password"
               element={<MarketerResetPassword />}
             />
+
+            <Route element={<MarketerProtectedRoute />}>
+              <Route
+                path="/marketer-create-affiliate-code"
+                element={<CreateAffiliateCode />}
+              />
+            </Route>
 
             <Route path="/error-500" element={<Error500 />} />
             <Route path="*" element={<Error404 />} />
