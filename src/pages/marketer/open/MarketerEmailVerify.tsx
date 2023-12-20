@@ -50,8 +50,7 @@ export default function MarketerEmailVerify() {
           setCookie("marketerJwt", marketerData.accessToken, {
             expires: dayjs().add(1, "h").toDate(),
           });
-          navigate("#");
-          console.log("yehhhhhhh");
+          navigate("/marketer-create-affiliate-code");
         }
       },
     });
