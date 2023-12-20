@@ -45,7 +45,7 @@ type MarketerCreateAffiliateCodeType = {
 };
 
 type MarketerAffiliatedProposerType = {
-  id: number;
+  key: number;
   paymentValue: number;
   paymentStatus: PaymentStatus;
   createdAt: Date;

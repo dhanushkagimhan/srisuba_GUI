@@ -36,27 +36,21 @@ export default function MarketerAffiliatedProposers() {
   const affiliatedProposersTableColumns: ColumnsType<MarketerAffiliatedProposerType> =
     [
       {
-        title: "First Name",
+        title: "Name",
         dataIndex: "firstName",
-        key: "firstName",
-        render: (value) => <span className="capitalize">{value}</span>,
+        render: (value, record) => (
+          <span className="capitalize">{value + " " + record.lastName} </span>
+        ),
       },
-      {
-        title: "Last Name (1st char)",
-        dataIndex: "lastName",
-        key: "lastName",
-        render: (value) => <span className="capitalize">{value}</span>,
-      },
+
       {
         title: "Country",
         dataIndex: "country",
-        key: "country",
         render: (value) => <span>{getCountryLabel(value)}</span>,
       },
       {
         title: "Referred Date",
         dataIndex: "createdAt",
-        key: "referredDate",
         render: (createdAt) => (
           <span>{dayjs(createdAt).format("DD/MM/YYYY")}</span>
         ),
@@ -64,13 +58,11 @@ export default function MarketerAffiliatedProposers() {
       {
         title: "Payment",
         dataIndex: "paymentValue",
-        key: "paymentValue",
         render: (value) => <span>Rs. {value} (LKR)</span>,
       },
       {
         title: "Payment Status",
         dataIndex: "paymentStatus",
-        key: "paymentStatus",
         render: (value) => {
           if (value === PaymentStatus.Pending) {
             return <Tag color="orange">{PaymentStatus.Pending}</Tag>;
@@ -86,6 +78,7 @@ export default function MarketerAffiliatedProposers() {
       <Table
         dataSource={affiliatedProposers}
         columns={affiliatedProposersTableColumns}
+        scroll={{ x: true }}
         pagination={{
           current: currentPage,
           onChange: (page) => setCurrentPage(page),
