@@ -1,3 +1,6 @@
-import { useAdminLogin } from "./authentication/authentication";
+import {
+  useAdminLoginVerify,
+  useAdminLogin,
+} from "./authentication/authentication";
 
-export { useAdminLogin };
+export { useAdminLogin, useAdminLoginVerify };

@@ -3,4 +3,9 @@ type AdminLoginType = {
   password: string;
 };
 
-export type { AdminLoginType };
+type AdminLoginVerifyType = {
+  email?: string;
+  code: string;
+};
+
+export type { AdminLoginType, AdminLoginVerifyType };

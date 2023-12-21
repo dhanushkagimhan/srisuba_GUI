@@ -27,7 +27,7 @@ export default function AdminLogin() {
       onSuccess: (data) => {
         if (data.data.success) {
           adminState.setEmail(values.email);
-          navigate("#");
+          navigate("/gimhan-verify");
         }
       },
     });
@@ -49,7 +49,7 @@ export default function AdminLogin() {
           )}
         </div>
         <Form
-          name="marketerLoginForm"
+          name="AdminLoginForm"
           onFinish={onSubmit}
           className="flex flex-col gap-2"
         >

@@ -1,4 +1,4 @@
-import { AdminLoginType } from "./admin/admin";
+import { AdminLoginVerifyType, AdminLoginType } from "./admin/admin";
 import { MainLayoutNavEnum } from "./components/mainLayout/mainLayout";
 import {
   MarketerAffiliatedProposerType,
@@ -81,6 +81,7 @@ export type {
   MarketerBankAccountType,
   MarketerChangePasswordType,
   AdminLoginType,
+  AdminLoginVerifyType,
 };
 
 export {
