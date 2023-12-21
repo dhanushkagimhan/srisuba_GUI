@@ -19,7 +19,7 @@ export default function Home() {
       {contextHolder}
       <div>
         <div className="flex min-[500px]:flex-row flex-col min-[500px]:justify-between gap-4">
-          <div>
+          <div className="flex sm:flex-row flex-col sm:gap-12">
             <div>
               <p className="font-medium">Referral code</p>
               <div

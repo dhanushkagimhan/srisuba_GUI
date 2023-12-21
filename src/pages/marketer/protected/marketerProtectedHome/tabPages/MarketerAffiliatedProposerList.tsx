@@ -79,6 +79,7 @@ export default function MarketerAffiliatedProposers() {
         dataSource={affiliatedProposers}
         columns={affiliatedProposersTableColumns}
         scroll={{ x: true }}
+        loading={marketerAffiliatedProposersQuery.isPending}
         pagination={{
           current: currentPage,
           onChange: (page) => setCurrentPage(page),
