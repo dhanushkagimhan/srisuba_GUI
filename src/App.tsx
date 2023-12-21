@@ -27,6 +27,7 @@ import {
   MarketerRegister,
   MarketerResetPassword,
 } from "./pages/marketer";
+import { AdminLogin } from "./pages/admin";
 
 const queryClient = new QueryClient();
 
@@ -50,7 +51,6 @@ function App() {
               path="/proposer-reset-password"
               element={<ProposerResetPassword />}
             />
-
             <Route element={<ProposerProtectedRoute />}>
               <Route path="/cu-proposal" element={<CreateOrUpdateProposal />} />
               <Route
@@ -75,7 +75,6 @@ function App() {
               path="/marketer-reset-password"
               element={<MarketerResetPassword />}
             />
-
             <Route element={<MarketerProtectedRoute />}>
               <Route
                 path="/marketer-create-affiliate-code"
@@ -86,6 +85,8 @@ function App() {
                 element={<MarketerProtectedHome />}
               />
             </Route>
+
+            <Route path="/gimhan" element={<AdminLogin />} />
 
             <Route path="/error-500" element={<Error500 />} />
             <Route path="*" element={<Error404 />} />
