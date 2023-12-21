@@ -11,6 +11,7 @@ export type MarketerData = {
   status?: MarketerStatusEnum;
   accountBalance?: number;
   affiliateCode?: string | null;
+  country?: string;
 };
 
 type MarketerState = {
