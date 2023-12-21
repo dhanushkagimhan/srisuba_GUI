@@ -1,10 +1,16 @@
-import { Button, Form, Input } from "antd";
+import { Alert, Button, Form, Input } from "antd";
 import { AdminLoginType } from "../../../utility/typesAndEnum";
 import { useMainLayoutStore } from "../../../states";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAdminLogin } from "../../../services/admin";
+import { getMutationError } from "../../../utility/Methods";
+import { SyncOutlined } from "@ant-design/icons";
 
 export default function AdminLogin() {
   const mainLayoutState = useMainLayoutStore();
+  const navigate = useNavigate();
+  const adminLoginMutation = useAdminLogin();
 
   useEffect(() => {
     mainLayoutState.setData({
@@ -15,24 +21,35 @@ export default function AdminLogin() {
     });
   }, []);
 
+  const onSubmit = (values: AdminLoginType) => {
+    adminLoginMutation.mutate(values, {
+      onSuccess: (data) => {
+        if (data.data.success) {
+          console.log("sent");
+          navigate("#");
+        }
+      },
+    });
+  };
+
   return (
     <div className="flex flex-row justify-center mt-20">
-      <div className="lg:w-1/3 w-full">
+      <div className="md:w-3/5 w-full">
         <div>
-          {/* {marketerLoginMutation.isError ? (
-          <div className="xl:w-3/5 w-full mb-4">
-            <Alert
-              message={getMutationError(marketerLoginMutation)}
-              type="error"
-            />
-          </div>
-        ) : (
-          <></>
-        )} */}
+          {adminLoginMutation.isError ? (
+            <div className="mb-4">
+              <Alert
+                message={getMutationError(adminLoginMutation)}
+                type="error"
+              />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
         <Form
           name="marketerLoginForm"
-          // onFinish={onSubmit}
+          onFinish={onSubmit}
           className="flex flex-col gap-2"
         >
           <Form.Item<AdminLoginType>
@@ -67,13 +84,13 @@ export default function AdminLogin() {
               htmlType="submit"
               className="w-full pb-10 text-2xl font-medium"
             >
-              {/* {marketerLoginMutation.isPending ? (
-              <span className="text-lg mr-2">
-                <SyncOutlined spin />
-              </span>
-            ) : (
-              <></>
-            )} */}
+              {adminLoginMutation.isPending ? (
+                <span className="text-lg mr-2">
+                  <SyncOutlined spin />
+                </span>
+              ) : (
+                <></>
+              )}
               Login
             </Button>
           </Form.Item>
