@@ -52,7 +52,7 @@ export default function MarketerRegister() {
         <h2 className="text-2xl font-semibold">Registration</h2>
         <div className="mb-4">
           <Alert
-            message="Still affiliate marketer can withdraw money to Sri Lankan bank accounts only."
+            message="Affiliate marketers are currently able to withdraw funds exclusively to Sri Lankan bank accounts."
             type="info"
             showIcon
           />

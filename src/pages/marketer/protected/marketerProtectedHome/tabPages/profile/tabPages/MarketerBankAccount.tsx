@@ -49,11 +49,18 @@ export default function MarketerBankAccount() {
     <div className="flex flex-row justify-center">
       <div className="md:w-3/5 w-full">
         <h2 className="text-2xl font-semibold">Bank Account</h2>
+        <div className="mb-4">
+          <Alert
+            message="Affiliate marketers are currently able to withdraw funds exclusively to Sri Lankan bank accounts."
+            type="info"
+            showIcon
+          />
+        </div>
         {marketerBankAccountQuery?.error?.response.status === 404 ? (
           <div className="mb-4">
             <Alert
               message={
-                "You must configure bank account details for the withdraw your incomes."
+                "To withdraw your income, it is essential to configure your bank account details."
               }
               type="info"
               showIcon
