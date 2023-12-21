@@ -60,6 +60,12 @@ type MarketerWithdrawalType = {
   createdAt: Date;
 };
 
+type MarketerEditProfileType = {
+  firstName: string;
+  lastName: string;
+  country: string;
+};
+
 export type {
   MarketerLoginType,
   MarketerRegisterType,
@@ -70,6 +76,7 @@ export type {
   MarketerCreateAffiliateCodeType,
   MarketerAffiliatedProposerType,
   MarketerWithdrawalType,
+  MarketerEditProfileType,
 };
 
 export { MarketerStatusEnum };

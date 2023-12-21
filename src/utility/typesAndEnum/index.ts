@@ -2,6 +2,7 @@ import { MainLayoutNavEnum } from "./components/mainLayout/mainLayout";
 import {
   MarketerAffiliatedProposerType,
   MarketerCreateAffiliateCodeType,
+  MarketerEditProfileType,
   MarketerEmailVerifyType,
   MarketerForgotPasswordType,
   MarketerLoginType,
@@ -73,6 +74,7 @@ export type {
   MarketerCreateAffiliateCodeType,
   MarketerAffiliatedProposerType,
   MarketerWithdrawalType,
+  MarketerEditProfileType,
 };
 
 export {

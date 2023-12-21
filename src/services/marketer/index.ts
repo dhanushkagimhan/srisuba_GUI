@@ -14,6 +14,7 @@ import {
   useMarketerCreateAffiliateCode,
   useMarketerGetAffiliatedProposers,
 } from "./marketing/marketing";
+import { useMarketerProfileEdit } from "./profile/profile";
 
 export {
   useMarketerLogin,
@@ -26,4 +27,5 @@ export {
   useMarketerGetAccountBalance,
   useMarketerGetAffiliatedProposers,
   useMarketerGetWithdrawals,
+  useMarketerProfileEdit,
 };
