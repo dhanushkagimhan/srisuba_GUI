@@ -1,6 +1,6 @@
 import { Alert, Button, Form, Input } from "antd";
 import { AdminLoginType } from "../../../utility/typesAndEnum";
-import { useMainLayoutStore } from "../../../states";
+import { useAdminStore, useMainLayoutStore } from "../../../states";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAdminLogin } from "../../../services/admin";
@@ -11,6 +11,7 @@ export default function AdminLogin() {
   const mainLayoutState = useMainLayoutStore();
   const navigate = useNavigate();
   const adminLoginMutation = useAdminLogin();
+  const adminState = useAdminStore();
 
   useEffect(() => {
     mainLayoutState.setData({
@@ -25,7 +26,7 @@ export default function AdminLogin() {
     adminLoginMutation.mutate(values, {
       onSuccess: (data) => {
         if (data.data.success) {
-          console.log("sent");
+          adminState.setEmail(values.email);
           navigate("#");
         }
       },
