@@ -7,6 +7,10 @@ import {
   useMarketerResetPassword,
 } from "./authentication/authentication";
 import {
+  useMarketerCreateOrUpdateBankAccount,
+  useMarketerGetBankAccount,
+} from "./bankAccount/bankAccount";
+import {
   useMarketerGetAccountBalance,
   useMarketerGetWithdrawals,
 } from "./earnings/earnings";
@@ -28,4 +32,6 @@ export {
   useMarketerGetAffiliatedProposers,
   useMarketerGetWithdrawals,
   useMarketerProfileEdit,
+  useMarketerGetBankAccount,
+  useMarketerCreateOrUpdateBankAccount,
 };

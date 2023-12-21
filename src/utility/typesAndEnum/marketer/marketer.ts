@@ -66,6 +66,13 @@ type MarketerEditProfileType = {
   country: string;
 };
 
+type MarketerBankAccountType = {
+  bankName: string;
+  branch: string;
+  accountHolderName: string;
+  accountNumber: string;
+};
+
 export type {
   MarketerLoginType,
   MarketerRegisterType,
@@ -77,6 +84,7 @@ export type {
   MarketerAffiliatedProposerType,
   MarketerWithdrawalType,
   MarketerEditProfileType,
+  MarketerBankAccountType,
 };
 
 export { MarketerStatusEnum };
