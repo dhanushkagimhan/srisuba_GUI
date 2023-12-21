@@ -1,6 +1,5 @@
 import { Alert, Button, Form, Input, Select } from "antd";
 import { MarketerEditProfileType } from "../../../../../../../utility/typesAndEnum";
-import dayjs from "dayjs";
 import { MarketerData, useMarketerStore } from "../../../../../../../states";
 import { useEffect } from "react";
 import { getMutationError } from "../../../../../../../utility/Methods";

@@ -1,5 +1,9 @@
 import { Tabs } from "antd";
-import { MarketerBankAccount, MarketerEditProfile } from "./tabPages";
+import {
+  MarketerBankAccount,
+  MarketerChangePassword,
+  MarketerEditProfile,
+} from "./tabPages";
 
 export default function MarketerProfile() {
   return (
@@ -22,7 +26,7 @@ export default function MarketerProfile() {
             {
               label: <span className="font-semibold">Change Password</span>,
               key: "changePassword",
-              children: "change password",
+              children: <MarketerChangePassword />,
             },
           ]}
         />

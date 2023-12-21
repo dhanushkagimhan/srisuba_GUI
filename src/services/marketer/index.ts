@@ -18,7 +18,10 @@ import {
   useMarketerCreateAffiliateCode,
   useMarketerGetAffiliatedProposers,
 } from "./marketing/marketing";
-import { useMarketerProfileEdit } from "./profile/profile";
+import {
+  useMarketerChangePassword,
+  useMarketerProfileEdit,
+} from "./profile/profile";
 
 export {
   useMarketerLogin,
@@ -34,4 +37,5 @@ export {
   useMarketerProfileEdit,
   useMarketerGetBankAccount,
   useMarketerCreateOrUpdateBankAccount,
+  useMarketerChangePassword,
 };

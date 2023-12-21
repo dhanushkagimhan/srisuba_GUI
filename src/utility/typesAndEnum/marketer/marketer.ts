@@ -73,6 +73,12 @@ type MarketerBankAccountType = {
   accountNumber: string;
 };
 
+type MarketerChangePasswordType = {
+  currentPassword: string;
+  newPassword: string;
+  confirmNewPassword?: string;
+};
+
 export type {
   MarketerLoginType,
   MarketerRegisterType,
@@ -85,6 +91,7 @@ export type {
   MarketerWithdrawalType,
   MarketerEditProfileType,
   MarketerBankAccountType,
+  MarketerChangePasswordType,
 };
 
 export { MarketerStatusEnum };
