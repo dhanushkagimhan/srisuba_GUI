@@ -2,7 +2,7 @@ import { Tabs } from "antd";
 import { useEffect } from "react";
 import { MainLayoutNavEnum } from "../../../../utility/typesAndEnum";
 import { useMainLayoutStore } from "../../../../states";
-import { Home, MarketerWithdrawals } from "./tabPages";
+import { Home, MarketerProfile, MarketerWithdrawals } from "./tabPages";
 
 export default function MarketerProtectedHome() {
   const mainLayoutState = useMainLayoutStore();
@@ -35,7 +35,7 @@ export default function MarketerProtectedHome() {
           {
             label: <span className="font-semibold">Profile</span>,
             key: "profile",
-            children: "Profile",
+            children: <MarketerProfile />,
           },
         ]}
       />
