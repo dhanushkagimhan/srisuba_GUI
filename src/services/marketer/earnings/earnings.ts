@@ -11,3 +11,14 @@ export function useMarketerGetAccountBalance() {
     },
   });
 }
+
+export function useMarketerGetWithdrawals() {
+  const marketerAuthClient = useMarketerAuthClient();
+
+  return useQuery({
+    queryKey: [],
+    queryFn: () => {
+      return marketerAuthClient.get(`/earnings/withdrawals`);
+    },
+  });
+}

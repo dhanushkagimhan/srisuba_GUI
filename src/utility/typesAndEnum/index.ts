@@ -9,6 +9,7 @@ import {
   MarketerRegisterType,
   MarketerResetPasswordType,
   MarketerStatusEnum,
+  MarketerWithdrawalType,
 } from "./marketer/marketer";
 import {
   ProposerStatusEnum,
@@ -71,6 +72,7 @@ export type {
   MarketerResetPasswordType,
   MarketerCreateAffiliateCodeType,
   MarketerAffiliatedProposerType,
+  MarketerWithdrawalType,
 };
 
 export {

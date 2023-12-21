@@ -6,7 +6,10 @@ import {
   useMarketerRegister,
   useMarketerResetPassword,
 } from "./authentication/authentication";
-import { useMarketerGetAccountBalance } from "./earnings/earnings";
+import {
+  useMarketerGetAccountBalance,
+  useMarketerGetWithdrawals,
+} from "./earnings/earnings";
 import {
   useMarketerCreateAffiliateCode,
   useMarketerGetAffiliatedProposers,
@@ -22,4 +25,5 @@ export {
   useMarketerCreateAffiliateCode,
   useMarketerGetAccountBalance,
   useMarketerGetAffiliatedProposers,
+  useMarketerGetWithdrawals,
 };

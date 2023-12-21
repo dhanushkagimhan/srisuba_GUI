@@ -54,6 +54,12 @@ type MarketerAffiliatedProposerType = {
   country?: string;
 };
 
+type MarketerWithdrawalType = {
+  key: number;
+  value: number;
+  createdAt: Date;
+};
+
 export type {
   MarketerLoginType,
   MarketerRegisterType,
@@ -63,6 +69,7 @@ export type {
   MarketerResetPasswordType,
   MarketerCreateAffiliateCodeType,
   MarketerAffiliatedProposerType,
+  MarketerWithdrawalType,
 };
 
 export { MarketerStatusEnum };
