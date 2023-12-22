@@ -14,6 +14,7 @@ import {
 } from "./pages/proposer";
 import Error404 from "./pages/Error404";
 import {
+  AdminProtectedRoute,
   MarketerProtectedRoute,
   ProposerProtectedRoute,
 } from "./middlewares/protectedRoutes";
@@ -88,6 +89,7 @@ function App() {
 
             <Route path="/gimhan" element={<AdminLogin />} />
             <Route path="/gimhan-verify" element={<AdminLoginVerify />} />
+            <Route element={<AdminProtectedRoute />}></Route>
 
             <Route path="/error-500" element={<Error500 />} />
             <Route path="*" element={<Error404 />} />
