@@ -53,6 +53,18 @@ const adminClient = axios.create({
   },
 });
 
+const useAdminAuthClient = () => {
+  const [cookies] = useCookies(["adminJwt"]);
+
+  return axios.create({
+    baseURL: import.meta.env.VITE_BASEURL + "/v1/admin/p",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${cookies.adminJwt}`,
+    },
+  });
+};
+
 export {
   proposerClient,
   useProposerAuthClient,
@@ -60,4 +72,5 @@ export {
   marketerClient,
   useMarketerAuthClient,
   adminClient,
+  useAdminAuthClient,
 };
