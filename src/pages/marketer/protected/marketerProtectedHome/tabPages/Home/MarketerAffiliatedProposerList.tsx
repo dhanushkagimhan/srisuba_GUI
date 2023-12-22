@@ -2,12 +2,12 @@ import { Table, Tag } from "antd";
 import {
   MarketerAffiliatedProposerType,
   PaymentStatus,
-} from "../../../../../utility/typesAndEnum";
+} from "../../../../../../utility/typesAndEnum";
 import { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { useMarketerGetAffiliatedProposers } from "../../../../../services/marketer";
-import { getCountryLabel } from "../../../../../utility/Methods";
+import { useMarketerGetAffiliatedProposers } from "../../../../../../services/marketer";
+import { getCountryLabel } from "../../../../../../utility/Methods";
 
 export default function MarketerAffiliatedProposers() {
   const [currentPage, setCurrentPage] = useState<number>(1);

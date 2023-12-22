@@ -1,6 +1,7 @@
 import { message } from "antd";
-import { useMarketerStore } from "../../../../../states";
-import { MarketerAccountBalance, MarketerAffiliatedProposers } from ".";
+import { useMarketerStore } from "../../../../../../states";
+import MarketerAccountBalance from "./MarketerAccountBalance";
+import MarketerAffiliatedProposers from "./MarketerAffiliatedProposerList";
 
 export default function Home() {
   const marketerState = useMarketerStore();

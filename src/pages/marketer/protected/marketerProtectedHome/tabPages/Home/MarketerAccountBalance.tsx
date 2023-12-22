@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useMarketerGetAccountBalance } from "../../../../../services/marketer";
-import { useMarketerStore } from "../../../../../states";
+import { useMarketerGetAccountBalance } from "../../../../../../services/marketer";
+import { useMarketerStore } from "../../../../../../states";
 
 export default function MarketerAccountBalance() {
   const marketerState = useMarketerStore();
