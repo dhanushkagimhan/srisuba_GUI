@@ -37,8 +37,7 @@ export default function AdminLoginVerify() {
           setCookie("adminJwt", accessToken, {
             expires: dayjs().add(1, "h").toDate(),
           });
-          console.log("yey");
-          navigate("#");
+          navigate("/gimhan-home");
         }
       },
     });

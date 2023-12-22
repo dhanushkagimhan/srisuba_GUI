@@ -3,6 +3,7 @@ enum MainLayoutNavEnum {
   proposerLogout,
   marketerRegister,
   marketerLogout,
+  adminLogout,
 }
 
 export { MainLayoutNavEnum };

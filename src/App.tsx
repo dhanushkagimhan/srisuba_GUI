@@ -28,7 +28,7 @@ import {
   MarketerRegister,
   MarketerResetPassword,
 } from "./pages/marketer";
-import { AdminLogin, AdminLoginVerify } from "./pages/admin";
+import { AdminHome, AdminLogin, AdminLoginVerify } from "./pages/admin";
 
 const queryClient = new QueryClient();
 
@@ -89,7 +89,9 @@ function App() {
 
             <Route path="/gimhan" element={<AdminLogin />} />
             <Route path="/gimhan-verify" element={<AdminLoginVerify />} />
-            <Route element={<AdminProtectedRoute />}></Route>
+            <Route element={<AdminProtectedRoute />}>
+              <Route path="/gimhan-home" element={<AdminHome />} />
+            </Route>
 
             <Route path="/error-500" element={<Error500 />} />
             <Route path="*" element={<Error404 />} />

@@ -12,7 +12,11 @@ type MainLayoutProps = {
 
 export default function MainLayout(props: MainLayoutProps) {
   const state = useMainLayoutStore();
-  const [_, __, removeCookie] = useCookies(["proposerJwt", "marketerJwt"]);
+  const [_, __, removeCookie] = useCookies([
+    "proposerJwt",
+    "marketerJwt",
+    "adminJwt",
+  ]);
   const navigate = useNavigate();
 
   const getNavMenu = () => {
@@ -73,6 +77,18 @@ export default function MainLayout(props: MainLayoutProps) {
           </div>
         );
       }
+      case MainLayoutNavEnum.adminLogout: {
+        return (
+          <div className="flex flex-row items-center">
+            <div
+              className="text-white font-semibold cursor-pointer hover:text-yellow-300"
+              onClick={adminLogout}
+            >
+              Logout
+            </div>
+          </div>
+        );
+      }
       default:
         return <></>;
     }
@@ -85,6 +101,11 @@ export default function MainLayout(props: MainLayoutProps) {
 
   const marketerLogout = () => {
     removeCookie("marketerJwt");
+    navigate("/");
+  };
+
+  const adminLogout = () => {
+    removeCookie("adminJwt");
     navigate("/");
   };
 
