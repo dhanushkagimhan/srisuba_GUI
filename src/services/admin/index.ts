@@ -2,5 +2,6 @@ import {
   useAdminLoginVerify,
   useAdminLogin,
 } from "./authentication/authentication";
+import { useAdminGetProposals } from "./proposal/proposal";
 
-export { useAdminLogin, useAdminLoginVerify };
+export { useAdminLogin, useAdminLoginVerify, useAdminGetProposals };

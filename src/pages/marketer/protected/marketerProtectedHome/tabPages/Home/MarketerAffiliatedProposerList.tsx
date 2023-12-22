@@ -1,7 +1,7 @@
 import { Table, Tag } from "antd";
 import {
   MarketerAffiliatedProposerType,
-  PaymentStatus,
+  PaymentStatusEnum,
 } from "../../../../../../utility/typesAndEnum";
 import { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
@@ -64,10 +64,10 @@ export default function MarketerAffiliatedProposers() {
         title: "Payment Status",
         dataIndex: "paymentStatus",
         render: (value) => {
-          if (value === PaymentStatus.Pending) {
-            return <Tag color="orange">{PaymentStatus.Pending}</Tag>;
+          if (value === PaymentStatusEnum.Pending) {
+            return <Tag color="orange">{PaymentStatusEnum.Pending}</Tag>;
           } else {
-            return <Tag color="green">{PaymentStatus.Approved}</Tag>;
+            return <Tag color="green">{PaymentStatusEnum.Approved}</Tag>;
           }
         },
       },

@@ -1,4 +1,9 @@
-import { AdminLoginVerifyType, AdminLoginType } from "./admin/admin";
+import {
+  AdminLoginVerifyType,
+  AdminLoginType,
+  adminProposerPaymentType,
+  AdminProposerType,
+} from "./admin/admin";
 import { MainLayoutNavEnum } from "./components/mainLayout/mainLayout";
 import {
   MarketerAffiliatedProposerType,
@@ -37,6 +42,7 @@ import {
   ProposerEditProfileType,
   ProposerEditProfileResponseType,
   ProposerChangePasswordType,
+  ProposerPaymentTypeEnum,
 } from "./proposer/proposer";
 
 enum GenderEnum {
@@ -44,7 +50,7 @@ enum GenderEnum {
   Female = "Female",
 }
 
-enum PaymentStatus {
+enum PaymentStatusEnum {
   Pending = "Pending",
   Approved = "Approved",
 }
@@ -82,6 +88,8 @@ export type {
   MarketerChangePasswordType,
   AdminLoginType,
   AdminLoginVerifyType,
+  adminProposerPaymentType,
+  AdminProposerType,
 };
 
 export {
@@ -91,5 +99,6 @@ export {
   ProposerFoodPreferenceEnum,
   ProposerMatchingProposalStatusEnum,
   MarketerStatusEnum,
-  PaymentStatus,
+  PaymentStatusEnum,
+  ProposerPaymentTypeEnum,
 };

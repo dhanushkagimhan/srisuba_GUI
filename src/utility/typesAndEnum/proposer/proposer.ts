@@ -207,6 +207,11 @@ type ProposerChangePasswordType = {
   confirmNewPassword?: string;
 };
 
+enum ProposerPaymentTypeEnum {
+  Initial = "Initial",
+  Renewal = "Renewal",
+}
+
 export type {
   ProposerLoginType,
   ProposerRegisterType,
@@ -232,4 +237,5 @@ export {
   ProposerStatusEnum,
   ProposerFoodPreferenceEnum,
   ProposerMatchingProposalStatusEnum,
+  ProposerPaymentTypeEnum,
 };
