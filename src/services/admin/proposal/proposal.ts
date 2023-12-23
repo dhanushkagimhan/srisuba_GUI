@@ -13,7 +13,14 @@ export function useAdminGetProposals(
   const adminAuthClient = useAdminAuthClient();
 
   return useQuery({
-    queryKey: [`${pageNumber}`, `${pageSize}`],
+    queryKey: [
+      pageNumber,
+      pageSize,
+      proposerStatus,
+      isOnlyExpired,
+      isIncludePayments,
+      orderDesc,
+    ],
     queryFn: () => {
       return adminAuthClient.get(
         `/proposal?proposerStatus=${proposerStatus}&isOnlyExpired=${isOnlyExpired}&isIncludePayments=${isIncludePayments}&orderDesc=${orderDesc}&pageSize=${pageSize}&page=${pageNumber}`,

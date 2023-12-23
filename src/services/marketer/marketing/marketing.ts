@@ -22,7 +22,7 @@ export function useMarketerGetAffiliatedProposers(
   const marketerAuthClient = useMarketerAuthClient();
 
   return useQuery({
-    queryKey: [`${pageNumber}`, `${pageSize}`],
+    queryKey: [pageNumber, pageSize],
     queryFn: () => {
       return marketerAuthClient.get(
         `/marketing/affiliated-proposers?pageSize=${pageSize}&page=${pageNumber}`,

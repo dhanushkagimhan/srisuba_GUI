@@ -51,7 +51,7 @@ export function useProposerGetOtherProposers(
   const proposerAuthClient = useProposerAuthClient();
 
   return useQuery({
-    queryKey: [`${pageNumber}`, `${pageSize}`],
+    queryKey: [pageNumber, pageSize],
     queryFn: () => {
       return proposerAuthClient.get(
         `/m/proposal?pageSize=${pageSize}&page=${pageNumber}`,
@@ -66,7 +66,7 @@ export function useProposerGetOtherProposal(
   const proposerAuthClient = useProposerAuthClient();
 
   return useQuery({
-    queryKey: [`${otherProposerId}`],
+    queryKey: [otherProposerId],
     queryFn: () => {
       return proposerAuthClient.get(`/m/proposal/${otherProposerId}`);
     },

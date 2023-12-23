@@ -1,4 +1,4 @@
-import { Table } from "antd";
+import { Select, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
 import {
@@ -71,27 +71,36 @@ export default function AdminProposersView() {
     {
       title: "Birth Day",
       dataIndex: "birthDay",
-      render: (value) => <span>{dayjs(value).format("DD/MM/YYYY")} </span>,
+      render: (value) => <span>{dayjs(value).format("YYYY/MM/DD")} </span>,
     },
     {
       title: "Membership Expiration",
       dataIndex: "membershipExpiration",
       render: (value) => (
-        <span>{dayjs(value).format("ss:mm:HH DD/MM/YYYY")} </span>
+        <span>{dayjs(value).format("YYYY/MM/DD HH:mm:ss")} </span>
+      ),
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      render: (value) => (
+        <span>
+          {value.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1")}{" "}
+        </span>
       ),
     },
     {
       title: "Created At",
       dataIndex: "createdAt",
       render: (value) => (
-        <span>{dayjs(value).format("ss:mm:HH DD/MM/YYYY")} </span>
+        <span>{dayjs(value).format("YYYY/MM/DD HH:mm:ss")} </span>
       ),
     },
     {
       title: "Updated At",
       dataIndex: "updatedAt",
       render: (value) => (
-        <span>{dayjs(value).format("ss:mm:HH DD/MM/YYYY")} </span>
+        <span>{dayjs(value).format("YYYY/MM/DD HH:mm:ss")} </span>
       ),
     },
   ];
@@ -99,9 +108,27 @@ export default function AdminProposersView() {
   return (
     <div>
       <div className="text-lg font-medium">Proposers</div>
-      <div className="flex flex-row gap-4 my-4">
-        <div></div>
+      <div className="flex flex-row gap-4 my-4 p-4 bg-slate-100">
+        <div>
+          <div className="mb-2 font-medium">Proposer Status :</div>
+          <Select
+            defaultValue={ProposerStatusEnum.PendingPayment}
+            onChange={(value) => {
+              setProposerStatus(value), setCurrentPage(1);
+            }}
+            className="w-[200px]"
+            options={Object.values(ProposerStatusEnum).map(
+              (status: ProposerStatusEnum) => ({
+                value: status,
+                label: status
+                  .replace(/([A-Z]+)/g, " $1")
+                  .replace(/([A-Z][a-z])/g, " $1"),
+              }),
+            )}
+          />
+        </div>
       </div>
+
       <div>
         <Table
           dataSource={proposers}
