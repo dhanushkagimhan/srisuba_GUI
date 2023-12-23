@@ -9,7 +9,7 @@ import {
 import dayjs from "dayjs";
 import { useAdminGetProposals } from "../../../../../services/admin";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
-import { PaymentViewModel } from "./popupModels";
+import { PaymentViewModel, ProposalViewModel } from "./popupModels";
 
 export default function AdminProposersView() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -27,6 +27,11 @@ export default function AdminProposersView() {
   const [modelOpenedProposerId, setModelOpenedProposerId] = useState<number>();
   const [paymentDataForModel, setPaymentDataForModel] =
     useState<adminProposerPaymentType[]>();
+
+  const [isOpenProposalViewModel, setIsOpenProposalViewModel] =
+    useState<boolean>(false);
+  const [proposerDataForModel, setProposerDataForModel] =
+    useState<AdminProposerType>();
 
   const adminProposersQuery = useAdminGetProposals(
     currentPage,
@@ -130,6 +135,26 @@ export default function AdminProposersView() {
         }
       },
     },
+    {
+      title: "Proposal",
+      render: (_, record) => {
+        if (
+          proposerStatus === ProposerStatusEnum.PendingEmailVerification ||
+          proposerStatus === ProposerStatusEnum.EmailVerified
+        ) {
+          return <span>-</span>;
+        } else {
+          return (
+            <span
+              className="cursor-pointer font-medium hover:text-sky-400"
+              onClick={() => openProposalViewModel(record)}
+            >
+              View
+            </span>
+          );
+        }
+      },
+    },
   ];
 
   const openPaymentViewModel = (
@@ -139,6 +164,11 @@ export default function AdminProposersView() {
     setModelOpenedProposerId(id);
     setPaymentDataForModel(paymentData);
     setIsOpenPaymentViewModel(true);
+  };
+
+  const openProposalViewModel = (proposerData: AdminProposerType) => {
+    setProposerDataForModel(proposerData);
+    setIsOpenProposalViewModel(true);
   };
 
   return (
@@ -216,6 +246,14 @@ export default function AdminProposersView() {
           setIdModelOpen={setIsOpenPaymentViewModel}
           proposerId={modelOpenedProposerId}
           paymentData={paymentDataForModel}
+        />
+      </div>
+
+      <div>
+        <ProposalViewModel
+          isModalOpen={isOpenProposalViewModel}
+          setIdModelOpen={setIsOpenProposalViewModel}
+          proposer={proposerDataForModel}
         />
       </div>
     </div>

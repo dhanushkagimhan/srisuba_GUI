@@ -1,3 +1,4 @@
 import PaymentViewModel from "./PaymentViewModel";
+import ProposalViewModel from "./ProposalViewModel";
 
-export { PaymentViewModel };
+export { PaymentViewModel, ProposalViewModel };

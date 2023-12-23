@@ -28,3 +28,15 @@ export function useAdminGetProposals(
     },
   });
 }
+
+export function useAdminGetProposal(proposerId: number | undefined) {
+  const adminAuthClient = useAdminAuthClient();
+
+  return useQuery({
+    queryKey: [proposerId],
+    queryFn: () => {
+      return adminAuthClient.get(`/proposal/${proposerId}`);
+    },
+    enabled: proposerId != null,
+  });
+}
