@@ -1,6 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAdminAuthClient } from "../../client";
-import { ProposerStatusEnum } from "../../../utility/typesAndEnum";
+import {
+  AdminApproveProposerPaymentType,
+  ProposerStatusEnum,
+} from "../../../utility/typesAndEnum";
 
 export function useAdminGetProposals(
   pageNumber: number = 1,
@@ -38,5 +41,18 @@ export function useAdminGetProposal(proposerId: number | undefined) {
       return adminAuthClient.get(`/proposal/${proposerId}`);
     },
     enabled: proposerId != null,
+  });
+}
+
+export function useAdminApproveProposerPayment() {
+  const adminAuthClient = useAdminAuthClient();
+
+  return useMutation({
+    mutationFn: (approvePaymentData: AdminApproveProposerPaymentType) => {
+      return adminAuthClient.post(
+        "/proposal/approve-payment",
+        approvePaymentData,
+      );
+    },
   });
 }

@@ -75,10 +75,15 @@ type adminProposalType = {
   updatedAt: Date;
 };
 
+type AdminApproveProposerPaymentType = {
+  proposerId: number;
+};
+
 export type {
   AdminLoginType,
   AdminLoginVerifyType,
   adminProposerPaymentType,
   AdminProposerType,
   adminProposalType,
+  AdminApproveProposerPaymentType,
 };

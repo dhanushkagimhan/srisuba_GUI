@@ -4,6 +4,7 @@ import {
   adminProposerPaymentType,
   AdminProposerType,
   adminProposalType,
+  AdminApproveProposerPaymentType,
 } from "./admin/admin";
 import { MainLayoutNavEnum } from "./components/mainLayout/mainLayout";
 import {
@@ -92,6 +93,7 @@ export type {
   adminProposerPaymentType,
   AdminProposerType,
   adminProposalType,
+  AdminApproveProposerPaymentType,
 };
 
 export {

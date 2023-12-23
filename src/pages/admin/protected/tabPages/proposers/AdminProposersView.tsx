@@ -2,12 +2,16 @@ import { Button, Checkbox, Popconfirm, Select, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
 import {
+  AdminApproveProposerPaymentType,
   AdminProposerType,
   ProposerStatusEnum,
   adminProposerPaymentType,
 } from "../../../../../utility/typesAndEnum";
 import dayjs from "dayjs";
-import { useAdminGetProposals } from "../../../../../services/admin";
+import {
+  useAdminApproveProposerPayment,
+  useAdminGetProposals,
+} from "../../../../../services/admin";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 import { PaymentViewModel, ProposalViewModel } from "./popupModels";
 
@@ -41,6 +45,8 @@ export default function AdminProposersView() {
     isIncludePayments,
     orderDesc,
   );
+
+  const adminApproveProposerPaymentMutation = useAdminApproveProposerPayment();
 
   useEffect(() => {
     loadProposerData();
@@ -196,8 +202,18 @@ export default function AdminProposersView() {
     return "gg";
   };
 
-  const approveProposerPayment = (proposerId) => {
-    console.log("approve");
+  const approveProposerPayment = (proposerId: number) => {
+    const approveData: AdminApproveProposerPaymentType = {
+      proposerId: proposerId,
+    };
+
+    adminApproveProposerPaymentMutation.mutate(approveData, {
+      onSuccess: (data) => {
+        if (data.data.success) {
+          adminProposersQuery.refetch();
+        }
+      },
+    });
   };
 
   return (
