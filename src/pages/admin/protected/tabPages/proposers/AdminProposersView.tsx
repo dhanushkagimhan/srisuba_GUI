@@ -15,7 +15,11 @@ import {
   useAdminGetProposals,
 } from "../../../../../services/admin";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
-import { PaymentViewModel, ProposalViewModel } from "./popupModels";
+import {
+  BlockProposerViewModel,
+  PaymentViewModel,
+  ProposalViewModel,
+} from "./popupModels";
 
 export default function AdminProposersView() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -50,6 +54,12 @@ export default function AdminProposersView() {
 
   const adminApproveProposerPaymentMutation = useAdminApproveProposerPayment();
   const adminChangeProposerStatusMutation = useAdminChangeProposerStatus();
+
+  const [isOpenProposerBlockModel, setIsOpenProposerBlockModel] =
+    useState<boolean>(false);
+  const [proposerBlockType, setProposerBlockType] = useState<
+    ProposerStatusEnum.Rejected | ProposerStatusEnum.Banned
+  >();
 
   useEffect(() => {
     loadProposerData();
@@ -204,12 +214,26 @@ export default function AdminProposersView() {
       case ProposerStatusEnum.PaymentApproved:
         return (
           <div className="flex flex-row gap-4">
-            <div></div>
+            <div>
+              <Button
+                danger
+                onClick={() =>
+                  openProposerBlockModel(
+                    proposerId,
+                    ProposerStatusEnum.Rejected,
+                  )
+                }
+              >
+                Reject
+              </Button>
+            </div>
             <div>
               <Popconfirm
                 title="Active proposal"
                 description="Are you sure to active proposer?"
-                onConfirm={() => changeProposerToActive(proposerId)}
+                onConfirm={() =>
+                  changeProposerStatus(proposerId, ProposerStatusEnum.Active)
+                }
                 okText="Yes"
                 cancelText="No"
               >
@@ -219,14 +243,25 @@ export default function AdminProposersView() {
           </div>
         );
       case ProposerStatusEnum.Active:
-        return "gg";
+        return (
+          <Button
+            danger
+            onClick={() =>
+              openProposerBlockModel(proposerId, ProposerStatusEnum.Banned)
+            }
+          >
+            Ban
+          </Button>
+        );
       case ProposerStatusEnum.Rejected:
       case ProposerStatusEnum.Banned:
         return (
           <Popconfirm
             title="Active proposal"
             description="Are you sure to active proposer?"
-            onConfirm={() => changeProposerToActive(proposerId)}
+            onConfirm={() =>
+              changeProposerStatus(proposerId, ProposerStatusEnum.Active)
+            }
             okText="Yes"
             cancelText="No"
           >
@@ -236,12 +271,26 @@ export default function AdminProposersView() {
       case ProposerStatusEnum.RejectionResolved:
         return (
           <div className="flex flex-row gap-4">
-            <div></div>
+            <div>
+              <Button
+                danger
+                onClick={() =>
+                  openProposerBlockModel(
+                    proposerId,
+                    ProposerStatusEnum.Rejected,
+                  )
+                }
+              >
+                Reject
+              </Button>
+            </div>
             <div>
               <Popconfirm
                 title="Active proposal"
                 description="Are you sure to active proposer?"
-                onConfirm={() => changeProposerToActive(proposerId)}
+                onConfirm={() =>
+                  changeProposerStatus(proposerId, ProposerStatusEnum.Active)
+                }
                 okText="Yes"
                 cancelText="No"
               >
@@ -253,12 +302,23 @@ export default function AdminProposersView() {
       case ProposerStatusEnum.BannedResolved:
         return (
           <div className="flex flex-row gap-4">
-            <div></div>
+            <div>
+              <Button
+                danger
+                onClick={() =>
+                  openProposerBlockModel(proposerId, ProposerStatusEnum.Banned)
+                }
+              >
+                Ban
+              </Button>
+            </div>
             <div>
               <Popconfirm
                 title="Active proposal"
                 description="Are you sure to active proposer?"
-                onConfirm={() => changeProposerToActive(proposerId)}
+                onConfirm={() =>
+                  changeProposerStatus(proposerId, ProposerStatusEnum.Active)
+                }
                 okText="Yes"
                 cancelText="No"
               >
@@ -270,16 +330,39 @@ export default function AdminProposersView() {
     }
   };
 
-  const changeProposerToActive = (proposerId: number) => {
+  const openProposerBlockModel = (
+    proposerId: number,
+    type: ProposerStatusEnum.Rejected | ProposerStatusEnum.Banned,
+  ) => {
+    setModelOpenedProposerId(proposerId);
+    setProposerBlockType(type);
+    setIsOpenProposerBlockModel(true);
+  };
+
+  const changeProposerStatus = (
+    proposerId: number,
+    proposerStatus:
+      | ProposerStatusEnum.Active
+      | ProposerStatusEnum.Rejected
+      | ProposerStatusEnum.Banned,
+    blockReason?: string,
+  ) => {
     const changeToActiveData: AdminChangeProposerStatusType = {
       proposerId: proposerId,
-      status: ProposerStatusEnum.Active,
+      status: proposerStatus,
+      reason: blockReason,
     };
 
     adminChangeProposerStatusMutation.mutate(changeToActiveData, {
       onSuccess: (data) => {
         if (data.data.success) {
           adminProposersQuery.refetch();
+          if (
+            proposerStatus == ProposerStatusEnum.Rejected ||
+            proposerStatus === ProposerStatusEnum.Banned
+          ) {
+            setIsOpenProposerBlockModel(false);
+          }
         }
       },
     });
@@ -382,6 +465,19 @@ export default function AdminProposersView() {
           isModalOpen={isOpenProposalViewModel}
           setIdModelOpen={setIsOpenProposalViewModel}
           proposer={proposerDataForModel}
+        />
+      </div>
+
+      <div>
+        <BlockProposerViewModel
+          isModalOpen={isOpenProposerBlockModel}
+          setIdModelOpen={setIsOpenProposerBlockModel}
+          proposerId={modelOpenedProposerId}
+          type={proposerBlockType}
+          changeProposerStatus={changeProposerStatus}
+          isStateChangeMutationLoading={
+            adminChangeProposerStatusMutation.isPending
+          }
         />
       </div>
     </div>
