@@ -138,6 +138,24 @@ export default function AdminProposersView() {
               Only Expired
             </Checkbox>
           </div>
+          <div>
+            <Checkbox
+              onChange={(e: CheckboxChangeEvent) =>
+                setIsIncludePayments(e.target.checked)
+              }
+            >
+              Include Payments
+            </Checkbox>
+          </div>
+          <div>
+            <Checkbox
+              onChange={(e: CheckboxChangeEvent) =>
+                setOrderDesc(e.target.checked)
+              }
+            >
+              Order Desc
+            </Checkbox>
+          </div>
         </div>
       </div>
 
