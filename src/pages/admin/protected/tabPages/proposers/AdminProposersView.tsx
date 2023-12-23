@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import {
   AdminProposerType,
   ProposerStatusEnum,
+  adminProposerPaymentType,
 } from "../../../../../utility/typesAndEnum";
 import dayjs from "dayjs";
 import { useAdminGetProposals } from "../../../../../services/admin";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
+import { PaymentViewModel } from "./popupModels";
 
 export default function AdminProposersView() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -19,6 +21,12 @@ export default function AdminProposersView() {
   const [isOnlyExpired, setIsOnlyExpired] = useState<boolean>(false);
   const [isIncludePayments, setIsIncludePayments] = useState<boolean>(false);
   const [orderDesc, setOrderDesc] = useState<boolean>(false);
+
+  const [isOpenPaymentViewModel, setIsOpenPaymentViewModel] =
+    useState<boolean>(false);
+  const [modelOpenedProposerId, setModelOpenedProposerId] = useState<number>();
+  const [paymentDataForModel, setPaymentDataForModel] =
+    useState<adminProposerPaymentType[]>();
 
   const adminProposersQuery = useAdminGetProposals(
     currentPage,
@@ -104,7 +112,34 @@ export default function AdminProposersView() {
         <span>{dayjs(value).format("YYYY/MM/DD HH:mm:ss")} </span>
       ),
     },
+    {
+      title: "Payments",
+      dataIndex: "payments",
+      render: (value, record) => {
+        if (isIncludePayments === false) {
+          return <span>-</span>;
+        } else {
+          return (
+            <span
+              className="cursor-pointer font-medium hover:text-sky-400"
+              onClick={() => openPaymentViewModel(record.id, value)}
+            >
+              View
+            </span>
+          );
+        }
+      },
+    },
   ];
+
+  const openPaymentViewModel = (
+    id: number,
+    paymentData: adminProposerPaymentType[],
+  ) => {
+    setModelOpenedProposerId(id);
+    setPaymentDataForModel(paymentData);
+    setIsOpenPaymentViewModel(true);
+  };
 
   return (
     <div>
@@ -172,6 +207,15 @@ export default function AdminProposersView() {
             total: totalDataCount,
             showSizeChanger: false,
           }}
+        />
+      </div>
+
+      <div>
+        <PaymentViewModel
+          isModalOpen={isOpenPaymentViewModel}
+          setIdModelOpen={setIsOpenPaymentViewModel}
+          proposerId={modelOpenedProposerId}
+          paymentData={paymentDataForModel}
         />
       </div>
     </div>
