@@ -1,4 +1,4 @@
-import { Checkbox, Select, Table } from "antd";
+import { Button, Checkbox, Popconfirm, Select, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
 import {
@@ -155,6 +155,10 @@ export default function AdminProposersView() {
         }
       },
     },
+    {
+      title: "Action",
+      render: (_, record) => <div>{getTableActionColumn(record.id)}</div>,
+    },
   ];
 
   const openPaymentViewModel = (
@@ -169,6 +173,31 @@ export default function AdminProposersView() {
   const openProposalViewModel = (proposerData: AdminProposerType) => {
     setProposerDataForModel(proposerData);
     setIsOpenProposalViewModel(true);
+  };
+
+  const getTableActionColumn = (proposerId: number) => {
+    switch (proposerStatus) {
+      case ProposerStatusEnum.PendingEmailVerification:
+      case ProposerStatusEnum.EmailVerified:
+        return "-";
+      case ProposerStatusEnum.PendingPayment:
+        return (
+          <Popconfirm
+            title="Approve payment"
+            description="Are you sure to approve payment?"
+            onConfirm={() => approveProposerPayment(proposerId)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button>Approve Payment</Button>
+          </Popconfirm>
+        );
+    }
+    return "gg";
+  };
+
+  const approveProposerPayment = (proposerId) => {
+    console.log("approve");
   };
 
   return (
