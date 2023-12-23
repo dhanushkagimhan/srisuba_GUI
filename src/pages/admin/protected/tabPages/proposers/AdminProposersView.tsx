@@ -3,6 +3,7 @@ import { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
 import {
   AdminApproveProposerPaymentType,
+  AdminChangeProposerStatusType,
   AdminProposerType,
   ProposerStatusEnum,
   adminProposerPaymentType,
@@ -10,6 +11,7 @@ import {
 import dayjs from "dayjs";
 import {
   useAdminApproveProposerPayment,
+  useAdminChangeProposerStatus,
   useAdminGetProposals,
 } from "../../../../../services/admin";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
@@ -47,6 +49,7 @@ export default function AdminProposersView() {
   );
 
   const adminApproveProposerPaymentMutation = useAdminApproveProposerPayment();
+  const adminChangeProposerStatusMutation = useAdminChangeProposerStatus();
 
   useEffect(() => {
     loadProposerData();
@@ -195,11 +198,91 @@ export default function AdminProposersView() {
             okText="Yes"
             cancelText="No"
           >
-            <Button>Approve Payment</Button>
+            <Button>Approve</Button>
           </Popconfirm>
         );
+      case ProposerStatusEnum.PaymentApproved:
+        return (
+          <div className="flex flex-row gap-4">
+            <div></div>
+            <div>
+              <Popconfirm
+                title="Active proposal"
+                description="Are you sure to active proposer?"
+                onConfirm={() => changeProposerToActive(proposerId)}
+                okText="Yes"
+                cancelText="No"
+              >
+                <Button>Active</Button>
+              </Popconfirm>
+            </div>
+          </div>
+        );
+      case ProposerStatusEnum.Active:
+        return "gg";
+      case ProposerStatusEnum.Rejected:
+      case ProposerStatusEnum.Banned:
+        return (
+          <Popconfirm
+            title="Active proposal"
+            description="Are you sure to active proposer?"
+            onConfirm={() => changeProposerToActive(proposerId)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button>Active</Button>
+          </Popconfirm>
+        );
+      case ProposerStatusEnum.RejectionResolved:
+        return (
+          <div className="flex flex-row gap-4">
+            <div></div>
+            <div>
+              <Popconfirm
+                title="Active proposal"
+                description="Are you sure to active proposer?"
+                onConfirm={() => changeProposerToActive(proposerId)}
+                okText="Yes"
+                cancelText="No"
+              >
+                <Button>Active</Button>
+              </Popconfirm>
+            </div>
+          </div>
+        );
+      case ProposerStatusEnum.BannedResolved:
+        return (
+          <div className="flex flex-row gap-4">
+            <div></div>
+            <div>
+              <Popconfirm
+                title="Active proposal"
+                description="Are you sure to active proposer?"
+                onConfirm={() => changeProposerToActive(proposerId)}
+                okText="Yes"
+                cancelText="No"
+              >
+                <Button>Active</Button>
+              </Popconfirm>
+            </div>
+          </div>
+        );
     }
-    return "gg";
+  };
+
+  const changeProposerToActive = (proposerId: number) => {
+    const changeToActiveData: AdminChangeProposerStatusType = {
+      proposerId: proposerId,
+      status: ProposerStatusEnum.Active,
+    };
+
+    adminChangeProposerStatusMutation.mutate(changeToActiveData, {
+      onSuccess: (data) => {
+        if (data.data.success) {
+          adminProposersQuery.refetch();
+        }
+      },
+    });
   };
 
   const approveProposerPayment = (proposerId: number) => {

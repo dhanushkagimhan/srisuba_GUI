@@ -4,6 +4,7 @@ import {
 } from "./authentication/authentication";
 import {
   useAdminApproveProposerPayment,
+  useAdminChangeProposerStatus,
   useAdminGetProposal,
   useAdminGetProposals,
 } from "./proposal/proposal";
@@ -14,4 +15,5 @@ export {
   useAdminGetProposals,
   useAdminGetProposal,
   useAdminApproveProposerPayment,
+  useAdminChangeProposerStatus,
 };

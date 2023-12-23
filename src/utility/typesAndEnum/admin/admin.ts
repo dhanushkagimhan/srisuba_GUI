@@ -79,6 +79,12 @@ type AdminApproveProposerPaymentType = {
   proposerId: number;
 };
 
+type AdminChangeProposerStatusType = {
+  proposerId: number;
+  status: ProposerStatusEnum;
+  reason?: string;
+};
+
 export type {
   AdminLoginType,
   AdminLoginVerifyType,
@@ -86,4 +92,5 @@ export type {
   AdminProposerType,
   adminProposalType,
   AdminApproveProposerPaymentType,
+  AdminChangeProposerStatusType,
 };

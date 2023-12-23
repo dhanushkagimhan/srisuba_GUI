@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAdminAuthClient } from "../../client";
 import {
   AdminApproveProposerPaymentType,
+  AdminChangeProposerStatusType,
   ProposerStatusEnum,
 } from "../../../utility/typesAndEnum";
 
@@ -53,6 +54,16 @@ export function useAdminApproveProposerPayment() {
         "/proposal/approve-payment",
         approvePaymentData,
       );
+    },
+  });
+}
+
+export function useAdminChangeProposerStatus() {
+  const adminAuthClient = useAdminAuthClient();
+
+  return useMutation({
+    mutationFn: (changeStatusData: AdminChangeProposerStatusType) => {
+      return adminAuthClient.post("/proposal/change-status", changeStatusData);
     },
   });
 }
