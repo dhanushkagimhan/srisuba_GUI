@@ -1,4 +1,4 @@
-import { Select, Table } from "antd";
+import { Checkbox, Select, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
 import {
@@ -7,6 +7,7 @@ import {
 } from "../../../../../utility/typesAndEnum";
 import dayjs from "dayjs";
 import { useAdminGetProposals } from "../../../../../services/admin";
+import { CheckboxChangeEvent } from "antd/es/checkbox";
 
 export default function AdminProposersView() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -108,7 +109,7 @@ export default function AdminProposersView() {
   return (
     <div>
       <div className="text-lg font-medium">Proposers</div>
-      <div className="flex flex-row gap-4 my-4 p-4 bg-slate-100">
+      <div className="flex flex-row gap-20 my-4 p-4 bg-slate-100">
         <div>
           <div className="mb-2 font-medium">Proposer Status :</div>
           <Select
@@ -126,6 +127,17 @@ export default function AdminProposersView() {
               }),
             )}
           />
+        </div>
+        <div className="flex flex-row gap-4 items-center">
+          <div>
+            <Checkbox
+              onChange={(e: CheckboxChangeEvent) =>
+                setIsOnlyExpired(e.target.checked)
+              }
+            >
+              Only Expired
+            </Checkbox>
+          </div>
         </div>
       </div>
 
