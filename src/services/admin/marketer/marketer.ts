@@ -18,3 +18,21 @@ export function useAdminGetMarketers(
     },
   });
 }
+
+export function useAdminGetMarketerReferredProposers(
+  pageNumber: number = 1,
+  pageSize: number = 10,
+  marketerId?: number,
+) {
+  const adminAuthClient = useAdminAuthClient();
+
+  return useQuery({
+    queryKey: [pageNumber, pageSize, marketerId],
+    queryFn: () => {
+      return adminAuthClient.get(
+        `/marketer/proposers/${marketerId}?pageSize=${pageSize}&page=${pageNumber}`,
+      );
+    },
+    enabled: marketerId != null,
+  });
+}

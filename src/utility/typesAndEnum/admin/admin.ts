@@ -104,6 +104,15 @@ type AdminMarketerType = {
   updatedAt: Date;
 };
 
+type AdminMarketerReferredProposerType = {
+  id: number;
+  paymentStatus: PaymentStatusEnum;
+  paymentValue: number;
+  proposerId: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export type {
   AdminLoginType,
   AdminLoginVerifyType,
@@ -114,4 +123,5 @@ export type {
   AdminChangeProposerStatusType,
   AdminRenewProposerMembershipType,
   AdminMarketerType,
+  AdminMarketerReferredProposerType,
 };

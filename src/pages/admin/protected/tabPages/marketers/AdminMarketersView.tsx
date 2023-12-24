@@ -6,6 +6,7 @@ import { AdminMarketerType } from "../../../../../utility/typesAndEnum";
 import { ColumnsType } from "antd/es/table";
 import { getCountryLabel } from "../../../../../utility/Methods";
 import dayjs from "dayjs";
+import { MarketerReferredProposerViewModel } from "./popupModels";
 
 export default function AdminMarketerView() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -21,6 +22,12 @@ export default function AdminMarketerView() {
     isOnlyWithdrawAvailable,
     orderDesc,
   );
+
+  const [
+    isOpenReferredProposersViewModel,
+    setIsOpenReferredProposersViewModel,
+  ] = useState<boolean>(false);
+  const [marketerIDForModels, setMarketerIDForModels] = useState<number>();
 
   useEffect(() => {
     loadMarketersData();
@@ -99,7 +106,25 @@ export default function AdminMarketerView() {
         <span>{dayjs(value).format("YYYY/MM/DD HH:mm:ss")} </span>
       ),
     },
+    {
+      title: "Referred Proposers",
+      render: (_, record) => {
+        return (
+          <span
+            className="cursor-pointer font-medium hover:text-sky-400"
+            onClick={() => openReferredProposersModel(record.id)}
+          >
+            View
+          </span>
+        );
+      },
+    },
   ];
+
+  const openReferredProposersModel = (marketerId: number) => {
+    setMarketerIDForModels(marketerId);
+    setIsOpenReferredProposersViewModel(true);
+  };
 
   return (
     <div>
@@ -140,6 +165,14 @@ export default function AdminMarketerView() {
             total: totalDataCount,
             showSizeChanger: false,
           }}
+        />
+      </div>
+
+      <div>
+        <MarketerReferredProposerViewModel
+          isModalOpen={isOpenReferredProposersViewModel}
+          setIdModelOpen={setIsOpenReferredProposersViewModel}
+          marketerId={marketerIDForModels}
         />
       </div>
     </div>
