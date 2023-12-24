@@ -1,4 +1,4 @@
-import { Checkbox, Table } from "antd";
+import { Button, Checkbox, Table } from "antd";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 import { useEffect, useState } from "react";
 import { useAdminGetMarketers } from "../../../../../services/admin";
@@ -8,6 +8,7 @@ import { getCountryLabel } from "../../../../../utility/Methods";
 import dayjs from "dayjs";
 import {
   MarketerReferredProposerViewModel,
+  MarketerWithdrawModel,
   MarketerWithdrawalsViewModel,
 } from "./popupModels";
 
@@ -33,6 +34,9 @@ export default function AdminMarketerView() {
   const [marketerIDForModels, setMarketerIDForModels] = useState<number>();
 
   const [isOpenWithdrawalsViewModel, setIsOpenWithdrawalsViewModel] =
+    useState<boolean>(false);
+
+  const [isOpenWithdrawModel, setIsOpenWithdrawModel] =
     useState<boolean>(false);
 
   useEffect(() => {
@@ -138,7 +142,26 @@ export default function AdminMarketerView() {
         );
       },
     },
+    {
+      title: "Action",
+      render: (_, record) => <div>{getTableActionColumn(record.id)}</div>,
+    },
   ];
+
+  const getTableActionColumn = (marketerId: number) => {
+    if (isOnlyWithdrawAvailable) {
+      return (
+        <Button onClick={() => openWithdrawModel(marketerId)}>Withdraw</Button>
+      );
+    } else {
+      return "-";
+    }
+  };
+
+  const openWithdrawModel = (marketerId: number) => {
+    setMarketerIDForModels(marketerId);
+    setIsOpenWithdrawModel(true);
+  };
 
   const openReferredProposersModel = (marketerId: number) => {
     setMarketerIDForModels(marketerId);
@@ -204,6 +227,14 @@ export default function AdminMarketerView() {
         <MarketerWithdrawalsViewModel
           isModalOpen={isOpenWithdrawalsViewModel}
           setIdModelOpen={setIsOpenWithdrawalsViewModel}
+          marketerId={marketerIDForModels}
+        />
+      </div>
+
+      <div>
+        <MarketerWithdrawModel
+          isModalOpen={isOpenWithdrawModel}
+          setIdModelOpen={setIsOpenWithdrawModel}
           marketerId={marketerIDForModels}
         />
       </div>
