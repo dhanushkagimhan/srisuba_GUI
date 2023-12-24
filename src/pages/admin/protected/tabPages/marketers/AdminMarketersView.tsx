@@ -183,6 +183,10 @@ export default function AdminMarketerView() {
     setIsOpenWithdrawalsViewModel(true);
   };
 
+  const refreshMarketersData = () => {
+    adminMarketersQuery.refetch();
+  };
+
   return (
     <div>
       <div className="text-lg font-medium">Affiliate marketers</div>
@@ -247,6 +251,7 @@ export default function AdminMarketerView() {
           setIdModelOpen={setIsOpenWithdrawModel}
           marketerId={marketerIDForModels}
           accountBalance={marketerAccountBalance}
+          refreshMarketersData={refreshMarketersData}
         />
       </div>
     </div>

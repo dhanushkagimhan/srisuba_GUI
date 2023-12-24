@@ -1,16 +1,22 @@
-import { Button, Form, InputNumber, Modal } from "antd";
+import { Alert, Button, Form, InputNumber, Modal } from "antd";
 import { useEffect, useState } from "react";
-import { useAdminGetMarketerBankAccount } from "../../../../../../services/admin";
+import {
+  useAdminGetMarketerBankAccount,
+  useAdminWithdrawMarketerIncome,
+} from "../../../../../../services/admin";
 import {
   AdminMarketerBankAccountType,
   AdminWithdrawMarketerIncomeType,
 } from "../../../../../../utility/typesAndEnum";
+import { getMutationError } from "../../../../../../utility/Methods";
+import { SyncOutlined } from "@ant-design/icons";
 
 type MarketerWithdrawModelProps = {
   isModalOpen: boolean;
   setIdModelOpen: (value: boolean) => void;
   marketerId?: number;
   accountBalance?: number;
+  refreshMarketersData: () => void;
 };
 
 export default function MarketerWithdrawModel(
@@ -23,6 +29,8 @@ export default function MarketerWithdrawModel(
     prop.isModalOpen,
     prop.marketerId,
   );
+
+  const AdminMarketerWithdrawIncomeMutation = useAdminWithdrawMarketerIncome();
 
   useEffect(() => {
     loadMarketerBankAccountData();
@@ -38,14 +46,17 @@ export default function MarketerWithdrawModel(
 
   const onSubmit = (values: AdminWithdrawMarketerIncomeType) => {
     console.log(values);
-    // adminLoginMutation.mutate(values, {
-    //   onSuccess: (data) => {
-    //     if (data.data.success) {
-    //       adminState.setEmail(values.email);
-    //       navigate("/gimhan-verify");
-    //     }
-    //   },
-    // });
+    const withdrawData: AdminWithdrawMarketerIncomeType = {
+      marketerId: prop.marketerId,
+      amount: values.amount,
+    };
+    AdminMarketerWithdrawIncomeMutation.mutate(withdrawData, {
+      onSuccess: (data) => {
+        if (data.data.success) {
+          prop.refreshMarketersData();
+        }
+      },
+    });
   };
 
   const getMarketerBankAccount = () => {
@@ -116,16 +127,25 @@ export default function MarketerWithdrawModel(
         <div className="mt-4 flex flex-row justify-center">
           <div className="p-4 bg-slate-100 rounded-lg w-[500px]">
             <div>
-              {/* {adminLoginMutation.isError ? (
-            <div className="mb-4">
-              <Alert
-                message={getMutationError(adminLoginMutation)}
-                type="error"
-              />
-            </div>
-          ) : (
-            <></>
-          )} */}
+              {AdminMarketerWithdrawIncomeMutation.isError ? (
+                <div className="mb-4">
+                  <Alert
+                    message={getMutationError(
+                      AdminMarketerWithdrawIncomeMutation,
+                    )}
+                    type="error"
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
+              {AdminMarketerWithdrawIncomeMutation.isSuccess ? (
+                <div className="mb-4">
+                  <Alert message={"Successfully withdrawn!"} type="success" />
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
             <Form
               name="AdminLoginForm"
@@ -159,13 +179,13 @@ export default function MarketerWithdrawModel(
                   htmlType="submit"
                   className="w-full pb-10 text-2xl font-medium"
                 >
-                  {/* {adminLoginMutation.isPending ? (
-                <span className="text-lg mr-2">
-                  <SyncOutlined spin />
-                </span>
-              ) : (
-                <></>
-              )} */}
+                  {AdminMarketerWithdrawIncomeMutation.isPending ? (
+                    <span className="text-lg mr-2">
+                      <SyncOutlined spin />
+                    </span>
+                  ) : (
+                    <></>
+                  )}
                   Withdraw
                 </Button>
               </Form.Item>

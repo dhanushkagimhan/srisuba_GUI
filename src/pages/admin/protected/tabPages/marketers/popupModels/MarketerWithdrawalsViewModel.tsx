@@ -33,14 +33,16 @@ export default function MarketerWithdrawalsViewModel(
         const marketerWithdrawalsData: AdminMarketerWithdrawalType[] =
           adminMarketerWithdrawalsQuery.data.data.data;
 
-        const marketerWithdrawalsTableViewData: AdminMarketerWithdrawalType[] =
-          marketerWithdrawalsData.map(
-            (withdrawal: AdminMarketerWithdrawalType, index) => ({
-              key: index,
-              ...withdrawal,
-            }),
-          );
-        setMarketerWithdrawals(marketerWithdrawalsTableViewData);
+        if (Array.isArray(marketerWithdrawalsData)) {
+          const marketerWithdrawalsTableViewData: AdminMarketerWithdrawalType[] =
+            marketerWithdrawalsData.map(
+              (withdrawal: AdminMarketerWithdrawalType, index) => ({
+                key: index,
+                ...withdrawal,
+              }),
+            );
+          setMarketerWithdrawals(marketerWithdrawalsTableViewData);
+        }
       }
     }
   };

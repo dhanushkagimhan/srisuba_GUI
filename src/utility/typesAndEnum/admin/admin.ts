@@ -129,7 +129,7 @@ type AdminMarketerBankAccountType = {
 };
 
 type AdminWithdrawMarketerIncomeType = {
-  marketerId: number;
+  marketerId?: number;
   amount: number;
 };
 

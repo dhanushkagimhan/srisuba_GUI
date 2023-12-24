@@ -7,6 +7,7 @@ import {
   useAdminGetMarketerReferredProposers,
   useAdminGetMarketerWithdrawals,
   useAdminGetMarketers,
+  useAdminWithdrawMarketerIncome,
 } from "./marketer/marketer";
 import {
   useAdminApproveProposerPayment,
@@ -28,4 +29,5 @@ export {
   useAdminGetMarketerReferredProposers,
   useAdminGetMarketerWithdrawals,
   useAdminGetMarketerBankAccount,
+  useAdminWithdrawMarketerIncome,
 };

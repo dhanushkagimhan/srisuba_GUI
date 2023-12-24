@@ -1,5 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAdminAuthClient } from "../../client";
+import { AdminWithdrawMarketerIncomeType } from "../../../utility/typesAndEnum";
 
 export function useAdminGetMarketers(
   pageNumber: number = 1,
@@ -65,5 +66,15 @@ export function useAdminGetMarketerBankAccount(
       return adminAuthClient.get(`/marketer/bank-acc/${marketerId}`);
     },
     enabled: isQueryEnable,
+  });
+}
+
+export function useAdminWithdrawMarketerIncome() {
+  const adminAuthClient = useAdminAuthClient();
+
+  return useMutation({
+    mutationFn: (withdrawData: AdminWithdrawMarketerIncomeType) => {
+      return adminAuthClient.post("/marketer/withdraw", withdrawData);
+    },
   });
 }
