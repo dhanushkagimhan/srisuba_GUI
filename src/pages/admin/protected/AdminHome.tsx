@@ -2,7 +2,7 @@ import { Tabs } from "antd";
 import { useEffect } from "react";
 import { MainLayoutNavEnum } from "../../../utility/typesAndEnum";
 import { useMainLayoutStore } from "../../../states";
-import { AdminProposersView } from "./tabPages";
+import { AdminMarketerView, AdminProposersView } from "./tabPages";
 
 export default function AdminHome() {
   const mainLayoutState = useMainLayoutStore();
@@ -30,7 +30,7 @@ export default function AdminHome() {
           {
             label: <span className="font-semibold">Marketers</span>,
             key: "marketers",
-            children: "Marketers",
+            children: <AdminMarketerView />,
           },
           {
             label: <span className="font-semibold">System</span>,
