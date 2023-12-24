@@ -20,6 +20,7 @@ export function useAdminGetMarketers(
 }
 
 export function useAdminGetMarketerReferredProposers(
+  isQueryEnable: boolean,
   pageNumber: number = 1,
   pageSize: number = 10,
   marketerId?: number,
@@ -27,12 +28,12 @@ export function useAdminGetMarketerReferredProposers(
   const adminAuthClient = useAdminAuthClient();
 
   return useQuery({
-    queryKey: [pageNumber, pageSize, marketerId],
+    queryKey: [pageNumber, pageSize, marketerId, isQueryEnable],
     queryFn: () => {
       return adminAuthClient.get(
         `/marketer/proposers/${marketerId}?pageSize=${pageSize}&page=${pageNumber}`,
       );
     },
-    enabled: marketerId != null,
+    enabled: isQueryEnable,
   });
 }

@@ -24,7 +24,12 @@ export default function MarketerReferredProposerViewModel(
   >([]);
 
   const adminMarketerReferredProposersQuery =
-    useAdminGetMarketerReferredProposers(currentPage, 10, prop.marketerId);
+    useAdminGetMarketerReferredProposers(
+      prop.isModalOpen,
+      currentPage,
+      10,
+      prop.marketerId,
+    );
 
   useEffect(() => {
     loadMarketerReferredProposersData();
