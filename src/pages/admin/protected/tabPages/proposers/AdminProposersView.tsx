@@ -446,27 +446,27 @@ export default function AdminProposersView() {
         <div className="flex flex-row gap-4 items-center">
           <div>
             <Checkbox
-              onChange={(e: CheckboxChangeEvent) =>
-                setIsOnlyExpired(e.target.checked)
-              }
+              onChange={(e: CheckboxChangeEvent) => {
+                setIsOnlyExpired(e.target.checked), setCurrentPage(1);
+              }}
             >
               Only Expired
             </Checkbox>
           </div>
           <div>
             <Checkbox
-              onChange={(e: CheckboxChangeEvent) =>
-                setIsIncludePayments(e.target.checked)
-              }
+              onChange={(e: CheckboxChangeEvent) => {
+                setIsIncludePayments(e.target.checked);
+              }}
             >
               Include Payments
             </Checkbox>
           </div>
           <div>
             <Checkbox
-              onChange={(e: CheckboxChangeEvent) =>
-                setOrderDesc(e.target.checked)
-              }
+              onChange={(e: CheckboxChangeEvent) => {
+                setOrderDesc(e.target.checked), setCurrentPage(1);
+              }}
             >
               Order Desc
             </Checkbox>

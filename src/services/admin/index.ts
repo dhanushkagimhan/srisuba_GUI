@@ -2,6 +2,7 @@ import {
   useAdminLoginVerify,
   useAdminLogin,
 } from "./authentication/authentication";
+import { useAdminGetMarketers } from "./marketer/marketer";
 import {
   useAdminApproveProposerPayment,
   useAdminChangeProposerStatus,
@@ -18,4 +19,5 @@ export {
   useAdminApproveProposerPayment,
   useAdminChangeProposerStatus,
   useAdminRenewProposerMembership,
+  useAdminGetMarketers,
 };

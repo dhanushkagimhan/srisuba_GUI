@@ -1,6 +1,11 @@
 import { Checkbox, Table } from "antd";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAdminGetMarketers } from "../../../../../services/admin";
+import { AdminMarketerType } from "../../../../../utility/typesAndEnum";
+import { ColumnsType } from "antd/es/table";
+import { getCountryLabel } from "../../../../../utility/Methods";
+import dayjs from "dayjs";
 
 export default function AdminMarketerView() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -8,6 +13,93 @@ export default function AdminMarketerView() {
   const [isOnlyWithdrawAvailable, setIsOnlyWithdrawAvailable] =
     useState<boolean>(false);
   const [orderDesc, setOrderDesc] = useState<boolean>(false);
+  const [marketers, setMarketers] = useState<AdminMarketerType[]>([]);
+
+  const adminMarketersQuery = useAdminGetMarketers(
+    currentPage,
+    10,
+    isOnlyWithdrawAvailable,
+    orderDesc,
+  );
+
+  useEffect(() => {
+    loadMarketersData();
+  }, [currentPage, adminMarketersQuery.data]);
+
+  const loadMarketersData = () => {
+    if (adminMarketersQuery.isSuccess) {
+      if (adminMarketersQuery.data.data.success) {
+        const marketersData: AdminMarketerType[] =
+          adminMarketersQuery.data.data.data;
+
+        const marketersTableViewData: AdminMarketerType[] = marketersData.map(
+          (marketer: AdminMarketerType, index) => ({ key: index, ...marketer }),
+        );
+        setMarketers(marketersTableViewData);
+      }
+      setTotalDataCount(adminMarketersQuery.data.data.pagination.totalCount);
+    }
+  };
+
+  const marketersTableColumns: ColumnsType<AdminMarketerType> = [
+    {
+      title: "ID",
+      dataIndex: "id",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+    },
+    {
+      title: "First Name",
+      dataIndex: "firstName",
+    },
+    {
+      title: "Last Name",
+      dataIndex: "lastName",
+    },
+    {
+      title: "Gender",
+      dataIndex: "gender",
+    },
+    {
+      title: "Country",
+      dataIndex: "country",
+      render: (value) => <span>{getCountryLabel(value)} </span>,
+    },
+    {
+      title: "Affiliate Code",
+      dataIndex: "affiliateCode",
+      render: (value) => <span>{value ?? "-"} </span>,
+    },
+    {
+      title: "Account Balance",
+      dataIndex: "accountBalance",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      render: (value) => (
+        <span>
+          {value.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1")}{" "}
+        </span>
+      ),
+    },
+    {
+      title: "Created At",
+      dataIndex: "createdAt",
+      render: (value) => (
+        <span>{dayjs(value).format("YYYY/MM/DD HH:mm:ss")} </span>
+      ),
+    },
+    {
+      title: "Updated At",
+      dataIndex: "updatedAt",
+      render: (value) => (
+        <span>{dayjs(value).format("YYYY/MM/DD HH:mm:ss")} </span>
+      ),
+    },
+  ];
 
   return (
     <div>
@@ -16,18 +108,18 @@ export default function AdminMarketerView() {
         <div className="flex flex-row gap-4 items-center">
           <div>
             <Checkbox
-              onChange={(e: CheckboxChangeEvent) =>
-                setIsOnlyWithdrawAvailable(e.target.checked)
-              }
+              onChange={(e: CheckboxChangeEvent) => {
+                setIsOnlyWithdrawAvailable(e.target.checked), setCurrentPage(1);
+              }}
             >
               Only Withdraw Available
             </Checkbox>
           </div>
           <div>
             <Checkbox
-              onChange={(e: CheckboxChangeEvent) =>
-                setOrderDesc(e.target.checked)
-              }
+              onChange={(e: CheckboxChangeEvent) => {
+                setOrderDesc(e.target.checked), setCurrentPage(1);
+              }}
             >
               Order Desc
             </Checkbox>
@@ -37,10 +129,10 @@ export default function AdminMarketerView() {
 
       <div>
         <Table
-          //   dataSource={proposers}
-          //   columns={proposersTableColumns}
+          dataSource={marketers}
+          columns={marketersTableColumns}
           scroll={{ x: true }}
-          //   loading={adminProposersQuery.isPending}
+          loading={adminMarketersQuery.isPending}
           pagination={{
             current: currentPage,
             onChange: (page) => setCurrentPage(page),

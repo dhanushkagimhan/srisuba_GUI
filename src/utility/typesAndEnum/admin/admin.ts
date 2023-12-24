@@ -1,5 +1,6 @@
 import {
   GenderEnum,
+  MarketerStatusEnum,
   PaymentStatusEnum,
   ProposerFoodPreferenceEnum,
   ProposerPaymentTypeEnum,
@@ -89,6 +90,20 @@ type AdminRenewProposerMembershipType = {
   proposerId: number;
 };
 
+type AdminMarketerType = {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: GenderEnum;
+  country: string;
+  affiliateCode: string | null;
+  accountBalance: number;
+  status: MarketerStatusEnum;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export type {
   AdminLoginType,
   AdminLoginVerifyType,
@@ -98,4 +113,5 @@ export type {
   AdminApproveProposerPaymentType,
   AdminChangeProposerStatusType,
   AdminRenewProposerMembershipType,
+  AdminMarketerType,
 };
