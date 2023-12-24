@@ -7,6 +7,7 @@ import {
   useAdminChangeProposerStatus,
   useAdminGetProposal,
   useAdminGetProposals,
+  useAdminRenewProposerMembership,
 } from "./proposal/proposal";
 
 export {
@@ -16,4 +17,5 @@ export {
   useAdminGetProposal,
   useAdminApproveProposerPayment,
   useAdminChangeProposerStatus,
+  useAdminRenewProposerMembership,
 };

@@ -85,6 +85,10 @@ type AdminChangeProposerStatusType = {
   reason?: string;
 };
 
+type AdminRenewProposerMembershipType = {
+  proposerId: number;
+};
+
 export type {
   AdminLoginType,
   AdminLoginVerifyType,
@@ -93,4 +97,5 @@ export type {
   adminProposalType,
   AdminApproveProposerPaymentType,
   AdminChangeProposerStatusType,
+  AdminRenewProposerMembershipType,
 };

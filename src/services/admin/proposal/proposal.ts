@@ -3,6 +3,7 @@ import { useAdminAuthClient } from "../../client";
 import {
   AdminApproveProposerPaymentType,
   AdminChangeProposerStatusType,
+  AdminRenewProposerMembershipType,
   ProposerStatusEnum,
 } from "../../../utility/typesAndEnum";
 
@@ -64,6 +65,16 @@ export function useAdminChangeProposerStatus() {
   return useMutation({
     mutationFn: (changeStatusData: AdminChangeProposerStatusType) => {
       return adminAuthClient.post("/proposal/change-status", changeStatusData);
+    },
+  });
+}
+
+export function useAdminRenewProposerMembership() {
+  const adminAuthClient = useAdminAuthClient();
+
+  return useMutation({
+    mutationFn: (renewData: AdminRenewProposerMembershipType) => {
+      return adminAuthClient.post("/proposal/renew-membership", renewData);
     },
   });
 }

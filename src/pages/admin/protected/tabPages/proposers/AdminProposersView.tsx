@@ -5,6 +5,7 @@ import {
   AdminApproveProposerPaymentType,
   AdminChangeProposerStatusType,
   AdminProposerType,
+  AdminRenewProposerMembershipType,
   ProposerStatusEnum,
   adminProposerPaymentType,
 } from "../../../../../utility/typesAndEnum";
@@ -13,6 +14,7 @@ import {
   useAdminApproveProposerPayment,
   useAdminChangeProposerStatus,
   useAdminGetProposals,
+  useAdminRenewProposerMembership,
 } from "../../../../../services/admin";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 import {
@@ -60,6 +62,9 @@ export default function AdminProposersView() {
   const [proposerBlockType, setProposerBlockType] = useState<
     ProposerStatusEnum.Rejected | ProposerStatusEnum.Banned
   >();
+
+  const adminRenewProposerMembershipMutation =
+    useAdminRenewProposerMembership();
 
   useEffect(() => {
     loadProposerData();
@@ -243,7 +248,17 @@ export default function AdminProposersView() {
           </div>
         );
       case ProposerStatusEnum.Active:
-        return (
+        return isOnlyExpired ? (
+          <Popconfirm
+            title="Renew proposer membership"
+            description="Are you sure to renew proposer?"
+            onConfirm={() => renewProposerMembership(proposerId)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button>Renew</Button>
+          </Popconfirm>
+        ) : (
           <Button
             danger
             onClick={() =>
@@ -255,7 +270,17 @@ export default function AdminProposersView() {
         );
       case ProposerStatusEnum.Rejected:
       case ProposerStatusEnum.Banned:
-        return (
+        return isOnlyExpired ? (
+          <Popconfirm
+            title="Renew proposer membership"
+            description="Are you sure to renew proposer?"
+            onConfirm={() => renewProposerMembership(proposerId)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button>Renew</Button>
+          </Popconfirm>
+        ) : (
           <Popconfirm
             title="Active proposal"
             description="Are you sure to active proposer?"
@@ -374,6 +399,20 @@ export default function AdminProposersView() {
     };
 
     adminApproveProposerPaymentMutation.mutate(approveData, {
+      onSuccess: (data) => {
+        if (data.data.success) {
+          adminProposersQuery.refetch();
+        }
+      },
+    });
+  };
+
+  const renewProposerMembership = (proposerId: number) => {
+    const renewData: AdminRenewProposerMembershipType = {
+      proposerId: proposerId,
+    };
+
+    adminRenewProposerMembershipMutation.mutate(renewData, {
       onSuccess: (data) => {
         if (data.data.success) {
           adminProposersQuery.refetch();
