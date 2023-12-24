@@ -120,6 +120,19 @@ type AdminMarketerWithdrawalType = {
   updatedAt: Date;
 };
 
+type AdminMarketerBankAccountType = {
+  id: number;
+  accountHolderName: string;
+  accountNumber: string;
+  bankName: string;
+  branch: string;
+};
+
+type AdminWithdrawMarketerIncomeType = {
+  marketerId: number;
+  amount: number;
+};
+
 export type {
   AdminLoginType,
   AdminLoginVerifyType,
@@ -132,4 +145,6 @@ export type {
   AdminMarketerType,
   AdminMarketerReferredProposerType,
   AdminMarketerWithdrawalType,
+  AdminMarketerBankAccountType,
+  AdminWithdrawMarketerIncomeType,
 };

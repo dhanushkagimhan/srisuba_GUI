@@ -52,3 +52,18 @@ export function useAdminGetMarketerWithdrawals(
     enabled: isQueryEnable,
   });
 }
+
+export function useAdminGetMarketerBankAccount(
+  isQueryEnable: boolean,
+  marketerId?: number,
+) {
+  const adminAuthClient = useAdminAuthClient();
+
+  return useQuery({
+    queryKey: [marketerId, isQueryEnable],
+    queryFn: () => {
+      return adminAuthClient.get(`/marketer/bank-acc/${marketerId}`);
+    },
+    enabled: isQueryEnable,
+  });
+}

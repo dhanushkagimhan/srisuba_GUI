@@ -10,6 +10,8 @@ import {
   AdminMarketerType,
   AdminMarketerReferredProposerType,
   AdminMarketerWithdrawalType,
+  AdminMarketerBankAccountType,
+  AdminWithdrawMarketerIncomeType,
 } from "./admin/admin";
 import { MainLayoutNavEnum } from "./components/mainLayout/mainLayout";
 import {
@@ -104,6 +106,8 @@ export type {
   AdminMarketerType,
   AdminMarketerReferredProposerType,
   AdminMarketerWithdrawalType,
+  AdminMarketerBankAccountType,
+  AdminWithdrawMarketerIncomeType,
 };
 
 export {

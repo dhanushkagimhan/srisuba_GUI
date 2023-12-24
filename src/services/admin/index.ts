@@ -3,6 +3,7 @@ import {
   useAdminLogin,
 } from "./authentication/authentication";
 import {
+  useAdminGetMarketerBankAccount,
   useAdminGetMarketerReferredProposers,
   useAdminGetMarketerWithdrawals,
   useAdminGetMarketers,
@@ -26,4 +27,5 @@ export {
   useAdminGetMarketers,
   useAdminGetMarketerReferredProposers,
   useAdminGetMarketerWithdrawals,
+  useAdminGetMarketerBankAccount,
 };
