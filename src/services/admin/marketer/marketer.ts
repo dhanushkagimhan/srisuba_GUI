@@ -37,3 +37,18 @@ export function useAdminGetMarketerReferredProposers(
     enabled: isQueryEnable,
   });
 }
+
+export function useAdminGetMarketerWithdrawals(
+  isQueryEnable: boolean,
+  marketerId?: number,
+) {
+  const adminAuthClient = useAdminAuthClient();
+
+  return useQuery({
+    queryKey: [marketerId, isQueryEnable],
+    queryFn: () => {
+      return adminAuthClient.get(`/marketer/withdrawals/${marketerId}`);
+    },
+    enabled: isQueryEnable,
+  });
+}

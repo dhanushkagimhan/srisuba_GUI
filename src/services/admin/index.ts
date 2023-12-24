@@ -4,6 +4,7 @@ import {
 } from "./authentication/authentication";
 import {
   useAdminGetMarketerReferredProposers,
+  useAdminGetMarketerWithdrawals,
   useAdminGetMarketers,
 } from "./marketer/marketer";
 import {
@@ -24,4 +25,5 @@ export {
   useAdminRenewProposerMembership,
   useAdminGetMarketers,
   useAdminGetMarketerReferredProposers,
+  useAdminGetMarketerWithdrawals,
 };

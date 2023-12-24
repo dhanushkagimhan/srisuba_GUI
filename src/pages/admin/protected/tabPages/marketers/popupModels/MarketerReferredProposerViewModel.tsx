@@ -62,7 +62,6 @@ export default function MarketerReferredProposerViewModel(
         title: "ID",
         dataIndex: "id",
       },
-
       {
         title: "Payment Status",
         dataIndex: "paymentStatus",

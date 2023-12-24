@@ -113,6 +113,13 @@ type AdminMarketerReferredProposerType = {
   updatedAt: Date;
 };
 
+type AdminMarketerWithdrawalType = {
+  id: number;
+  value: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export type {
   AdminLoginType,
   AdminLoginVerifyType,
@@ -124,4 +131,5 @@ export type {
   AdminRenewProposerMembershipType,
   AdminMarketerType,
   AdminMarketerReferredProposerType,
+  AdminMarketerWithdrawalType,
 };

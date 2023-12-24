@@ -9,6 +9,7 @@ import {
   AdminRenewProposerMembershipType,
   AdminMarketerType,
   AdminMarketerReferredProposerType,
+  AdminMarketerWithdrawalType,
 } from "./admin/admin";
 import { MainLayoutNavEnum } from "./components/mainLayout/mainLayout";
 import {
@@ -102,6 +103,7 @@ export type {
   AdminRenewProposerMembershipType,
   AdminMarketerType,
   AdminMarketerReferredProposerType,
+  AdminMarketerWithdrawalType,
 };
 
 export {

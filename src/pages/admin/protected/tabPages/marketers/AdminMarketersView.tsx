@@ -6,7 +6,10 @@ import { AdminMarketerType } from "../../../../../utility/typesAndEnum";
 import { ColumnsType } from "antd/es/table";
 import { getCountryLabel } from "../../../../../utility/Methods";
 import dayjs from "dayjs";
-import { MarketerReferredProposerViewModel } from "./popupModels";
+import {
+  MarketerReferredProposerViewModel,
+  MarketerWithdrawalsViewModel,
+} from "./popupModels";
 
 export default function AdminMarketerView() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -28,6 +31,9 @@ export default function AdminMarketerView() {
     setIsOpenReferredProposersViewModel,
   ] = useState<boolean>(false);
   const [marketerIDForModels, setMarketerIDForModels] = useState<number>();
+
+  const [isOpenWithdrawalsViewModel, setIsOpenWithdrawalsViewModel] =
+    useState<boolean>(false);
 
   useEffect(() => {
     loadMarketersData();
@@ -119,11 +125,29 @@ export default function AdminMarketerView() {
         );
       },
     },
+    {
+      title: "Withdrawals",
+      render: (_, record) => {
+        return (
+          <span
+            className="cursor-pointer font-medium hover:text-sky-400"
+            onClick={() => openWithdrawalsViewModel(record.id)}
+          >
+            View
+          </span>
+        );
+      },
+    },
   ];
 
   const openReferredProposersModel = (marketerId: number) => {
     setMarketerIDForModels(marketerId);
     setIsOpenReferredProposersViewModel(true);
+  };
+
+  const openWithdrawalsViewModel = (marketerId: number) => {
+    setMarketerIDForModels(marketerId);
+    setIsOpenWithdrawalsViewModel(true);
   };
 
   return (
@@ -172,6 +196,14 @@ export default function AdminMarketerView() {
         <MarketerReferredProposerViewModel
           isModalOpen={isOpenReferredProposersViewModel}
           setIdModelOpen={setIsOpenReferredProposersViewModel}
+          marketerId={marketerIDForModels}
+        />
+      </div>
+
+      <div>
+        <MarketerWithdrawalsViewModel
+          isModalOpen={isOpenWithdrawalsViewModel}
+          setIdModelOpen={setIsOpenWithdrawalsViewModel}
           marketerId={marketerIDForModels}
         />
       </div>
