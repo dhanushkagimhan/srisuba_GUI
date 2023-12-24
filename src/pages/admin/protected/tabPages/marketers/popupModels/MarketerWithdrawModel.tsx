@@ -10,6 +10,7 @@ type MarketerWithdrawModelProps = {
   isModalOpen: boolean;
   setIdModelOpen: (value: boolean) => void;
   marketerId?: number;
+  accountBalance?: number;
 };
 
 export default function MarketerWithdrawModel(
@@ -47,39 +48,68 @@ export default function MarketerWithdrawModel(
     // });
   };
 
+  const getMarketerBankAccount = () => {
+    if (adminMarketerBankAccountQuery.isSuccess) {
+      return (
+        <div>
+          <div className="flex flex-row gap-4 py-2 bg-slate-100 rounded-lg mt-2">
+            <div className="font-medium w-full text-right">Bank Name</div>
+            <div className="w-full">{marketerBankAccount?.bankName}</div>
+          </div>
+          <div className="flex flex-row gap-4 py-2">
+            <div className="font-medium w-full text-right">Branch</div>
+            <div className="w-full">{marketerBankAccount?.branch}</div>
+          </div>
+          <div className="flex flex-row gap-4 py-2 bg-slate-100 rounded-lg mt-2">
+            <div className="font-medium w-full text-right">Account Number</div>
+            <div className="w-full">{marketerBankAccount?.accountNumber}</div>
+          </div>
+          <div className="flex flex-row gap-4 py-2">
+            <div className="font-medium w-full text-right">
+              Account Holder Name
+            </div>
+            <div className="w-full">
+              {marketerBankAccount?.accountHolderName}
+            </div>
+          </div>
+        </div>
+      );
+    } else if (
+      adminMarketerBankAccountQuery.isError &&
+      adminMarketerBankAccountQuery?.error?.response.status === 404
+    ) {
+      return (
+        <div className="font-medium text-center">
+          Not configured bank account
+        </div>
+      );
+    } else {
+      return (
+        <div className="text-center text-yellow-800 font-medium">
+          Getting bank account not success.
+        </div>
+      );
+    }
+  };
+
   const getContent = () => {
     return (
       <div>
         <div>
           <div className="mb-4 font-medium text-lg">Withdraw income</div>
-          <span className="font-medium">MarketerId Id : </span>
-          {prop.marketerId ?? ""}
+          <div>
+            <span className="font-medium">MarketerId Id : </span>
+            {prop.marketerId ?? ""}
+          </div>
+          <div>
+            <span className="font-medium">Account balance : </span>
+            {prop.accountBalance ?? ""}
+          </div>
         </div>
 
         <div className="mt-4 pl-4">
           <div className="p-4 bg-slate-100 rounded-lg">
-            <div className="flex flex-row gap-4 py-2 bg-slate-100 rounded-lg mt-2">
-              <div className="font-medium w-full text-right">Bank Name</div>
-              <div className="w-full">{marketerBankAccount?.bankName}</div>
-            </div>
-            <div className="flex flex-row gap-4 py-2">
-              <div className="font-medium w-full text-right">Branch</div>
-              <div className="w-full">{marketerBankAccount?.branch}</div>
-            </div>
-            <div className="flex flex-row gap-4 py-2 bg-slate-100 rounded-lg mt-2">
-              <div className="font-medium w-full text-right">
-                Account Number
-              </div>
-              <div className="w-full">{marketerBankAccount?.accountNumber}</div>
-            </div>
-            <div className="flex flex-row gap-4 py-2">
-              <div className="font-medium w-full text-right">
-                Account Holder Name
-              </div>
-              <div className="w-full">
-                {marketerBankAccount?.accountHolderName}
-              </div>
-            </div>
+            {getMarketerBankAccount()}
           </div>
         </div>
 

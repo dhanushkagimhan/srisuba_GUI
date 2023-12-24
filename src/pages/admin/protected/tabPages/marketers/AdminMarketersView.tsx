@@ -38,6 +38,8 @@ export default function AdminMarketerView() {
 
   const [isOpenWithdrawModel, setIsOpenWithdrawModel] =
     useState<boolean>(false);
+  const [marketerAccountBalance, setMarketerAccountBalance] =
+    useState<number>();
 
   useEffect(() => {
     loadMarketersData();
@@ -144,22 +146,30 @@ export default function AdminMarketerView() {
     },
     {
       title: "Action",
-      render: (_, record) => <div>{getTableActionColumn(record.id)}</div>,
+      render: (_, record) => (
+        <div>{getTableActionColumn(record.id, record.accountBalance)}</div>
+      ),
     },
   ];
 
-  const getTableActionColumn = (marketerId: number) => {
+  const getTableActionColumn = (marketerId: number, accountBalance: number) => {
     if (isOnlyWithdrawAvailable) {
       return (
-        <Button onClick={() => openWithdrawModel(marketerId)}>Withdraw</Button>
+        <Button onClick={() => openWithdrawModel(marketerId, accountBalance)}>
+          Withdraw
+        </Button>
       );
     } else {
       return "-";
     }
   };
 
-  const openWithdrawModel = (marketerId: number) => {
+  const openWithdrawModel = (
+    marketerId: number,
+    marketerAccountBalance: number,
+  ) => {
     setMarketerIDForModels(marketerId);
+    setMarketerAccountBalance(marketerAccountBalance);
     setIsOpenWithdrawModel(true);
   };
 
@@ -236,6 +246,7 @@ export default function AdminMarketerView() {
           isModalOpen={isOpenWithdrawModel}
           setIdModelOpen={setIsOpenWithdrawModel}
           marketerId={marketerIDForModels}
+          accountBalance={marketerAccountBalance}
         />
       </div>
     </div>
