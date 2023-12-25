@@ -12,6 +12,8 @@ import {
   AdminMarketerWithdrawalType,
   AdminMarketerBankAccountType,
   AdminWithdrawMarketerIncomeType,
+  AdminSystemDetailsType,
+  AdminWithdrawSystemIncomeType,
 } from "./admin/admin";
 import { MainLayoutNavEnum } from "./components/mainLayout/mainLayout";
 import {
@@ -108,6 +110,8 @@ export type {
   AdminMarketerWithdrawalType,
   AdminMarketerBankAccountType,
   AdminWithdrawMarketerIncomeType,
+  AdminSystemDetailsType,
+  AdminWithdrawSystemIncomeType,
 };
 
 export {

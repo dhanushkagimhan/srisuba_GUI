@@ -1,4 +1,5 @@
 import { Tabs } from "antd";
+import { AdminSystemDashboard } from "./tabPages";
 
 export default function AdminSystem() {
   return (
@@ -11,7 +12,7 @@ export default function AdminSystem() {
             {
               label: <span className="font-semibold">Dashboard</span>,
               key: "dashboard",
-              children: "Dashboard",
+              children: <AdminSystemDashboard />,
             },
             {
               label: <span className="font-semibold">Withdrawals</span>,

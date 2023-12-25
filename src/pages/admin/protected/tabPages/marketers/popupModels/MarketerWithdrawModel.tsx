@@ -45,7 +45,6 @@ export default function MarketerWithdrawModel(
   };
 
   const onSubmit = (values: AdminWithdrawMarketerIncomeType) => {
-    console.log(values);
     const withdrawData: AdminWithdrawMarketerIncomeType = {
       marketerId: prop.marketerId,
       amount: values.amount,
@@ -141,14 +140,14 @@ export default function MarketerWithdrawModel(
               )}
               {AdminMarketerWithdrawIncomeMutation.isSuccess ? (
                 <div className="mb-4">
-                  <Alert message={"Successfully withdrawn!"} type="success" />
+                  <Alert message={"Successfully withdrawn"} type="success" />
                 </div>
               ) : (
                 <></>
               )}
             </div>
             <Form
-              name="AdminLoginForm"
+              name="AdminWithdrawMarketerIncomeForm"
               onFinish={onSubmit}
               className="flex flex-col gap-2"
               layout="vertical"

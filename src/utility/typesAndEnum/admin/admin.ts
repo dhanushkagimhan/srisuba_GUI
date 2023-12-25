@@ -133,6 +133,19 @@ type AdminWithdrawMarketerIncomeType = {
   amount: number;
 };
 
+type AdminSystemDetailsType = {
+  proposalPrice: number;
+  systemIncomeBalance: number;
+  totalSystemAccountBalance: number;
+  totalAffiliateMarketersCost: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+type AdminWithdrawSystemIncomeType = {
+  amount: number;
+};
+
 export type {
   AdminLoginType,
   AdminLoginVerifyType,
@@ -147,4 +160,6 @@ export type {
   AdminMarketerWithdrawalType,
   AdminMarketerBankAccountType,
   AdminWithdrawMarketerIncomeType,
+  AdminSystemDetailsType,
+  AdminWithdrawSystemIncomeType,
 };

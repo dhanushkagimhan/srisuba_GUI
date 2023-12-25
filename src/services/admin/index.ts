@@ -16,6 +16,10 @@ import {
   useAdminGetProposals,
   useAdminRenewProposerMembership,
 } from "./proposal/proposal";
+import {
+  useAdminGetSystemDetails,
+  useAdminWithdrawSystemIncome,
+} from "./system/system";
 
 export {
   useAdminLogin,
@@ -30,4 +34,6 @@ export {
   useAdminGetMarketerWithdrawals,
   useAdminGetMarketerBankAccount,
   useAdminWithdrawMarketerIncome,
+  useAdminGetSystemDetails,
+  useAdminWithdrawSystemIncome,
 };
