@@ -154,6 +154,10 @@ type AdminSystemWithdrawalType = {
   updatedAt: Date;
 };
 
+type AdminChangeProposalPriceType = {
+  price: number;
+};
+
 export type {
   AdminLoginType,
   AdminLoginVerifyType,
@@ -171,4 +175,5 @@ export type {
   AdminSystemDetailsType,
   AdminWithdrawSystemIncomeType,
   AdminSystemWithdrawalType,
+  AdminChangeProposalPriceType,
 };

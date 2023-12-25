@@ -1,5 +1,9 @@
 import { Tabs } from "antd";
-import { AdminSystemDashboard, AdminSystemWithdrawals } from "./tabPages";
+import {
+  AdminChangeProposalPrice,
+  AdminSystemDashboard,
+  AdminSystemWithdrawals,
+} from "./tabPages";
 
 export default function AdminSystem() {
   return (
@@ -20,9 +24,11 @@ export default function AdminSystem() {
               children: <AdminSystemWithdrawals />,
             },
             {
-              label: <span className="font-semibold">Proposal Price</span>,
-              key: "proposalPrice",
-              children: "Proposal Price",
+              label: (
+                <span className="font-semibold">Change Proposal Price</span>
+              ),
+              key: "changeProposalPrice",
+              children: <AdminChangeProposalPrice />,
             },
           ]}
         />

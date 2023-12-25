@@ -15,6 +15,7 @@ import {
   AdminSystemDetailsType,
   AdminWithdrawSystemIncomeType,
   AdminSystemWithdrawalType,
+  AdminChangeProposalPriceType,
 } from "./admin/admin";
 import { MainLayoutNavEnum } from "./components/mainLayout/mainLayout";
 import {
@@ -114,6 +115,7 @@ export type {
   AdminSystemDetailsType,
   AdminWithdrawSystemIncomeType,
   AdminSystemWithdrawalType,
+  AdminChangeProposalPriceType,
 };
 
 export {

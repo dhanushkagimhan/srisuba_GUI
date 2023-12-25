@@ -17,6 +17,7 @@ import {
   useAdminRenewProposerMembership,
 } from "./proposal/proposal";
 import {
+  useAdminChangeProposalPrice,
   useAdminGetSystemDetails,
   useAdminGetSystemWithdrawals,
   useAdminWithdrawSystemIncome,
@@ -38,4 +39,5 @@ export {
   useAdminGetSystemDetails,
   useAdminWithdrawSystemIncome,
   useAdminGetSystemWithdrawals,
+  useAdminChangeProposalPrice,
 };
