@@ -18,6 +18,7 @@ import {
 } from "./proposal/proposal";
 import {
   useAdminGetSystemDetails,
+  useAdminGetSystemWithdrawals,
   useAdminWithdrawSystemIncome,
 } from "./system/system";
 
@@ -36,4 +37,5 @@ export {
   useAdminWithdrawMarketerIncome,
   useAdminGetSystemDetails,
   useAdminWithdrawSystemIncome,
+  useAdminGetSystemWithdrawals,
 };

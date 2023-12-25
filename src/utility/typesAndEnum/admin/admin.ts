@@ -146,6 +146,14 @@ type AdminWithdrawSystemIncomeType = {
   amount: number;
 };
 
+type AdminSystemWithdrawalType = {
+  key?: number;
+  id: number;
+  value: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export type {
   AdminLoginType,
   AdminLoginVerifyType,
@@ -162,4 +170,5 @@ export type {
   AdminWithdrawMarketerIncomeType,
   AdminSystemDetailsType,
   AdminWithdrawSystemIncomeType,
+  AdminSystemWithdrawalType,
 };

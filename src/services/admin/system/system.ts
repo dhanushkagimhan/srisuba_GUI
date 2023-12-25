@@ -22,3 +22,14 @@ export function useAdminWithdrawSystemIncome() {
     },
   });
 }
+
+export function useAdminGetSystemWithdrawals() {
+  const adminAuthClient = useAdminAuthClient();
+
+  return useQuery({
+    queryKey: [],
+    queryFn: () => {
+      return adminAuthClient.get("/system/withdrawals");
+    },
+  });
+}
