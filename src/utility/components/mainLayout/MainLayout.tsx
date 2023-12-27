@@ -162,7 +162,7 @@ export default function MainLayout(props: MainLayoutProps) {
               </div>
               <div className="mt-10 pb-2">
                 <p className="text-white text-center">
-                  <CopyrightOutlined /> 2023 srisuba.com Powered by Gimhana
+                  <CopyrightOutlined /> 2024 srisuba.com Powered by Gimhana
                 </p>
               </div>
             </div>

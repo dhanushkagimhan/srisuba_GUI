@@ -8,7 +8,10 @@ import {
   AdminMarketerBankAccountType,
   AdminWithdrawMarketerIncomeType,
 } from "../../../../../../utility/typesAndEnum";
-import { getMutationError } from "../../../../../../utility/Methods";
+import {
+  get404Error,
+  getMutationError,
+} from "../../../../../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";
 
 type MarketerWithdrawModelProps = {
@@ -86,7 +89,7 @@ export default function MarketerWithdrawModel(
       );
     } else if (
       adminMarketerBankAccountQuery.isError &&
-      adminMarketerBankAccountQuery?.error?.response.status === 404
+      get404Error(adminMarketerBankAccountQuery)
     ) {
       return (
         <div className="font-medium text-center">

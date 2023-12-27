@@ -5,7 +5,10 @@ import {
   useMarketerGetBankAccount,
 } from "../../../../../../../services/marketer";
 import { useEffect, useState } from "react";
-import { getMutationError } from "../../../../../../../utility/Methods";
+import {
+  get404Error,
+  getMutationError,
+} from "../../../../../../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";
 
 export default function MarketerBankAccount() {
@@ -29,7 +32,7 @@ export default function MarketerBankAccount() {
         form.setFieldsValue({ ...marketerBankAccountQuery.data.data.data });
       }
     } else if (marketerBankAccountQuery.isError) {
-      if (marketerBankAccountQuery.error.response.status === 404) {
+      if (get404Error(marketerBankAccountQuery)) {
         setIsBankAccountAvailable(false);
       }
     }
@@ -56,7 +59,7 @@ export default function MarketerBankAccount() {
             showIcon
           />
         </div>
-        {marketerBankAccountQuery?.error?.response.status === 404 ? (
+        {get404Error(marketerBankAccountQuery) ? (
           <div className="mb-4">
             <Alert
               message={
