@@ -42,7 +42,7 @@ type CreateOrUpdateProposalFormTextType = {
 };
 
 const client = new S3Client({
-  region: "ap-south-1",
+  region: import.meta.env.VITE_S3_REGION,
   credentials: {
     accessKeyId: import.meta.env.VITE_S3_ACCESS_KEY,
     secretAccessKey: import.meta.env.VITE_S3_SECRET_KEY,
@@ -148,7 +148,7 @@ export default function CreateOrUpdateProposalForm() {
       const profileImage = await resizeImageFile(profilePhotoFile);
 
       const command = new PutObjectCommand({
-        Bucket: "srisuba-images",
+        Bucket: import.meta.env.VITE_S3_BUCKET_NAME,
         Key: `${proposerState.data?.id}-${profilePhotoFile?.name}`,
         ContentType: "image/jpeg",
         Body: profileImage,
@@ -181,7 +181,7 @@ export default function CreateOrUpdateProposalForm() {
 
   const deleteImageFromS3 = async (formData: ProposerProposalType) => {
     const command = new DeleteObjectCommand({
-      Bucket: "srisuba-images",
+      Bucket: import.meta.env.VITE_S3_BUCKET_NAME,
       Key: profilePhotokey,
     });
 
