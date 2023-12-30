@@ -51,7 +51,7 @@ export default function ProposerProposals() {
                     <div className="flex sm:flex-row flex-col sm:justify-between gap-4">
                       <div className="w-[250px] lg:w-[300px] h-[250px] lg:h-[300px] flex justify-center items-center">
                         <Image
-                          className="max-w-[250px] lg:max-w-[300px] h-[250px] lg:max-h-[300px]"
+                          className="max-w-[250px] lg:max-w-[300px] max-h-[250px] lg:max-h-[300px]"
                           src={`${import.meta.env.VITE_S3_IMAGES_BASE_URL}${
                             otherProposer.profilePhoto
                           }`}
