@@ -262,7 +262,9 @@ export default function OtherProposalViewModel(
             <div className="w-[200px] sm:w-[250px] lg:w-[300px] h-[200px] sm:h-[250px] lg:h-[300px] flex justify-center items-center">
               <Image
                 className="max-w-[200px] sm:max-w-[250px] lg:max-w-[300px] max-h-[200px] sm:max-h-[250px] lg:max-h-[300px]"
-                src={otherProposalData?.profilePhoto}
+                src={`${
+                  import.meta.env.VITE_S3_IMAGES_BASE_URL
+                }${otherProposalData?.profilePhoto}`}
                 alt="Profile photo"
               />
             </div>

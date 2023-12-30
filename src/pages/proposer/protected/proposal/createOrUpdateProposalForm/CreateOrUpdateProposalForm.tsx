@@ -1,4 +1,14 @@
-import { Alert, Button, Form, Input, Radio, Select, Switch } from "antd";
+import {
+  Alert,
+  Button,
+  Form,
+  Input,
+  Radio,
+  Select,
+  Switch,
+  Image,
+  Upload,
+} from "antd";
 import { ProposerData, useProposerStore } from "../../../../../states";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -15,8 +25,14 @@ import {
 import {
   getMutationError,
   removeNullFields,
+  resizeImageFile,
 } from "../../../../../utility/Methods";
-import { SyncOutlined } from "@ant-design/icons";
+import { PlusOutlined, SyncOutlined } from "@ant-design/icons";
+import {
+  PutObjectCommand,
+  DeleteObjectCommand,
+  S3Client,
+} from "@aws-sdk/client-s3";
 
 const { TextArea } = Input;
 
@@ -24,6 +40,14 @@ type CreateOrUpdateProposalFormTextType = {
   heading: string;
   buttonText: string;
 };
+
+const client = new S3Client({
+  region: import.meta.env.VITE_S3_REGION,
+  credentials: {
+    accessKeyId: import.meta.env.VITE_S3_ACCESS_KEY,
+    secretAccessKey: import.meta.env.VITE_S3_SECRET_KEY,
+  },
+});
 
 export default function CreateOrUpdateProposalForm() {
   const navigate = useNavigate();
@@ -36,6 +60,13 @@ export default function CreateOrUpdateProposalForm() {
     heading: "Proposal Creation",
     buttonText: "Create",
   });
+
+  const [profilePhotoFile, setProfilePhotoFile] = useState<File>();
+  const [profilePhotokey, setProfilePhotoKey] = useState<string>();
+  const [s3EventLoading, setS3EventLoading] = useState<boolean>(false);
+
+  const [profilePhotoRequiredErrorShow, setProfilePhotoRequiredErrorShow] =
+    useState<boolean>(false);
 
   useEffect(() => {
     setFormData();
@@ -56,6 +87,9 @@ export default function CreateOrUpdateProposalForm() {
       });
       if (proposerGetMyProposalQuery.isSuccess) {
         if (proposerGetMyProposalQuery.data.data.success) {
+          setProfilePhotoKey(
+            proposerGetMyProposalQuery.data.data.data.profilePhoto,
+          );
           form.setFieldsValue({ ...proposerGetMyProposalQuery.data.data.data });
         }
       }
@@ -65,21 +99,41 @@ export default function CreateOrUpdateProposalForm() {
   const onSubmit = (formValues: ProposerProposalType) => {
     const proposalData: ProposerProposalType = {
       ...removeNullFields<ProposerProposalType>(formValues),
-      profilePhoto:
-        "https://cdn.siasat.com/wp-content/uploads/2022/05/srk-5.jpg",
     };
 
-    proposerProposalCreateOrUpdateMutation.mutate(proposalData, {
+    if (proposerState.data?.status === ProposerStatusEnum.EmailVerified) {
+      setS3EventLoading(true);
+      uploadImageToS3(proposalData);
+    } else {
+      if (profilePhotoFile == null) {
+        if (profilePhotokey != null) {
+          proposalData.profilePhoto = profilePhotokey;
+          submitFormData(proposalData);
+        }
+      } else {
+        setS3EventLoading(true);
+        deleteImageFromS3(proposalData);
+      }
+    }
+  };
+
+  const submitFormData = (formData: ProposerProposalType) => {
+    proposerProposalCreateOrUpdateMutation.mutate(formData, {
       onSuccess: (data) => {
         if (data.data.success) {
-          const proposerData: ProposerData = data.data.data;
-          proposerState.setData(proposerData);
+          const proposerPreviousData: ProposerData | undefined =
+            proposerState.data;
 
-          if (proposerData.status === ProposerStatusEnum.Active) {
-            proposerGetMyProposalQuery.refetch();
-            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-          } else {
-            navigate("/proposer-status");
+          if (proposerPreviousData != null) {
+            proposerPreviousData.status = data.data.data.status;
+            proposerState.setData(proposerPreviousData);
+
+            if (proposerPreviousData.status === ProposerStatusEnum.Active) {
+              proposerGetMyProposalQuery.refetch();
+              window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+            } else {
+              navigate("/proposer-status");
+            }
           }
         }
       },
@@ -87,6 +141,57 @@ export default function CreateOrUpdateProposalForm() {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
       },
     });
+  };
+
+  const uploadImageToS3 = async (formData: ProposerProposalType) => {
+    if (profilePhotoFile != null) {
+      const profileImage = await resizeImageFile(profilePhotoFile);
+
+      const command = new PutObjectCommand({
+        Bucket: import.meta.env.VITE_S3_BUCKET_NAME,
+        Key: `${proposerState.data?.id}-${profilePhotoFile?.name}`,
+        ContentType: "image/jpeg",
+        Body: profileImage,
+      });
+
+      try {
+        await client.send(command);
+
+        const profilePhotoKey: string = `${proposerState.data?.id}-${profilePhotoFile?.name}`;
+
+        setProfilePhotoKey(profilePhotoKey);
+
+        const formDataWithProfilePicture: ProposerProposalType = {
+          ...formData,
+          profilePhoto: profilePhotoKey,
+        };
+
+        setS3EventLoading(false);
+
+        submitFormData(formDataWithProfilePicture);
+      } catch (err) {
+        console.error("upload Error : ", err);
+      }
+    } else {
+      setProfilePhotoRequiredErrorShow(true);
+      setS3EventLoading(false);
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+  };
+
+  const deleteImageFromS3 = async (formData: ProposerProposalType) => {
+    const command = new DeleteObjectCommand({
+      Bucket: import.meta.env.VITE_S3_BUCKET_NAME,
+      Key: profilePhotokey,
+    });
+
+    try {
+      await client.send(command);
+
+      uploadImageToS3(formData);
+    } catch (err) {
+      console.error("delete Error : ", err);
+    }
   };
 
   return (
@@ -117,6 +222,26 @@ export default function CreateOrUpdateProposalForm() {
             <></>
           )}
         </div>
+
+        {profilePhotokey ? (
+          <div className="my-2">
+            <div>
+              <Image
+                className="max-w-[300px] max-h-[300px]"
+                src={`${
+                  import.meta.env.VITE_S3_IMAGES_BASE_URL
+                }${profilePhotokey}`}
+              ></Image>
+            </div>
+            <div className="italic">
+              ( If you change the profile picture, you need to upload photo and
+              submit the form for change your profile picture )
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
+
         <Form
           name="proposalCreateOrUpdateForm"
           onFinish={onSubmit}
@@ -124,6 +249,30 @@ export default function CreateOrUpdateProposalForm() {
           className="flex flex-col gap-2"
           form={form}
         >
+          <Form.Item<ProposerProposalType> label="Profile Photo">
+            <Upload
+              listType="picture-card"
+              maxCount={1}
+              accept="image/png, image/jpeg"
+              onRemove={() => setProfilePhotoFile(undefined)}
+              beforeUpload={(file) => {
+                setProfilePhotoFile(file);
+                return false;
+              }}
+              onPreview={() => {}}
+            >
+              <div>
+                <PlusOutlined />
+                <div className="mt-2">Upload</div>
+              </div>
+            </Upload>
+            {profilePhotoRequiredErrorShow && profilePhotoFile == null ? (
+              <div className="text-red-600">Upload the profile photo</div>
+            ) : (
+              <></>
+            )}
+          </Form.Item>
+
           <Form.Item<ProposerProposalType> name="bioTitle" label="Title">
             <Input placeholder="Title" className="py-2" />
           </Form.Item>
@@ -468,7 +617,8 @@ export default function CreateOrUpdateProposalForm() {
               htmlType="submit"
               className="w-full pb-10 text-2xl font-medium"
             >
-              {proposerProposalCreateOrUpdateMutation.isPending ? (
+              {s3EventLoading ||
+              proposerProposalCreateOrUpdateMutation.isPending ? (
                 <span className="text-lg mr-2">
                   <SyncOutlined spin />
                 </span>

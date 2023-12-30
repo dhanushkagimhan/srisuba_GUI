@@ -29,7 +29,7 @@ export default function Home() {
     });
 
     setProposalPrice();
-  }, []);
+  }, [proposalPriceQuery.data]);
 
   const setProposalPrice = () => {
     if (proposalPriceQuery.isSuccess) {
