@@ -44,6 +44,10 @@ export default function MarketerWithdrawals() {
   return (
     <div>
       <div className="font-semibold mb-4 text-lg">Withdrawals</div>
+      <div className="my-4 italic">
+        Your income withdrawal occurs once a month, typically between the 20th
+        and 25th of each month.
+      </div>
       <div>
         <Table
           dataSource={withdrawals}
