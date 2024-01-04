@@ -50,9 +50,9 @@ export default function MarketerHome() {
             className="sm:w-[560px] sm:h-[315px] w-[255px] h-[144px]"
             src="https://www.youtube-nocookie.com/embed/0rLOzvDAz6Y?si=D0Xmm5h6IgoJp-ow"
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </div>
       </div>

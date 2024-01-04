@@ -104,9 +104,9 @@ export default function Home() {
             className="sm:w-[560px] sm:h-[315px] w-[255px] h-[144px]"
             src="https://www.youtube-nocookie.com/embed/XVtxEdo4p0I?si=Igh2YnSVAJauhy29"
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </div>
       </div>
