@@ -99,7 +99,7 @@ export default function Home() {
 
       <div className="flex flex-row justify-center mt-10">
         <div>
-          <h3>Learn more about srisuba.com</h3>
+          <p className="font-semibold">Learn more about srisuba.com</p>
           <iframe
             className="sm:w-[560px] sm:h-[315px] w-[255px] h-[144px]"
             src="https://www.youtube-nocookie.com/embed/XVtxEdo4p0I?si=Igh2YnSVAJauhy29"

@@ -43,7 +43,9 @@ export default function MarketerHome() {
 
       <div className="flex flex-row justify-center mt-10">
         <div>
-          <h3>Learn more about srisuba.com Affiliate marketing program</h3>
+          <p className="font-semibold">
+            Learn more about srisuba.com Affiliate marketing program
+          </p>
           <iframe
             className="sm:w-[560px] sm:h-[315px] w-[255px] h-[144px]"
             src="https://www.youtube-nocookie.com/embed/0rLOzvDAz6Y?si=D0Xmm5h6IgoJp-ow"
