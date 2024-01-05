@@ -46,14 +46,16 @@ export default function MarketerHome() {
           <p className="font-semibold">
             Learn more about srisuba.com Affiliate marketing program
           </p>
-          <iframe
-            className="sm:w-[560px] sm:h-[315px] w-[255px] h-[144px]"
-            src="https://www.youtube-nocookie.com/embed/0rLOzvDAz6Y?si=D0Xmm5h6IgoJp-ow"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>
+          <div className="max-md:flex max-md:flex-row max-md:justify-center">
+            <iframe
+              className="sm:w-[560px] sm:h-[315px] w-[255px] h-[144px]"
+              src="https://www.youtube-nocookie.com/embed/0rLOzvDAz6Y?si=D0Xmm5h6IgoJp-ow"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>
