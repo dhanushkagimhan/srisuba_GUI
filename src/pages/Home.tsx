@@ -102,7 +102,7 @@ export default function Home() {
           <p className="font-semibold">Learn more about srisuba.com</p>
           <iframe
             className="sm:w-[560px] sm:h-[315px] w-[255px] h-[144px]"
-            src="https://www.youtube-nocookie.com/embed/XVtxEdo4p0I?si=Igh2YnSVAJauhy29"
+            src="https://www.youtube-nocookie.com/embed/2CH50VgqJrM?si=FiRxwnqgYuQ4-lev"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
