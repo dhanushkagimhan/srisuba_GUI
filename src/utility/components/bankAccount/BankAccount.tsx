@@ -21,7 +21,7 @@ export default function BankAccount() {
           </div>
           <div className="flex flex-row gap-4 py-2">
             <div className="font-medium w-full text-right">Name</div>
-            <div className="w-full">J. R. D. Dhanushka Gimhan Dissanayaka</div>
+            <div className="w-full">J R D D G Dissanayaka</div>
           </div>
         </div>
       </div>
