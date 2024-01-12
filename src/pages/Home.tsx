@@ -43,17 +43,17 @@ export default function Home() {
 
   const featureList = [
     {
-      title: "Good privacy and security for your proposal.",
-      description:
-        "Only Registered and login members can view the marriage proposals. And contact details only show between the matched proposals.",
+      title: "Very low proposal price.",
+      description: "Only Rs. 1500 (LKR) per 3-months.",
     },
     {
       title: "You can view and propose to a any proposal.",
       description: "You can view and proposing to any number of proposals.",
     },
     {
-      title: "Very low proposal price.",
-      description: "Only Rs. 1500 (LKR) per 3-months.",
+      title: "Good privacy and security for your proposal.",
+      description:
+        "Only Registered and login members can view the marriage proposals. And contact details only show between the matched proposals.",
     },
   ];
 
@@ -71,30 +71,34 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mt-20">
-        <h2 className="max-md:text-lg">
-          srisuba.com is a marriage proposal posting service.
-        </h2>
-        <p className="font-medium">
-          You can find your dream partner very easily with srisuba.com
-        </p>
-      </div>
+      <div className="lg:pl-20">
+        <div className="mt-20">
+          <h2 className="max-md:text-lg">
+            srisuba.com is a marriage proposal posting service.
+          </h2>
+          <p className="font-medium">
+            You can find your dream partner very easily with srisuba.com
+          </p>
+        </div>
 
-      <div className="md:pl-10">
-        <List
-          itemLayout="horizontal"
-          dataSource={featureList}
-          renderItem={(item, index) => (
-            <List.Item>
-              <List.Item.Meta
-                key={index}
-                avatar={<FaFeatherPointed />}
-                title={item.title}
-                description={item.description}
-              />
-            </List.Item>
-          )}
-        />
+        <div className="md:pl-10">
+          <List
+            itemLayout="horizontal"
+            dataSource={featureList}
+            renderItem={(item, index) => (
+              <List.Item>
+                <List.Item.Meta
+                  key={index}
+                  avatar={<FaFeatherPointed />}
+                  title={item.title}
+                  description={
+                    <span className="text-slate-800">{item.description}</span>
+                  }
+                />
+              </List.Item>
+            )}
+          />
+        </div>
       </div>
 
       <div className="flex flex-row justify-center mt-10">
