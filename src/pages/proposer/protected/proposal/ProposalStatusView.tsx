@@ -1,9 +1,5 @@
 import { useEffect } from "react";
-import {
-  useMainLayoutStore,
-  useProposalPriceStore,
-  useProposerStore,
-} from "../../../../states";
+import { useMainLayoutStore, useProposerStore } from "../../../../states";
 import {
   MainLayoutNavEnum,
   ProposerStatusEnum,
@@ -17,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 export default function ProposalStatusView() {
   const mainLayoutState = useMainLayoutStore();
   const proposerState = useProposerStore();
-  const proposalPriceState = useProposalPriceStore();
   const proposalBlockReasonQuery = useProposerProposalGetBlockReason();
   const navigate = useNavigate();
 
