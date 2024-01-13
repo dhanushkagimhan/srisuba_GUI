@@ -48,15 +48,11 @@ export default function ProposalStatusView() {
               You need to pay membership payment to publish the your proposal.
             </div>
             <div className="mt-4">
-              Membership payment : Rs. {proposalPriceState.price ?? ""} (LKR)
-              per 3 months,
+              Membership payment : Rs. 1500 (LKR) per 3 months,
             </div>
             <div className="mt-4">
               <ol>
-                <li>
-                  Transfer Rs. {proposalPriceState.price ?? ""} (LKR) to the
-                  following bank account.
-                </li>
+                <li>Transfer Rs. 1500 (LKR) to the following bank account.</li>
                 <li>
                   Send the transaction slip / screenshot with your email to the{" "}
                   {systemContactNumber} via whatsApp.
