@@ -49,7 +49,7 @@ export default function ProposalStatusView() {
               <ol>
                 <li>Transfer Rs. 1500 (LKR) to the following bank account.</li>
                 <li>
-                  Send the transaction slip / screenshot with your email to the{" "}
+                  Send the transaction slip / screenshot to the{" "}
                   {systemContactNumber} via whatsApp.
                 </li>
               </ol>
