@@ -27,7 +27,7 @@ export default function BankAccount() {
       </div>
 
       <div className="mt-12 italic">
-        Any help {systemContactNumber} via whatsApp
+        Any help {systemContactNumber} ( WhatsApp also available )
       </div>
     </div>
   );
