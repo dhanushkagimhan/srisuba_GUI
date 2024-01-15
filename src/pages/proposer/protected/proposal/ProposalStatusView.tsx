@@ -39,11 +39,14 @@ export default function ProposalStatusView() {
       case ProposerStatusEnum.PendingPayment: {
         return (
           <div>
-            <div className="font-semibold text-xl">
-              You need to pay membership payment to publish the your proposal.
+            <div className="text-2xl font-semibold">
+              Proposal creation successfully!
+            </div>
+            <div className="font-semibold mt-6">
+              Now, To publish your proposal, you must make a membership payment.
             </div>
             <div className="mt-4">
-              Membership payment : Rs. 1500 (LKR) per 3 months,
+              Membership payment is Rs. 1500 (LKR) per 3 months,
             </div>
             <div className="mt-4">
               <ol>
@@ -53,6 +56,12 @@ export default function ProposalStatusView() {
                   {systemContactNumber} via whatsApp.
                 </li>
               </ol>
+              <div className="italic text-base text-pink-950">
+                After completing your payment, we will review and approve your
+                proposal. Once approved, you can log in to srisuba.com and
+                browse through suitable proposals. Then, you can find and
+                propose to your dream partner. Good luck!
+              </div>
             </div>
             <BankAccount />
           </div>
