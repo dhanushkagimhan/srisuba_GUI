@@ -7,7 +7,7 @@ import {
 import { systemContactNumber } from "../../../../utility/const";
 import { BankAccount } from "../../../../utility/components";
 import { useProposerProposalGetBlockReason } from "../../../../services/proposer";
-import { Button } from "antd";
+import { Alert, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 
 export default function ProposalStatusView() {
@@ -39,29 +39,35 @@ export default function ProposalStatusView() {
       case ProposerStatusEnum.PendingPayment: {
         return (
           <div>
-            <div className="text-lg font-semibold mt-4">
-              Now, To publish your proposal and view suitable proposals, please
-              pay the membership payment.
+            <div className="text-xl font-semibold mt-4">
+              Now, Pay membership payment.
             </div>
             <div className="mt-4">
-              Membership payment is Rs. 1500 (LKR) per 3 months,
+              Membership payment is Rs. 1500 (LKR) per 3 months.
             </div>
-            <div className="mt-4">
+            <div className="mt-4">Steps of paying the payment,</div>
+            <div>
               <ol>
                 <li>Transfer Rs. 1500 (LKR) to the following bank account.</li>
                 <li>
-                  Send the transaction slip / screenshot to the{" "}
-                  {systemContactNumber} via whatsApp.
+                  Then send the payment slip to {systemContactNumber} via
+                  WhatsApp ( If you transfer online, send a screenshot of your
+                  payment ).
                 </li>
               </ol>
-              <div className="italic text-sm text-pink-950">
-                After completing your payment, we will review and approve your
-                proposal. Once approved, you can log in to srisuba.com and
-                browse through suitable proposals. Then, you can find and
-                propose to your dream partner. Good luck!
-              </div>
             </div>
+
             <BankAccount />
+
+            <div className="mt-6">
+              <Alert
+                message="After completing your payment, we will review and approve your
+              proposal. Once approved, you can log in to srisuba.com and view suitable proposals. Then, you can find and propose to your
+              dream partner. Good luck!"
+                type="info"
+                showIcon
+              />
+            </div>
           </div>
         );
       }

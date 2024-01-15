@@ -3,10 +3,10 @@ import { systemContactNumber } from "../../const";
 export default function BankAccount() {
   return (
     <div className="mt-8">
-      <div className="font-semibold"> Bank account</div>
-
       <div className="flex flex-row justify-center mt-4">
         <div className="w-full md:w-1/2">
+          <div className="font-semibold mb-2"> Bank account</div>
+
           <div className="flex flex-row gap-4 py-2 bg-slate-100 rounded-lg">
             <div className="font-medium w-full text-right">Bank</div>
             <div className="w-full">Bank of Ceylon</div>
