@@ -35,7 +35,7 @@ export default function MembershipExpired() {
               following bank account.
             </li>
             <li>
-              Send the transaction slip / screenshot with your email to the{" "}
+              Send the transaction slip / screenshot to the{" "}
               {systemContactNumber} via whatsApp.
             </li>
           </ol>
