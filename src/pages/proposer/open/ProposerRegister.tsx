@@ -58,15 +58,11 @@ export default function ProposerRegister() {
   return (
     <div className="flex flex-row justify-center">
       <div className="md:w-3/5 w-full">
-        <p>
-          ආයුබෝවන්!! ලංකාවේ විශ්වාසනීයම මංගල යෝජනා සේවයට ඇතුලත් වීමට පැමිණෙන ඔබව
-          සාදරයෙන් පිළිගන්නෙමු.
-        </p>
         <h2 className="text-2xl font-semibold">Registration</h2>
         <p>
-          ( මුලිම්ම srisuba.com වෙබ් අඩවියෙහි ගිණුමක් සකසා ගනිමු. ඒ සදහා ඔබ පහත
-          form එක පුරවා Register බටන් එක press කරන්න. ඔබට ගිණුම සැකසීමේදි යම්
-          ගැටලුවක් මතු වුනොත් {systemContactNumber} වෙත අමතන්න. )
+          ( පලමුව, srisuba.com වෙබ් අඩවියෙහි ගිණුමක් සකසා ගනිමු. ඒ සදහා ඔබ පහත
+          form එක පුරවා Register බටන් එක touch / click කරන්න. ඔබට ගිණුම
+          සැකසීමේදි යම් ගැටලුවක් මතු වුනොත් {systemContactNumber} වෙත අමතන්න. )
         </p>
         <div>
           {proposerRegisterMutation.isError ? (
@@ -86,7 +82,6 @@ export default function ProposerRegister() {
           layout="vertical"
           className="flex flex-col gap-2"
         >
-          <p>( පලමුවෙන්, ඔබගේ භාවිතා කරන email ලිපිනය ඇතුලත් කරන්න. )</p>
           <Form.Item<ProposerRegisterType>
             name="email"
             label="Email ( ඔබගේ email ලිපිනය )"
@@ -206,7 +201,8 @@ export default function ProposerRegister() {
 
           <p>
             {" "}
-            ( දැන් ඔබගේ ගිණුම සැකසීම සදහා පහත Register බටන් එක press කරන්න. ){" "}
+            ( දැන් ඔබගේ ගිණුම සැකසීම සදහා පහත Register බටන් එක touch / click
+            කරන්න. ){" "}
           </p>
 
           <Form.Item>
