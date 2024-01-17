@@ -61,8 +61,8 @@ export default function ProposerRegister() {
         <h2 className="text-2xl font-semibold">Registration</h2>
         <p>
           ( පලමුව, srisuba.com වෙබ් අඩවියෙහි ගිණුමක් සකසා ගනිමු. ඒ සදහා ඔබ පහත
-          form එක පුරවා Register බටන් එක touch / click කරන්න. ඔබට ගිණුම
-          සැකසීමේදි යම් ගැටලුවක් මතු වුනොත් {systemContactNumber} වෙත අමතන්න. )
+          form එක පුරවන්න. ඔබට ගිණුම සැකසීමේදි යම් ගැටලුවක් මතු වුනොත්{" "}
+          {systemContactNumber} වෙත අමතන්න. )
         </p>
         <div>
           {proposerRegisterMutation.isError ? (
