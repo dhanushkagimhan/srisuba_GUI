@@ -64,7 +64,7 @@ export default function ProposerRegister() {
         </p>
         <h2 className="text-2xl font-semibold">Registration</h2>
         <p>
-          ( මුලිම්ම srisuba.com වෙබ් අඩවියෙහි ගිණිමක් සකසා ගනිමු. ඒ සදහා ඔබ පහත
+          ( මුලිම්ම srisuba.com වෙබ් අඩවියෙහි ගිණුමක් සකසා ගනිමු. ඒ සදහා ඔබ පහත
           form එක පුරවා Register බටන් එක press කරන්න. ඔබට ගිණුම සැකසීමේදි යම්
           ගැටලුවක් මතු වුනොත් {systemContactNumber} වෙත අමතන්න. )
         </p>
@@ -95,7 +95,7 @@ export default function ProposerRegister() {
             <Input type="email" placeholder="Email" className="py-2" />
           </Form.Item>
 
-          <p>( දැන්, ඔබ සකසන srisuba.com ගිණිමට නව මුරපදයක් සකසා ගත යුතුය. )</p>
+          <p>( දැන්, ඔබ සකසන srisuba.com ගිණුමට නව මුරපදයක් සකසා ගත යුතුය. )</p>
           <Form.Item<ProposerRegisterType>
             name="password"
             label="Password ( නව මුරපදයක් ඇතුලත් කරන්න. ඔබගේ නව මුර පදය අකුරු 8 කට වඩා දිග විය යුතුය. )"
@@ -183,7 +183,7 @@ export default function ProposerRegister() {
 
           <Form.Item<ProposerRegisterType>
             name="gender"
-            label="Gender ( ඔබගේ ස්ත්‍රී / පුරුෂ බාවය ඇතුලත් කරන්න )"
+            label="Gender ( ඔබගේ ස්ත්‍රී / පුරුෂ භාවය ඇතුලත් කරන්න )"
             rules={[{ required: true, message: "Please select gender!" }]}
           >
             <Select placeholder="select your gender">
@@ -206,7 +206,7 @@ export default function ProposerRegister() {
 
           <p>
             {" "}
-            ( දැන් ඔබගේ ගිණිම සැකසීම සදහා පහත Register බටන් එක press කරන්න. ){" "}
+            ( දැන් ඔබගේ ගිණුම සැකසීම සදහා පහත Register බටන් එක press කරන්න. ){" "}
           </p>
 
           <Form.Item>
