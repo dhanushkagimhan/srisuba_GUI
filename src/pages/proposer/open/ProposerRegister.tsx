@@ -113,7 +113,7 @@ export default function ProposerRegister() {
 
           <Form.Item<ProposerRegisterType>
             name="confirmPassword"
-            label="Confirm Password (නැවතත්, පෙර ඇතුලත් කරපු නව මුර පදය ඇතුලත් කරන්න)"
+            label="Confirm Password (නැවතත්, පෙර ඇතුලත් කරපු නව මුර පදයම ඇතුලත් කරන්න)"
             hasFeedback
             rules={[
               { required: true, message: "Please input confirm password!" },
