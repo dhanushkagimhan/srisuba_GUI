@@ -15,6 +15,7 @@ import { useProposerRegister } from "../../../services/proposer";
 import { getMutationError } from "../../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { systemContactNumber } from "../../../utility/const";
 
 const { Option } = Select;
 
@@ -57,7 +58,16 @@ export default function ProposerRegister() {
   return (
     <div className="flex flex-row justify-center">
       <div className="md:w-3/5 w-full">
+        <p>
+          ආයුබෝවන්!! ලංකාවේ විශ්වාසනීයම මංගල යෝජනා සේවයට ඇතුලත් වීමට පැමිණෙන ඔබව
+          සාදරයෙන් පිළිගන්නෙමු.
+        </p>
         <h2 className="text-2xl font-semibold">Registration</h2>
+        <p>
+          ( මුලිම්ම srisuba.com වෙබ් අඩවියෙහි ගිණිමක් සකසා ගනිමු. ඒ සදහා ඔබ පහත
+          form එක පුරවා Register බටන් එක press කරන්න. ඔබට ගිණුම සැකසීමේදි යම්
+          ගැටලුවක් මතු වුනොත් {systemContactNumber} වෙත අමතන්න. )
+        </p>
         <div>
           {proposerRegisterMutation.isError ? (
             <div className="mb-4">
@@ -76,17 +86,19 @@ export default function ProposerRegister() {
           layout="vertical"
           className="flex flex-col gap-2"
         >
+          <p>( පලමුවෙන්, ඔබගේ භාවිතා කරන email ලිපිනය ඇතුලත් කරන්න. )</p>
           <Form.Item<ProposerRegisterType>
             name="email"
-            label="Email"
+            label="Email ( ඔබගේ email ලිපිනය )"
             rules={[{ required: true, message: "Please input your email" }]}
           >
             <Input type="email" placeholder="Email" className="py-2" />
           </Form.Item>
 
+          <p>( දැන්, ඔබ සකසන srisuba.com ගිණිමට නව මුරපදයක් සකසා ගත යුතුය. )</p>
           <Form.Item<ProposerRegisterType>
             name="password"
-            label="Password"
+            label="Password ( නව මුරපදයක් ඇතුලත් කරන්න. ඔබගේ නව මුර පදය අකුරු 8 කට වඩා දිග විය යුතුය. )"
             hasFeedback
             rules={[
               { required: true, message: "Please input password!" },
@@ -96,15 +108,12 @@ export default function ProposerRegister() {
               },
             ]}
           >
-            <Input.Password
-              placeholder="Confirm password"
-              className="py-2 w-full"
-            />
+            <Input.Password placeholder="Password" className="py-2 w-full" />
           </Form.Item>
 
           <Form.Item<ProposerRegisterType>
             name="confirmPassword"
-            label="Confirm Password"
+            label="Confirm Password (නැවතත්, පෙර ඇතුලත් කරපු නව මුර පදය ඇතුලත් කරන්න)"
             hasFeedback
             rules={[
               { required: true, message: "Please input confirm password!" },
@@ -122,12 +131,15 @@ export default function ProposerRegister() {
               }),
             ]}
           >
-            <Input.Password placeholder="Password" className="py-2 w-full" />
+            <Input.Password
+              placeholder="Confirm password"
+              className="py-2 w-full"
+            />
           </Form.Item>
 
           <Form.Item<ProposerRegisterType>
             name="firstName"
-            label="First Name"
+            label="First Name ( ඔබගේ නමේ මුල් කොටස ඇතුලත් කරන්න )"
             rules={[
               { required: true, message: "Please input your first name!" },
             ]}
@@ -137,7 +149,7 @@ export default function ProposerRegister() {
 
           <Form.Item<ProposerRegisterType>
             name="lastName"
-            label="Last Name"
+            label="Last Name ( ඔබගේ නමේ දෙවන කොටස ඇතුලත් කරන්න )"
             rules={[
               { required: true, message: "Please input your last name!" },
             ]}
@@ -147,7 +159,7 @@ export default function ProposerRegister() {
 
           <Form.Item<ProposerRegisterType>
             name="birthDay"
-            label="Birthday"
+            label="Birthday ( ඔබගේ උපන් දිනය ඇතුලත් කරන්න )"
             rules={[
               { required: true, message: "Please input your Birthday!" },
               () => ({
@@ -171,7 +183,7 @@ export default function ProposerRegister() {
 
           <Form.Item<ProposerRegisterType>
             name="gender"
-            label="Gender"
+            label="Gender ( ඔබගේ ස්ත්‍රී / පුරුෂ බාවය ඇතුලත් කරන්න )"
             rules={[{ required: true, message: "Please select gender!" }]}
           >
             <Select placeholder="select your gender">
@@ -183,7 +195,7 @@ export default function ProposerRegister() {
           {cookies.ref == null ? (
             <Form.Item<ProposerRegisterType>
               name="referralCode"
-              label="Referral Code"
+              label="Referral Code ( මෙම කොටස පිරවීම අන්වාර්ය නැත )"
               tooltip="If you have a referral code, add it. If haven't, don't worry. Go forward."
             >
               <Input placeholder="Referral code" className="py-2 w-full" />
@@ -191,6 +203,11 @@ export default function ProposerRegister() {
           ) : (
             <></>
           )}
+
+          <p>
+            {" "}
+            ( දැන් ඔබගේ ගිණිම සැකසීම සදහා පහත Register බටන් එක press කරන්න. ){" "}
+          </p>
 
           <Form.Item>
             <Button
