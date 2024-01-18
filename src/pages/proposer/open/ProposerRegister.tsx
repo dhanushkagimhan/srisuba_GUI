@@ -15,7 +15,6 @@ import { useProposerRegister } from "../../../services/proposer";
 import { getMutationError } from "../../../utility/Methods";
 import { SyncOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { systemContactNumber } from "../../../utility/const";
 
 const { Option } = Select;
 
@@ -59,11 +58,6 @@ export default function ProposerRegister() {
     <div className="flex flex-row justify-center">
       <div className="md:w-3/5 w-full">
         <h2 className="text-2xl font-semibold">Registration</h2>
-        <p>
-          ( පලමුව, srisuba.com වෙබ් අඩවියෙහි ගිණුමක් සකසා ගනිමු. ඒ සදහා ඔබ පහත
-          form එක පුරවන්න. ඔබට ගිණුම සැකසීමේදි යම් ගැටලුවක් මතු වුනොත්{" "}
-          {systemContactNumber} වෙත අමතන්න. )
-        </p>
         <div>
           {proposerRegisterMutation.isError ? (
             <div className="mb-4">
@@ -84,16 +78,15 @@ export default function ProposerRegister() {
         >
           <Form.Item<ProposerRegisterType>
             name="email"
-            label="Email ( ඔබගේ email ලිපිනය )"
+            label="Email"
             rules={[{ required: true, message: "Please input your email" }]}
           >
             <Input type="email" placeholder="Email" className="py-2" />
           </Form.Item>
 
-          <p>( දැන්, ඔබ සකසන srisuba.com ගිණුමට නව මුරපදයක් සකසා ගත යුතුය. )</p>
           <Form.Item<ProposerRegisterType>
             name="password"
-            label="Password ( නව මුරපදයක් ඇතුලත් කරන්න. ඔබගේ නව මුර පදය අකුරු 8 කට වඩා දිග විය යුතුය. )"
+            label="Password"
             hasFeedback
             rules={[
               { required: true, message: "Please input password!" },
@@ -108,7 +101,7 @@ export default function ProposerRegister() {
 
           <Form.Item<ProposerRegisterType>
             name="confirmPassword"
-            label="Confirm Password (නැවතත්, පෙර ඇතුලත් කරපු නව මුර පදයම ඇතුලත් කරන්න)"
+            label="Confirm Password"
             hasFeedback
             rules={[
               { required: true, message: "Please input confirm password!" },
@@ -134,7 +127,7 @@ export default function ProposerRegister() {
 
           <Form.Item<ProposerRegisterType>
             name="firstName"
-            label="First Name ( ඔබගේ නමේ මුල් කොටස ඇතුලත් කරන්න )"
+            label="First Name"
             rules={[
               { required: true, message: "Please input your first name!" },
             ]}
@@ -144,7 +137,7 @@ export default function ProposerRegister() {
 
           <Form.Item<ProposerRegisterType>
             name="lastName"
-            label="Last Name ( ඔබගේ නමේ දෙවන කොටස ඇතුලත් කරන්න )"
+            label="Last Name"
             rules={[
               { required: true, message: "Please input your last name!" },
             ]}
@@ -154,7 +147,7 @@ export default function ProposerRegister() {
 
           <Form.Item<ProposerRegisterType>
             name="birthDay"
-            label="Birthday ( ඔබගේ උපන් දිනය ඇතුලත් කරන්න )"
+            label="Birthday"
             rules={[
               { required: true, message: "Please input your Birthday!" },
               () => ({
@@ -178,7 +171,7 @@ export default function ProposerRegister() {
 
           <Form.Item<ProposerRegisterType>
             name="gender"
-            label="Gender ( ඔබගේ ස්ත්‍රී / පුරුෂ භාවය ඇතුලත් කරන්න )"
+            label="Gender"
             rules={[{ required: true, message: "Please select gender!" }]}
           >
             <Select placeholder="select your gender">
@@ -190,7 +183,7 @@ export default function ProposerRegister() {
           {cookies.ref == null ? (
             <Form.Item<ProposerRegisterType>
               name="referralCode"
-              label="Referral Code ( මෙම කොටස පිරවීම අන්වාර්ය නැත )"
+              label="Referral Code"
               tooltip="If you have a referral code, add it. If haven't, don't worry. Go forward."
             >
               <Input placeholder="Referral code" className="py-2 w-full" />
@@ -198,12 +191,6 @@ export default function ProposerRegister() {
           ) : (
             <></>
           )}
-
-          <p>
-            {" "}
-            ( දැන් ඔබගේ ගිණුම සැකසීම සදහා පහත Register බටන් එක touch / click
-            කරන්න. ){" "}
-          </p>
 
           <Form.Item>
             <Button
