@@ -26,7 +26,7 @@ export default function Home() {
     mainLayoutState.setData({
       navMenu: MainLayoutNavEnum.postProposer,
       showFooter: true,
-      showMarketing: true,
+      showMarketing: false,
       logoLink: "/",
     });
 

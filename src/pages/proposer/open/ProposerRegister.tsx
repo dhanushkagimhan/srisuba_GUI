@@ -29,7 +29,7 @@ export default function ProposerRegister() {
     mainLayoutState.setData({
       navMenu: undefined,
       showFooter: true,
-      showMarketing: true,
+      showMarketing: false,
       logoLink: "/",
     });
   }, []);
@@ -180,7 +180,7 @@ export default function ProposerRegister() {
             </Select>
           </Form.Item>
 
-          {cookies.ref == null ? (
+          {/* {cookies.ref == null ? (
             <Form.Item<ProposerRegisterType>
               name="referralCode"
               label="Referral Code"
@@ -190,7 +190,7 @@ export default function ProposerRegister() {
             </Form.Item>
           ) : (
             <></>
-          )}
+          )} */}
 
           <Form.Item>
             <Button

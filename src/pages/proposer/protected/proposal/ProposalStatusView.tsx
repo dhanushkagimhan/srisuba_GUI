@@ -75,10 +75,7 @@ export default function ProposalStatusView() {
         return (
           <div>
             <div className="font-semibold text-xl">
-              Your membership payment was approved.
-            </div>
-            <div className="mt-8">
-              Please wait until the review your proposal.
+              We are reviewing your proposal. It may take less than 24 hours.
             </div>
           </div>
         );
