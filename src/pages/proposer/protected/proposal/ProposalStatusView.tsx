@@ -62,7 +62,7 @@ export default function ProposalStatusView() {
             <div className="mt-6">
               <Alert
                 message="After completing your payment, we will review and approve your
-              proposal. Once approved, you can log in to srisuba.com and view suitable proposals. Then, you can find and propose to your
+              account. Once approved, you can log in to srisuba.com and view suitable proposals. Then, you can find and propose to your
               dream partner. Good luck!"
                 type="info"
                 showIcon
@@ -75,7 +75,7 @@ export default function ProposalStatusView() {
         return (
           <div>
             <div className="font-semibold text-xl">
-              We are reviewing your proposal. It may take less than 24 hours.
+              We are reviewing your account. It may take less than 24 hours.
             </div>
           </div>
         );

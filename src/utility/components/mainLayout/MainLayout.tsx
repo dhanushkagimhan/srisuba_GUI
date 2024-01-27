@@ -30,7 +30,7 @@ export default function MainLayout(props: MainLayoutProps) {
                 className=" no-underline text-white font-semibold "
               >
                 <p className="bg-orange-600 py-1 px-2 rounded-md hover:bg-orange-500">
-                  Post proposal
+                  Register
                 </p>
               </Link>
             </div>
@@ -136,7 +136,7 @@ export default function MainLayout(props: MainLayoutProps) {
                 <div>
                   <h1 className=" text-white">Srisuba</h1>
                   <p className="text-white -mt-5">
-                    The matrimonial proposal service
+                    The love connection service
                   </p>
                 </div>
                 <div>

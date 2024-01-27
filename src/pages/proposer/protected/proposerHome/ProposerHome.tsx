@@ -35,7 +35,7 @@ export default function ProposerHome() {
             children: <ProposerProposals />,
           },
           {
-            label: <span className="font-semibold">Matched Proposals</span>,
+            label: <span className="font-semibold">My Connections</span>,
             key: "matchedProposals",
             children: <MatchedProposals />,
           },

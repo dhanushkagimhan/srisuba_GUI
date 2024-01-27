@@ -156,7 +156,7 @@ export default function ProposerLogin() {
           to="/proposer-register"
           className="no-underline text-sky-500 hover:text-sky-400"
         >
-          <p>Still not posted my proposal, Post my proposal</p>
+          <p>Still not created account, Register</p>
         </Link>
       </div>
     </div>

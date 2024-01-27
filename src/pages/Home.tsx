@@ -43,17 +43,17 @@ export default function Home() {
 
   const featureList = [
     {
-      title: "Very low proposal price.",
-      description: "Only Rs. 1500 (LKR) per 3-months.",
-    },
-    {
-      title: "You can view and propose to a any proposal.",
-      description: "You can view and proposing to any number of proposals.",
-    },
-    {
-      title: "Good privacy and security for your proposal.",
+      title: "Good privacy and security for your account.",
       description:
-        "Only Registered and login members can view the marriage proposals. And contact details only show between the matched proposals.",
+        "Only Registered and login members can view the account details. And contact details only show between the connected accounts.",
+    },
+    {
+      title: "Girls can use the srisuba.com in 100% free.",
+      description: "Not charge any membership payment from girls.",
+    },
+    {
+      title: "Low charges for boys also.",
+      description: "Membership charge for a boy is Rs.1500 per 3-months",
     },
   ];
 
@@ -63,7 +63,7 @@ export default function Home() {
         <div className="w-full md:pt-20 lg:pl-20">
           <h1 className="text-6xl text-neutral-900">Srisuba</h1>
           <p className="text-neutral-900 -mt-5 text-xl font-medium">
-            The matrimonial proposal service
+            The love connection service
           </p>
         </div>
         <div className="w-full md:pt-20 pt-10 xl:pl-40">
@@ -73,9 +73,6 @@ export default function Home() {
 
       <div className="lg:pl-20">
         <div className="mt-20">
-          <h2 className="max-md:text-lg">
-            srisuba.com is a marriage proposal posting service.
-          </h2>
           <p className="font-medium">
             You can find your dream partner very easily with srisuba.com
           </p>
