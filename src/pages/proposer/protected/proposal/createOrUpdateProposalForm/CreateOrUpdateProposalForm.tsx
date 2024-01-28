@@ -57,8 +57,8 @@ export default function CreateOrUpdateProposalForm() {
   const [form] = Form.useForm();
   const proposerGetMyProposalQuery = useProposerGetMyProposal();
   const [formText, setFormText] = useState<CreateOrUpdateProposalFormTextType>({
-    heading: "Proposal Creation",
-    buttonText: "Create",
+    heading: "Personal Information",
+    buttonText: "Next",
   });
 
   const [profilePhotoFile, setProfilePhotoFile] = useState<File>();
@@ -82,7 +82,7 @@ export default function CreateOrUpdateProposalForm() {
       });
     } else {
       setFormText({
-        heading: "Update Proposal",
+        heading: "Update Personal Information",
         buttonText: "Update",
       });
       if (proposerGetMyProposalQuery.isSuccess) {

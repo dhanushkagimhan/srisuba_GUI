@@ -92,7 +92,7 @@ export default function ReceivedProposals() {
   return (
     <div>
       <div className="xl:pl-20">
-        <p className="font-medium text-xl">
+        <p className="font-medium">
           All received proposals list. You can view proposal and then accept or
           reject that proposal.
         </p>

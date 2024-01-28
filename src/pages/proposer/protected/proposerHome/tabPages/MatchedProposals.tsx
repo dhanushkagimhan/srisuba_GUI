@@ -88,9 +88,9 @@ export default function MatchedProposals() {
   return (
     <div>
       <div className="xl:pl-20">
-        <p className="font-medium text-xl">
-          All matched proposals. you can view contact information of this
-          proposals.
+        <p className="font-medium">
+          All matched connections. you can view contact information of this
+          persons.
         </p>
       </div>
       <div className="flex flex-row justify-center my-8">

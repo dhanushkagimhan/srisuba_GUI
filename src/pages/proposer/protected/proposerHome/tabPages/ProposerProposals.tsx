@@ -134,7 +134,7 @@ export default function ProposerProposals() {
   return (
     <div>
       <div className="xl:pl-20">
-        <p className="font-medium text-xl">Posted all proposals</p>
+        <p className="font-medium">All proposals</p>
       </div>
       <div className="flex flex-row justify-center my-8">
         <div className="2xl:w-3/5 xl:w-4/5 w-full">{getContent()}</div>

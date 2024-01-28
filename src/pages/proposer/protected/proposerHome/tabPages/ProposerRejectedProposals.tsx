@@ -99,8 +99,8 @@ export default function ProposerRejectedProposals() {
   return (
     <div>
       <div className="xl:pl-20">
-        <p className="font-medium text-xl">
-          All rejected proposals. You can propose again to this proposals.
+        <p className="font-medium">
+          Proposals that rejected. You can propose again to this persons.
         </p>
       </div>
       <div className="flex flex-row justify-center my-8">

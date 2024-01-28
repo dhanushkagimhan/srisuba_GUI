@@ -90,7 +90,7 @@ export default function ProposerProposedProposals() {
   return (
     <div>
       <div className="xl:pl-20">
-        <p className="font-medium text-xl">
+        <p className="font-medium">
           All proposals that proposed by you. wait for the review these
           proposal.
         </p>
