@@ -28,7 +28,7 @@ export default function AdminProposersView() {
   const [totalDataCount, setTotalDataCount] = useState<number>();
   const [proposers, setProposers] = useState<AdminProposerType[]>([]);
   const [proposerStatus, setProposerStatus] = useState<ProposerStatusEnum>(
-    ProposerStatusEnum.PendingPayment,
+    ProposerStatusEnum.PaymentApproved,
   );
   const [isOnlyExpired, setIsOnlyExpired] = useState<boolean>(false);
   const [isIncludePayments, setIsIncludePayments] = useState<boolean>(false);
@@ -428,7 +428,7 @@ export default function AdminProposersView() {
         <div>
           <div className="mb-2 font-medium">Proposer Status :</div>
           <Select
-            defaultValue={ProposerStatusEnum.PendingPayment}
+            defaultValue={ProposerStatusEnum.PaymentApproved}
             onChange={(value) => {
               setProposerStatus(value), setCurrentPage(1);
             }}
