@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { ProposerLogin } from "./proposer";
 import { useMainLayoutStore, useProposalPriceStore } from "../states";
 import { MainLayoutNavEnum } from "../utility/typesAndEnum";
-import { useProposalPrice } from "../services/common";
+// import { useProposalPrice } from "../services/common";
 import { List } from "antd";
 import { FaFeatherPointed } from "react-icons/fa6";
 
@@ -13,7 +13,7 @@ export default function Home() {
   const [_, setCookie] = useCookies(["ref"]);
   const [searchParams] = useSearchParams();
   const mainLayoutState = useMainLayoutStore();
-  const proposalPriceQuery = useProposalPrice();
+  // const proposalPriceQuery = useProposalPrice();
   const proposalPriceState = useProposalPriceStore();
 
   useEffect(() => {
@@ -31,14 +31,15 @@ export default function Home() {
     });
 
     setProposalPrice();
-  }, [proposalPriceQuery.data]);
+  }, []);
 
   const setProposalPrice = () => {
-    if (proposalPriceQuery.isSuccess) {
-      if (proposalPriceQuery.data.data.success) {
-        proposalPriceState.setPrice(proposalPriceQuery.data.data.data.price);
-      }
-    }
+    proposalPriceState.setPrice(1500);
+    // if (proposalPriceQuery.isSuccess) {
+    //   if (proposalPriceQuery.data.data.success) {
+    //     proposalPriceState.setPrice(proposalPriceQuery.data.data.data.price);
+    //   }
+    // }
   };
 
   const featureList = [
@@ -48,12 +49,8 @@ export default function Home() {
         "Only Registered and login members can view the account details. And contact details only show between the connected accounts.",
     },
     {
-      title: "Girls can use the srisuba.com in 100% free.",
-      description: "Not charge any membership payment from girls.",
-    },
-    {
-      title: "Low charges for boys also.",
-      description: "Membership charge for a boy is Rs.1500 per 3-months",
+      title: "You can use the srisuba.com in free.",
+      description: "Not charge any membership payment.",
     },
   ];
 
